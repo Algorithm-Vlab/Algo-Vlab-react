@@ -82,6 +82,26 @@
     color: rgb(255, 255, 255);
 }
 
-.fnav .exploreIcon {
+.fnav .fnavmain .exploreIcon {
     font-size: 1.3rem;
+}
+
+
+@media (max-width: 450px) {
+    .algoTitle{
+        position: absolute;
+        margin: 1rem 0;
+        left: 0.5rem;
+        
+    }
+    .fnav{
+        height: 2.5rem;
+    }
+    .fnav .fnB{
+        margin: 0 0.15rem;
+        padding: 0.2rem;
+    }
+    .fnav .fnavmain .exploreIcon{
+        font-size: 1rem !important;
+    }
 }

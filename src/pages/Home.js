@@ -38,7 +38,7 @@ function Home() {
                 >
                     <img className="algoPic" src={algo1}></img>
                     <div className="divTitle">
-                        <p className="homeTitle">Welcome to Analysis of Algorithms Virtual Lab
+                        <p className="homeTitle">Welcome to Virtual Lab for Algorithms
                             <span className="effect"></span>
                         </p>
                     </div>
