@@ -1,5 +1,5 @@
 import "../css/Navbar.css";
-import somLogo from "../img/somaiyaLogo.jpg";
+import somLogo from "../img/somaiyaLogo.png";
 
 export default function SomL(){
     return (<div className="dkjLogo">

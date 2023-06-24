@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import "../css/Theory.css";
 import "../css/login.css";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function ULogin() {
     const [uemail, setuemail] = useState();
@@ -36,9 +37,9 @@ export default function ULogin() {
             }, config)
                 .then((data) => {
                     // console.log(data);
-                    window.location.reload();
+                    // window.location.reload();
                     window.alert("Login successful");
-                    
+                    navigate("/");
                 })
                 .catch((err) => {
                     const errs = err.response.data.error;
@@ -129,7 +130,7 @@ export default function ULogin() {
     return (
         <>
             <Navbar />
-            <div className="divf loginBG">
+            <div className="fullbgHOME divf loginBG">
                 <div className="divf loginCard">
                     <div className="lOptions">
                         <button id="studentS"
@@ -146,7 +147,7 @@ export default function ULogin() {
                     {currLS ?
                         <div id="adminForm">
                             <form className="divf logC" id="aForm">
-                                <p className="f2"><b>Admin Login</b></p>
+                                <p className="f2"><b>Login Form(Admin)</b></p>
                                 <div className="takeInD" id="adminI1">
                                     <input required pattern="[^ @]*@[^ @]*" value={aEmail} placeholder="email" type="email" id="idAemail" className="lIns" onChange={(e) => { setAEmail(e.target.value); handleCh(e, "loginBA") }} ></input>
                                     <b className="hideL">email</b>
@@ -164,7 +165,7 @@ export default function ULogin() {
 
                         <div id="userForm">
                             <form className="divf logC" id="uForm">
-                                <p className="f2"><b>User Login</b></p>
+                                <p className="f2"><b>Login Form</b></p>
                                 <div className="takeInD" id="userI1">
                                     <input required pattern="[^ @]*@[^ @]*" value={uemail} placeholder="email" type="email" id="iduemail" className="lIns" onChange={(e) => { setuemail(e.target.value); handleCh(e, "loginB") }} ></input>
                                     <b className="hideL">email</b>
@@ -181,7 +182,7 @@ export default function ULogin() {
                     }
                 </div>
             </div>
-
+            <Footer />
         </>
     )
 }

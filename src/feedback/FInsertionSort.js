@@ -11,16 +11,11 @@ import Footer from "../components/Footer";
 
 export default function FInsertion() {
 
-    const [username, setUsername] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [Somaiyaemail, setSomaiyaEmail] = useState(null);
     const cd = new Date();
     const [date, setDate] = useState(
         `${cd.getDate()}/${cd.getMonth() + 1}/${cd.getFullYear()}`
     );
 
-    const [designation, setDesignation] = useState(null);
-    const [department, setDepartment] = useState(null);
     const [Quest1, setQuest1] = useState();
     const [Quest2, setQuest2] = useState();
     const [Quest3, setQuest3] = useState();
@@ -28,7 +23,6 @@ export default function FInsertion() {
     const [Quest5, setQuest5] = useState();
     const [Quest6, setQuest6] = useState("");
     const [Quest7, setQuest7] = useState("");
-    const [institute, setInstitute] = useState(null);
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;
@@ -40,13 +34,13 @@ export default function FInsertion() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        console.log(cd.getMonth());
+        // console.log(cd.getMonth());
     }, [index])
 
     function nextbtn() {
         if (index >= 1) {
 
-            console.log(index);
+            // console.log(index);
             setIndex(prevIndex => prevIndex + 1);
         }
     }
@@ -55,18 +49,13 @@ export default function FInsertion() {
         if (index <= 3) {
 
             setIndex(prevIndex => prevIndex - 1);
-            console.log(index);
+            // console.log(index);
         }
     }
 
     function reloadStates() {
         setIndex(1);
-        setUsername(null);
-        setEmail(null);
-        setSomaiyaEmail(null);
         setDate(null);
-        setDesignation(null);
-        setDepartment(null);
         setQuest1(null);
         setQuest2(null);
         setQuest3(null);
@@ -74,7 +63,6 @@ export default function FInsertion() {
         setQuest5(null);
         setQuest6("");
         setQuest7("");
-        setInstitute(null);
     }
 
     async function submitFeed() {
@@ -85,9 +73,9 @@ export default function FInsertion() {
         }
         const dataF = {
             algoName,
-            institute,
-            department,
-            designation,
+            institute: uD.institution,
+            department: uD.department,
+            designation: uD.designation,
             q1: Quest1,
             q2: Quest2,
             q3: Quest3,
@@ -140,7 +128,7 @@ export default function FInsertion() {
                             }}>
                                 Email ID<sup className="mandF">*</sup>
                             </div>
-                            <input readOnly placeholder="Please Enter Personal Email ID" className="inputt" value={uD.email} onChange={(e) => { setEmail(e.target.value) }} required />
+                            <input readOnly placeholder="Please Enter Personal Email ID" className="inputt" value={uD.email} required />
 
 
 
@@ -153,7 +141,7 @@ export default function FInsertion() {
                             }}>
                                 Name<sup className="mandF">*</sup>
                             </div>
-                            <input readOnly value={uD.name} className="inputt" onChange={e => setUsername(e.target.value)} placeholder="Full Name" required />
+                            <input readOnly value={uD.name} className="inputt" placeholder="Full Name" required />
 
 
                             <div style={{
@@ -165,7 +153,7 @@ export default function FInsertion() {
                             }}>
                                 Name Of the Institute<sup className="mandF">*</sup>
                             </div>
-                            <input value={institute} className="inputt" onChange={e => setInstitute(e.target.value)} placeholder="Institute Name" required />
+                            <input readOnly value={uD.institution} className="inputt" placeholder="Institute Name" required />
 
                             <div style={{
                                 marginBottom: "1.0rem",
@@ -176,7 +164,7 @@ export default function FInsertion() {
                             }}>
                                 Department<sup className="mandF">*</sup>
                             </div>
-                            <input value={department} className="inputt" onChange={e => setDepartment(e.target.value)} placeholder="Department Name" required />
+                            <input readOnly value={uD.department} className="inputt" placeholder="Department Name" required />
 
                             <div style={{
                                 marginBottom: "1.0rem",
@@ -188,7 +176,7 @@ export default function FInsertion() {
                                 Faculty/student/other<sup className="mandF">*</sup>
 
                             </div>
-                            <input value={designation} className="inputt" onChange={e => setDesignation(e.target.value)} placeholder="Designation" required />
+                            <input readOnly value={uD.designation} className="inputt" placeholder="Designation" required />
 
 
                             <div style={{
@@ -206,10 +194,10 @@ export default function FInsertion() {
 
                             <div className="formfooter">
                                 {/* <button className="spec prev" disabled={index === 1} onClick={prevbtn} >Previous</button> */}
-                                {institute && designation && department ?
-                                    <button className="spec next" onClick={nextbtn}>Next</button>
-                                    : <></>
-                                }
+                                {/* {institute && designation && department ? */}
+                                <button className="spec next" onClick={nextbtn}>Next</button>
+                                {/* : <></> */}
+                                {/* } */}
 
                             </div>
 
@@ -419,14 +407,7 @@ export default function FInsertion() {
             <Navbar />
             <FNavbar />
             {uD ?
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        height: "100%",
-                    }}
-                >
+                <div className="fullbg">
                     <div
                         className="feedDiv"
                     >

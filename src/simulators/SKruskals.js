@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faCircleCheck, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 
 import { DataSet } from "vis-data";
 import { Network } from "vis-network";
@@ -14,10 +14,17 @@ import "../css/Lcs.css";
 import "../css/graph.css";
 import graphD from "../data/graphD";
 import FNavbar from "../components/FNavbar";
+import { goptions, gnodeOptions, gedgeOptions } from "../data/gOptions";
 
 function SKruskals() {
 
     const [stepC, setStepC] = useState(0);
+
+    const [noNodes, setNoNodes] = useState(0);
+    const [showNE, setShowNE] = useState(false);
+    const [node1, setNode1] = useState();
+    const [node2, setNode2] = useState();
+    const [edgeVal, setEdV] = useState();
 
     const [gMatrix, setGMatrix] = useState([[]]);
     const [edgeMatrix, setEMatrix] = useState([[]]);
@@ -27,8 +34,6 @@ function SKruskals() {
 
     const [snodes, setNodes] = useState();
     const [sedges, setEdges] = useState();
-    const [nopt, setNOpt] = useState();
-    const [eOpt, setEOpt] = useState();
 
     const [resultS, setResultS] = useState();
 
@@ -57,86 +62,21 @@ function SKruskals() {
         // window.scrollTo(0, 0);
     }, [stepC]);
 
-    const options = {
-        autoResize: true,
-        height: '100%',
-        width: '100%',
-        locale: 'en',
-        interaction: {
-            dragNodes: true,
-            dragView: true,
-            hideEdgesOnDrag: false,
-            hideEdgesOnZoom: false,
-            hideNodesOnDrag: false,
-            // hover: true,
-            hoverConnectedEdges: true,
-            keyboard: {
-                enabled: true,
-                speed: { x: 10, y: 10, zoom: 0.02 },
-                bindToWindow: true,
-                autoFocus: true,
-            },
-            multiselect: false,
-            navigationButtons: true,
-            selectable: true,
-            selectConnectedEdges: false,
-            tooltipDelay: 300,
-            zoomSpeed: 1,
-            zoomView: true,
-
-        },
-        physics: {
-            stabilization: true,
-            // solver: "forceAtlas2Based",
-            enabled: true,
-        },
-        layout: {
-            randomSeed: undefined,
-            improvedLayout: true,
-            clusterThreshold: 150,
-            hierarchical: {
-                enabled: false,
-                levelSeparation: 150,
-                nodeSpacing: 100,
-                // edgeSpacing: 150,
-                treeSpacing: 100,
-                blockShifting: true,
-                edgeMinimization: true,
-                parentCentralization: true,
-                direction: 'DU',        // UD, DU, LR, RL
-                sortMethod: 'directed',  // hubsize, directed
-                shakeTowards: 'leaves'  // roots, leaves
-            }
-        }
-    };
-
-    function createGraph(idname, gmArr) {
-        if (gmArr[0].length >= 1) {
-            var vertices = gmArr.length;
-            var dgMatrix = [];
-            for (var i = 0; i < vertices; i++) {
-                dgMatrix[i] = [];
-                for (var j = 0; j < vertices; j++) {
-                    dgMatrix[i][j] = gmArr[i][j];
-                }
-            }
-
+    function createGraph(idname, edgeM) {
+        if (edgeM[0].length >= 1) {
+            var nEdges = edgeM.length;
+            var nNodes = noNodes;
             var nodes = new DataSet();
             var edges = new DataSet();
             var asc = 65;
             var nArray = [];
             var eArray = [];
-            var w;
-            for (var i = 0; i < vertices; i++) {
-                nArray.push({ id: i, label: String.fromCharCode(asc), ...nopt });
+            for (var i = 0; i < nNodes; i++) {
+                nArray.push({ id: i, label: String.fromCharCode(asc), ...gnodeOptions });
                 asc++;
-                for (var j = 0; j < vertices; j++) {
-                    w = dgMatrix[i][j];
-                    if (w != 0) {
-                        eArray.push({ id: `${i}${j}`, from: i, to: j, label: String(w), weight: String(w), ...eOpt });
-                    }
-                    dgMatrix[i][j] = dgMatrix[j][i] = 0;
-                }
+            }
+            for (var i = 0; i < nEdges; i++) {
+                eArray.push({ id: `${edgeM[i][0]}${edgeM[i][1]}`, from: edgeM[i][0], to: edgeM[i][1], label: String(edgeM[i][2]), weight: String(edgeM[i][2]), ...gedgeOptions });
             }
             nodes.add(nArray);
             edges.add(eArray);
@@ -151,54 +91,19 @@ function SKruskals() {
                 edges: edges
             };
 
-            const network = new Network(container, data, options);
+            const network = new Network(container, data, goptions);
         }
 
     }
 
-    useEffect(() => {
+    function showGraph(eT) {
+        document.getElementById(eT.id).setAttribute("disabled", "disable");
+        // setNOpt(gnodeOptions);
+        // setEOpt(gedgeOptions);
 
-        const nodeOptions = {
-            borderWidth: 2,
-            borderWidthSelected: 3,
-            color: {
-                background: '#01052b',
-                border: '#000000',
-                highlight: {
-                    background: '#2F3E46',
-                    border: "#000000",
-                },
-            },
-            font: {
-                color: "#ffffff",
-                size: 15, // px
-                face: 'arial',
-                highlight: {
-                    color: "#000000",
-                }
-            },
-            physics: true
-        }
-        const edgeOptions = {
-            color: {
-                color: "#00fff2",
-            },
-            font: {
-                color: '#000000',
-                size: 18, // px
-                face: 'arial',
-                background: 'none',
-                strokeWidth: 5, // px
-                strokeColor: '#ffffff',
-
-            },
-            width: 2,
-        }
-        setNOpt(nodeOptions);
-        setEOpt(edgeOptions);
-
-        createGraph("mynetwork", gMatrix);
-    }, [gMatrix]);
+        createGraph("mynetwork", edgeMatrix);
+        // }, [gMatrix]);
+    }
 
     function retElId(idname) {
         return document.getElementById(idname);
@@ -211,7 +116,7 @@ function SKruskals() {
         setStepC(1);
     }
 
-    // Kruskal algorithm starts
+    // Kruskal algorithm 
 
     function makeSet(parent, rank, n) {
         for (let i = 0; i < n; i++) {
@@ -247,32 +152,6 @@ function SKruskals() {
         }
         setRankA(rank);
         setPA(parent);
-    }
-
-    async function createMG() {
-        var edgeM = resultS;
-        var graphM = gMatrix;
-        var gn = graphM.length;
-        var newGM = [];
-        for (var i = 0; i < gn; i++) {
-            newGM.push([]);
-            for (var j = 0; j < gn; j++) {
-                var takenB = false;
-                for (var k = 0; k < edgeM.length; k++) {
-                    if ((i === edgeM[k][0] && j === edgeM[k][1]) || (i === edgeM[k][1] && j === edgeM[k][0])) {
-                        newGM[i][j] = edgeM[k][2];
-                        takenB = true;
-                        break;
-                    }
-                }
-                if (!takenB) {
-                    newGM[i][j] = 0;
-                }
-            }
-        }
-
-        await timer(100);
-        createGraph("mynetwork2", newGM);
     }
 
     async function nextEdge(i, eT) {
@@ -362,7 +241,7 @@ function SKruskals() {
                 await timer(500);
                 sedges.update({
                     id: `${selV1}${selV2}`,
-                    ...eOpt
+                    ...gedgeOptions
                 });
             } catch (error) {
                 console.log(error);
@@ -373,19 +252,16 @@ function SKruskals() {
 
             snodes.update({
                 id: selV1,
-                ...nopt
+                ...gnodeOptions
             });
             snodes.update({
                 id: selV2,
-                ...nopt
+                ...gnodeOptions
             });
         } catch (error) {
             console.log(error);
         }
         setMinCost(mCost);
-        if (i === n - 1) {
-
-        }
         retElId(eT.id).disabled = false;
     }
 
@@ -427,8 +303,7 @@ function SKruskals() {
 
     function doKruskals(eT) {
         retElId(eT.id).setAttribute("disabled", "disable");
-        kruskalAlgo(5, graphD[2].mK);
-
+        kruskalAlgo(noNodes, edgeMatrix);
     }
 
     function goNextEdge(eT) {
@@ -448,10 +323,7 @@ function SKruskals() {
             retElId("mynetwork").classList.add("smallNet");
             retElId("mynetwork2").classList.add("smallNet");
             retElId("showMstP").classList.remove("dNoneP");
-            createMG();
-
-            console.log(resultS);
-            // retElId("mynetwork").classList.add("smallNet");
+            createGraph("mynetwork2", resultS);
             setStepC(2);
 
         }
@@ -460,16 +332,89 @@ function SKruskals() {
         }
     }
 
+    // Validations
+
+    function checkIfInt(valNum) {
+        if (!valNum) {
+            return false;
+        }
+        const regex = /[^0-9]/;
+        if (valNum.search(regex) === -1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function checkIfChar(valChar) {
+        if (!valChar) {
+            return false;
+        }
+        var n = Number(noNodes);
+        var ascNum = Number(valChar.charCodeAt(0));
+        var max1 = n + 65;
+        var max2 = n + 97;
+        if ((ascNum >= 65 && ascNum < max1) || (ascNum >= 97 && ascNum < max2)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function retIndexChar(valC) {
+        var ascNum = Number(valC.charCodeAt(0));
+        if (ascNum >= 97) {
+            return ascNum - 97;
+        }
+        else if (ascNum >= 65) {
+            return ascNum - 65;
+        }
+    }
+
+    function netCheck(val, eT) {
+        if (checkIfChar(val)) {
+            retElId(eT.id).classList.remove("inValidIn");
+        }
+        else {
+            retElId(eT.id).classList.add("inValidIn");
+        }
+    }
+
+    function etCheck(val, eT) {
+        if (checkIfInt(val)) {
+            retElId(eT.id).classList.remove("inValidIn");
+        }
+        else {
+            retElId(eT.id).classList.add("inValidIn");
+        }
+    }
+
+    function addNEM() {
+        var edgeM = edgeMatrix;
+        var n1 = retIndexChar(String(node1));
+        var n2 = retIndexChar(String(node2));
+        var newM = [n1, n2, Number(edgeVal)]
+        if (edgeM[0].length === 0) {
+            edgeM[0] = newM;
+        }
+        else {
+            edgeM.push(newM);
+        }
+        setEMatrix(edgeM);
+        setNode1("");
+        setNode2("");
+        setEdV("");
+    }
+
 
     return (
         <>
             <Navbar />
             <FNavbar />
-            <motion.div className="fullbg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
+            <div className="aboveSim"></div>
+            <motion.div className="fullbg simbg" id="main">
                 <motion.div className="left-side graphLSide">
                     <motion.div
                         className="simulation"
@@ -507,7 +452,51 @@ function SKruskals() {
                         >
                             <p id="step0" className="stepH">Step0: </p>
                             <div className="content">
-                                <button id="getGraph" className="spec" onClick={(e) => { getGraph(e.target) }}>Get Graph</button>
+                                <p>Enter the number of nodes for Graph:</p>
+                                <input required id="noOfEdge" placeholder="no of Edges" value={noNodes} onChange={(e) => { setNoNodes(e.target.value); etCheck(e.target.value, e.target) }}></input>
+                                {noNodes && !showNE ?
+                                    <motion.button
+                                        initial={{ y: 20 }}
+                                        animate={{ y: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        id="idSveNoEdge"
+                                        className={"cbutton"} onClick={() => { setShowNE(true); retElId("noOfEdge").readOnly = true; }}><FontAwesomeIcon className="writeCheck" icon={faSquarePlus} /></motion.button>
+
+                                    : <></>
+                                }
+
+                                {showNE && stepC === 0 ?
+                                    <>
+                                        <p>Enter in format: <b>A, B, 15</b></p>
+                                        <div>
+                                            <input type="text" maxlength="1" required id="idNode1I" placeholder="Node1" value={node1} onChange={(e) => { setNode1(e.target.value); netCheck(e.target.value, e.target); }}></input>
+                                            <input type="text" maxlength="1" required id="idNode2I" placeholder="Node2" value={node2} onChange={(e) => { setNode2(e.target.value); netCheck(e.target.value, e.target); }}></input>
+                                            <input required id="idEdgI" placeholder="Edge" value={edgeVal} onChange={(e) => { setEdV(e.target.value); etCheck(e.target.value, e.target) }}></input>
+                                            {checkIfChar(node1) && checkIfChar(node2) && checkIfInt(edgeVal) ?
+                                                <motion.button
+                                                    initial={{ y: 20 }}
+                                                    animate={{ y: 0 }}
+                                                    transition={{ duration: 0.3 }}
+                                                    id="idAddEdgeM"
+                                                    className={"cbutton"} onClick={() => { addNEM() }}><FontAwesomeIcon className="writeCheck" icon={faSquarePlus} /></motion.button>
+                                                : <></>
+                                            }
+                                        </div>
+
+                                        {edgeMatrix[0].length > 0 && edgeMatrix.map((edgeEl) => {
+                                            return (
+                                                <p>{String.fromCharCode(edgeEl[0] + 65)}{"->"}{String.fromCharCode(edgeEl[1] + 65)}{" "}<b>{edgeEl[2]}</b></p>
+                                            )
+                                        })}
+                                        {edgeMatrix.length >= noNodes ?
+                                            <button id="idcreateGraph" className="spec" onClick={(e) => { showGraph(e.target); setStepC(1) }}>Submit</button>
+                                            : <p className="dangerC">Enter minimum {noNodes} edges</p>
+                                        }
+                                    </>
+                                    : <></>
+                                }
+
+                                {/* <button id="getGraph" className="spec" onClick={(e) => { getGraph(e.target) }}>Get Graph</button> */}
                             </div>
                             <FontAwesomeIcon id="0STDN" className="stepDoneIcon" icon={faCircleCheck} />
                         </motion.div>
@@ -519,6 +508,9 @@ function SKruskals() {
                             >
                                 <p id="step1" className="stepH">Step1: </p>
                                 <div className="content">
+                                    <p>We first Sort the edges, and traverse through every edge.</p>
+                                    <p>If edge <b>doesn't create loop</b>, it is <b>Selected</b></p>
+                                    <p>If edge <b>creates loop</b>, it is <b>Discarded</b></p>
                                     <button id="applyDij" className="spec" onClick={(e) => { doKruskals(e.target) }}>Start Kruskal's Algorithm</button>
                                 </div>
                                 <FontAwesomeIcon id="1STDN" className="stepDoneIcon" icon={faCircleCheck} />

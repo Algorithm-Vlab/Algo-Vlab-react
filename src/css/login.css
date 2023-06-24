@@ -7,7 +7,7 @@
 .loginCard {
     position: relative;
     flex-direction: column;
-    /* background: linear-gradient(180deg, rgb(250, 170, 170),rgb(255, 215, 215),rgb(250, 249, 249)); */
+    /* background: linear-gradient(180deg, rgba(250, 170, 170, 0.5),rgba(255, 215, 215, 0.5),rgb(250, 249, 249)); */
     background: white;
     border-radius: 0.7rem;
     /* padding: 1rem; */
@@ -21,6 +21,7 @@
     min-width: 20rem;
     min-height: 25rem;
     padding-top: 3rem;
+    margin: 1rem 0;
 }
 
 .loginCard button {
@@ -33,13 +34,24 @@
     gap: 0.6rem;
 }
 
-.lpd0{
+/* .lpd0 {
     padding-top: 0;
+} */
+
+.inRow {
+    display: inline-flex;
+    /* flex-wrap: wrap; */
+    /* width: 100%; */
+    column-gap: clamp(1rem, 10vw, 2rem);
+}
+
+.registerMW {
+    min-width: clamp(10rem, 80vw, 40rem);
 }
 
 .takeInD {
     position: relative;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .lIns {
@@ -50,9 +62,9 @@
     padding-top: 1.5rem;
     text-align: center;
     color: var(--fColor);
-    width: 100%;
+    width: clamp(10rem, 30vw, 20rem);
     box-sizing: border-box;
-    /* border-radius: 0; */
+    border-radius: 0.4rem;
 }
 
 .notValid {
@@ -130,7 +142,7 @@
 }
 
 .loginBG {
-    padding-top: 4rem;
+    padding-top: var(--pTopH);
     min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
@@ -165,6 +177,10 @@
 
 }
 
+.wFullBL {
+    width: 100% !important;
+}
+
 .lOptions button:hover {
     opacity: 1;
 }
@@ -183,6 +199,7 @@
     font-size: 1rem;
 }
 
+
 @keyframes anLogin {
     0% {
         border: none;
@@ -190,5 +207,17 @@
 
     100% {
         border: 0.2rem solid red;
+    }
+}
+
+
+@media (max-width: 430px) {
+    .inRow {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .lIns {
+        width: 70vw;
     }
 }

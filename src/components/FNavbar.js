@@ -44,7 +44,7 @@ function FNavbar() {
             var winHeight = window.innerHeight;
             setPrevST(prevscTop);
             setScrollTop(window.scrollY);
-            if (scTop === 0 || scTop < prevscTop || prevscTop<50) {
+            if (scTop === 0 || scTop < prevscTop || prevscTop<20) {
                 if (retElId("idFNav")){
                     retElId("idFNav").classList.remove("goUpF");
                 }

@@ -9,7 +9,7 @@ export default function PageNotFound() {
     return (
         <>
             <Navbar />
-            <div className="notFound divf divfC">
+            <div className="fullbgHOME notFound divf divfC">
                 <p className="f4">Error: 404</p>
                 <FontAwesomeIcon icon={faHeartCrack} className="f6"/>
             </div>

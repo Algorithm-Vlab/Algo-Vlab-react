@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faCircleCheck, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 
 import { DataSet } from "vis-data";
 import { Network } from "vis-network";
@@ -14,17 +14,25 @@ import "../css/Lcs.css";
 import "../css/graph.css";
 import graphD from "../data/graphD";
 import FNavbar from "../components/FNavbar";
+import { goptions, gnodeOptions, gedgeOptions } from "../data/gOptions";
 
 
 function SDijkstra() {
     const [stepC, setStepC] = useState(0);
 
+    const [noNodes, setNoNodes] = useState(0);
+    const [showNE, setShowNE] = useState(false);
+    const [node1, setNode1] = useState();
+    const [node2, setNode2] = useState();
+    const [edgeVal, setEdV] = useState();
+    const [edgeMatrix, setEMatrix] = useState([[]]);
+
     const [gMatrix, setGMatrix] = useState([[]]);
 
     const [snodes, setNodes] = useState();
     const [sedges, setEdges] = useState();
-    const [nopt, setNOpt] = useState();
-    const [eOpt, setEOpt] = useState();
+    // const [nopt, setNOpt] = useState();
+    // const [eOpt, setEOpt] = useState();
 
     const [distanceA, setDistA] = useState([]);
     const [selSet, setSelSet] = useState([]);
@@ -57,58 +65,9 @@ function SDijkstra() {
         // window.scrollTo(0, 0);
     }, [stepC]);
 
-    const options = {
-        autoResize: true,
-        height: '100%',
-        width: '100%',
-        locale: 'en',
-        interaction: {
-            dragNodes: true,
-            dragView: true,
-            hideEdgesOnDrag: false,
-            hideEdgesOnZoom: false,
-            hideNodesOnDrag: false,
-            // hover: true,
-            hoverConnectedEdges: true,
-            keyboard: {
-                enabled: false,
-                speed: { x: 10, y: 10, zoom: 0.02 },
-                bindToWindow: true,
-                autoFocus: true,
-            },
-            multiselect: false,
-            navigationButtons: true,
-            selectable: true,
-            selectConnectedEdges: false,
-            tooltipDelay: 300,
-            zoomSpeed: 1,
-            zoomView: true,
-
-        },
-        physics: {
-            stabilization: true,
-            // solver: "forceAtlas2Based",
-            enabled: true,
-        },
-        layout: {
-            randomSeed: undefined,
-            improvedLayout: true,
-            clusterThreshold: 150,
-            hierarchical: {
-                enabled: false,
-                levelSeparation: 150,
-                nodeSpacing: 100,
-                // edgeSpacing: 150,
-                treeSpacing: 100,
-                blockShifting: true,
-                edgeMinimization: true,
-                parentCentralization: true,
-                direction: 'DU',        // UD, DU, LR, RL
-                sortMethod: 'directed',  // hubsize, directed
-                shakeTowards: 'leaves'  // roots, leaves
-            }
-        }
-    };
+    useEffect(() => {
+        createGraph("mynetwork", gMatrix, false);
+    }, gMatrix);
 
     function createGraph(idname, gmArr, doOpt) {
         if (gmArr[0].length >= 1) {
@@ -131,16 +90,16 @@ function SDijkstra() {
             for (var i = 0; i < vertices; i++) {
                 if (doOpt) {
                     // var Ndis = String(disR[i]);
-                    nArray.push({ id: i + 1, label: String.fromCharCode(asc) + " (" + disR[i] + ")", ...nopt });
+                    nArray.push({ id: i + 1, label: String.fromCharCode(asc) + " (" + disR[i] + ")", ...gnodeOptions });
                 }
                 else {
-                    nArray.push({ id: i + 1, label: String.fromCharCode(asc) + " (inf)", ...nopt });
+                    nArray.push({ id: i + 1, label: String.fromCharCode(asc) + " (inf)", ...gnodeOptions });
                 }
                 asc++;
                 for (var j = 0; j < vertices; j++) {
                     w = dgMatrix[i][j];
                     if (w != 0) {
-                        eArray.push({ id: `${i + 1}${j + 1}`, from: i + 1, to: j + 1, label: String(w), weight: String(w), ...eOpt });
+                        eArray.push({ id: `${i + 1}${j + 1}`, from: i + 1, to: j + 1, label: String(w), weight: String(w), ...gedgeOptions });
                     }
                     dgMatrix[i][j] = dgMatrix[j][i] = 0;
                 }
@@ -158,52 +117,11 @@ function SDijkstra() {
                 edges: edges
             };
 
-            const network = new Network(container, data, options);
+            const network = new Network(container, data, goptions);
         }
     }
 
-    useEffect(() => {
-
-        const nodeOptions = {
-            borderWidth: 2,
-            borderWidthSelected: 3,
-            color: {
-                background: '#01052b',
-                border: '#000000',
-                highlight: {
-                    background: '#2F3E46',
-                    border: "#000000",
-                },
-            },
-            font: {
-                color: "#ffffff",
-                size: 15, // px
-                face: 'arial',
-                highlight: {
-                    color: "#000000",
-                }
-            },
-            physics: true
-        }
-        const edgeOptions = {
-            color: {
-                color: "#00fff2",
-            },
-            font: {
-                color: '#000000',
-                size: 18, // px
-                face: 'arial',
-                background: 'none',
-                strokeWidth: 5, // px
-                strokeColor: '#ffffff',
-
-            },
-            width: 2,
-        }
-        setNOpt(nodeOptions);
-        setEOpt(edgeOptions);
-        createGraph("mynetwork", gMatrix, false);
-    }, [gMatrix]);
+    // DIjkstra Algorithm
 
     function minDistance(dist, sptSet) {
         let min = Number.MAX_VALUE;
@@ -247,7 +165,7 @@ function SDijkstra() {
             try {
                 snodes.update({
                     id: i + 1,
-                    ...nopt
+                    ...gnodeOptions
                 });
             }
             catch (err) {
@@ -369,7 +287,7 @@ function SDijkstra() {
                 await timer(400);
                 snodes.update({
                     id: v + 1,
-                    ...nopt
+                    ...gnodeOptions
                 });
                 edH[u][v] = edH[v][u] = 2;
             } catch (error) {
@@ -451,10 +369,6 @@ function SDijkstra() {
         setStepC(1);
     }
 
-    function retElId(idname) {
-        return document.getElementById(idname);
-    }
-
     function initForELoop() {
         var sptSet = selSet;
         var dist = distanceA;
@@ -463,10 +377,6 @@ function SDijkstra() {
         // await setMU(u);
         setSelSet(sptSet);
         return u;
-    }
-
-    async function createMG() {
-        createGraph("mynetwork2", resultS, true);
     }
 
     async function goToNextDij(eT) {
@@ -493,14 +403,14 @@ function SDijkstra() {
             }
             else if (cI === gMatrix.length || vI === gMatrix.length) {
                 retElId(eT.id).setAttribute("disabled", "disable");
-                setStepC(2);
+
                 retElId("answerStat").classList.add("successC");
                 retElId("answerStat").innerHTML = "We obtained the shortest path from source A to all nodes";
                 retElId("edgeStat1").innerHTML = "";
                 try {
                     snodes.update({
                         id: u + 1,
-                        ...nopt
+                        ...gnodeOptions
                     });
                 } catch (error) {
                     console.log(error);
@@ -509,7 +419,8 @@ function SDijkstra() {
                 retElId("mynetwork").classList.add("smallNet");
                 retElId("mynetwork2").classList.add("smallNet");
                 retElId("showMstP").classList.remove("dNoneP");
-                createMG();
+                setStepC(2);
+                // createMG();
                 break;
             }
 
@@ -529,19 +440,129 @@ function SDijkstra() {
     function applyDij(eT) {
         document.getElementById(eT.id).setAttribute("disabled", "disable");
         dijkstra(gMatrix);
-        setStepC(2);
+        // setStepC(2);
         // console.log(gMatrix);
     }
+
+    function retElId(idname) {
+        return document.getElementById(idname);
+    }
+
+    // async function createMG() {
+    //     createGraph("mynetwork2", resultS, true);
+    // }
+
+    function createGMat(eT) {
+        var gm = [];
+        var n = noNodes;
+        var edgem = edgeMatrix;
+        for (var i = 0; i < n; i++) {
+            gm[i] = [];
+            for (var j = 0; j < n; j++) {
+                gm[i][j] = 0;
+            }
+        }
+        for (var i = 0; i < n; i++) {
+            for (var j = 0; j < n; j++) {
+                for (var k = 0; k < edgem.length; k++) {
+                    if (i === edgem[k][0] && j === edgem[k][1]) {
+                        gm[i][j] = edgem[k][2];
+                        gm[j][i] = edgem[k][2];
+                        break;
+                    }
+                }
+            }
+
+        }
+        setGMatrix(gm);
+        console.log(gm);
+        retElId(eT.id).setAttribute("disabled", "disabled");
+    }
+
+    // Validations
+
+    function checkIfInt(valNum) {
+        if (!valNum) {
+            return false;
+        }
+        const regex = /[^0-9]/;
+        if (valNum.search(regex) === -1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function checkIfChar(valChar) {
+        if (!valChar) {
+            return false;
+        }
+        var n = Number(noNodes);
+        var ascNum = Number(valChar.charCodeAt(0));
+        var max1 = n + 65;
+        var max2 = n + 97;
+        if ((ascNum >= 65 && ascNum < max1) || (ascNum >= 97 && ascNum < max2)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function retIndexChar(valC) {
+        var ascNum = Number(valC.charCodeAt(0));
+        if (ascNum >= 97) {
+            return ascNum - 97;
+        }
+        else if (ascNum >= 65) {
+            return ascNum - 65;
+        }
+    }
+
+    function netCheck(val, eT) {
+        if (checkIfChar(val)) {
+            retElId(eT.id).classList.remove("inValidIn");
+        }
+        else {
+            retElId(eT.id).classList.add("inValidIn");
+        }
+    }
+
+    function etCheck(val, eT) {
+        if (checkIfInt(val)) {
+            retElId(eT.id).classList.remove("inValidIn");
+        }
+        else {
+            retElId(eT.id).classList.add("inValidIn");
+        }
+    }
+
+    function addNEM() {
+        var edgeM = edgeMatrix;
+        var n1 = retIndexChar(String(node1));
+        var n2 = retIndexChar(String(node2));
+        var newM = [n1, n2, Number(edgeVal)]
+        if (edgeM[0].length === 0) {
+            edgeM[0] = newM;
+        }
+        else {
+            edgeM.push(newM);
+        }
+        setEMatrix(edgeM);
+        setNode1("");
+        setNode2("");
+        setEdV("");
+    }
+
+    console.log(distanceA);
 
     return (
         <>
             <Navbar />
             <FNavbar />
-            <motion.div className="fullbg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
+            <div className="aboveSim"></div>
+            <motion.div className="fullbg simbg" id="main">
                 <motion.div className="left-side graphLSide">
                     <motion.div
                         className="simulation"
@@ -562,8 +583,19 @@ function SDijkstra() {
                         </div>
                         <div id="divNetw" className="oldNetwork">
                             <div id="mynetwork" className="oldSmNet"></div>
-                            <p id="showMstP" className="dNoneP f1-2"><b>MST {"->"}</b></p>
-                            <div id="mynetwork2"></div>
+                            <p id="showMstP" className="dNoneP f1-2"><b>Solution {"->"}</b></p>
+                            <div id="mynetwork2" className="divf dSolution">
+                                <p className="f1-5"><b>Shortest distance from A:</b></p>
+                                <div className="mUpL"></div>
+                                {distanceA.map((el, index) => {
+                                    return (index === 0 ?
+                                        <></>
+                                        :
+                                        <p className="f1-3 mUpS">Distance to {String.fromCharCode(index + 65)} is {el}</p>
+                                    )
+                                    {/* return () */ }
+                                })}
+                            </div>
                         </div>
                     </motion.div>
                 </motion.div>
@@ -576,7 +608,51 @@ function SDijkstra() {
                         >
                             <p id="step0" className="stepH">Step0: </p>
                             <div className="content">
-                                <button id="getGraph" className="spec" onClick={(e) => { getGraph(e.target) }}>Get Graph</button>
+                                <p>Enter the number of nodes for Graph:</p>
+                                <input required id="noOfEdge" placeholder="no of Edges" value={noNodes} onChange={(e) => { setNoNodes(e.target.value); etCheck(e.target.value, e.target) }}></input>
+                                {noNodes && !showNE ?
+                                    <motion.button
+                                        initial={{ y: 20 }}
+                                        animate={{ y: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        id="idSveNoEdge"
+                                        className={"cbutton"} onClick={() => { setShowNE(true); retElId("noOfEdge").readOnly = true; }}><FontAwesomeIcon className="writeCheck" icon={faSquarePlus} /></motion.button>
+
+                                    : <></>
+                                }
+
+                                {showNE && stepC === 0 ?
+                                    <>
+                                        <p>Enter in format: <b>A, B, 15</b></p>
+                                        <div>
+                                            <input type="text" maxlength="1" required id="idNode1I" placeholder="Node1" value={node1} onChange={(e) => { setNode1(e.target.value); netCheck(e.target.value, e.target); }}></input>
+                                            <input type="text" maxlength="1" required id="idNode2I" placeholder="Node2" value={node2} onChange={(e) => { setNode2(e.target.value); netCheck(e.target.value, e.target); }}></input>
+                                            <input required id="idEdgI" placeholder="Edge" value={edgeVal} onChange={(e) => { setEdV(e.target.value); etCheck(e.target.value, e.target) }}></input>
+                                            {checkIfChar(node1) && checkIfChar(node2) && checkIfInt(edgeVal) ?
+                                                <motion.button
+                                                    initial={{ y: 20 }}
+                                                    animate={{ y: 0 }}
+                                                    transition={{ duration: 0.3 }}
+                                                    id="idAddEdgeM"
+                                                    className={"cbutton"} onClick={() => { addNEM() }}><FontAwesomeIcon className="writeCheck" icon={faSquarePlus} /></motion.button>
+                                                : <></>
+                                            }
+                                        </div>
+
+                                        {edgeMatrix[0].length > 0 && edgeMatrix.map((edgeEl) => {
+                                            return (
+                                                <p>{String.fromCharCode(edgeEl[0] + 65)}{"->"}{String.fromCharCode(edgeEl[1] + 65)}{" "}<b>{edgeEl[2]}</b></p>
+                                            )
+                                        })}
+                                        {edgeMatrix.length >= noNodes ?
+                                            <button id="idcreateGraph" className="spec" onClick={(e) => { createGMat(e.target); setStepC(1) }}>Submit</button>
+                                            : <p className="dangerC">Enter minimum {noNodes} edges</p>
+                                        }
+                                    </>
+                                    : <></>
+                                }
+
+                                {/* <button id="getGraph" className="spec" onClick={(e) => { getGraph(e.target) }}>Get Graph</button> */}
                             </div>
                             <FontAwesomeIcon id="0STDN" className="stepDoneIcon" icon={faCircleCheck} />
                         </motion.div>
@@ -588,6 +664,13 @@ function SDijkstra() {
                             >
                                 <p id="step1" className="stepH">Step1: </p>
                                 <div className="content">
+                                    <p>First, we start from source A</p>
+                                    <div className="inStepDivs1">
+                                        <p>Edge Relaxation:</p>
+                                        <p><b>If(dist[v] {">"} dist[u]+cost(u,v))</b></p>
+                                        <p>Then do: <b>dist[v] {"="} dist[u]+cost(u,v)</b></p>
+                                    </div>
+
                                     <button id="applyDij" className="spec" onClick={(e) => { applyDij(e.target) }}>Apply Dijkstra</button>
                                 </div>
                                 <FontAwesomeIcon id="1STDN" className="stepDoneIcon" icon={faCircleCheck} />

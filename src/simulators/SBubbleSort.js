@@ -148,7 +148,8 @@ export default function SInsertionSort() {
     <>
       <Navbar />
       <FNavbar />
-      <div className="fullbg" id="main">
+      <div className="aboveSim"></div>
+      <div className="fullbg simbg" id="main">
         <motion.div className="left-side">
           <motion.div id="sim" className="simulation testK"></motion.div>
         </motion.div>

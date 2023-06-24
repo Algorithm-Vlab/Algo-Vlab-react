@@ -276,11 +276,8 @@ function SLcs() {
         <>
             <Navbar />
             <FNavbar />
-            <motion.div className="fullbg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
+            <div className="aboveSim"></div>
+            <motion.div className="fullbg simbg" id="main">
                 <motion.div className="left-side">
                     {str1 && str2 && (stepC >= 2) ?
                         <motion.div

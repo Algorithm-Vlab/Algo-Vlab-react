@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Navbar from "./Navbar";
 import { useState } from "react";
 import axios from "axios";
+import Footer from "./Footer";
 
 export default function UserDash() {
     const { cuE, algoT, userD } = AppState();
@@ -31,12 +32,12 @@ export default function UserDash() {
                             Welcome {uD.name}
                         </h1>
                     </section>
-                    
-                    : 
+
+                    :
                     <></>
                 }
             </div>
-
+            <Footer />
         </>
 
     );

@@ -4,6 +4,12 @@
     height: 100%;
 }
 
+.dSolution {
+    flex-direction: column;
+    color: black;
+    display: none;
+}
+
 .oldNetwork {
     position: absolute;
     width: 100%;
@@ -32,10 +38,13 @@
 }
 
 .smallNet {
+    display: flex;
     position: relative;
     width: 45% !important;
     height: 100% !important;
 }
+
+
 
 .te {
     color: #a10000;

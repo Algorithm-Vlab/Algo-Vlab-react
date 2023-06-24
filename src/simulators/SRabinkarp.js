@@ -217,11 +217,8 @@ function SRabinkarp() {
         <>
             <Navbar />
             <FNavbar />
-            <motion.div className="fullbg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
+            <div className="aboveSim"></div>
+            <motion.div className="fullbg simbg" id="main">
                 <motion.div className="left-side">
                     {text && pattern && (stepC >= 2) ?
                         <motion.div

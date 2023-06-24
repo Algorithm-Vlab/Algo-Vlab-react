@@ -223,15 +223,13 @@ function SJobSched() {
     function disBut(e) {
         document.getElementById(e.target.id).setAttribute("disabled", true);
     }
+    
     return (
         <>
             <Navbar />
             <FNavbar />
-            <motion.div className="fullbg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
+            <div className="aboveSim"></div>
+            <motion.div className="fullbg simbg" id="main">
                 {/* {algoStarted ?
                     <button className="goBack" onClick={goBack}>Back</button>
                     : <></>

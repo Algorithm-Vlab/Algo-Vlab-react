@@ -1,9 +1,10 @@
 .dashBg {
-    padding-top: 4rem;
+    padding-top: var(--pTopH);
     min-height: calc(100vh);
     width: 100%;
     box-sizing: border-box;
-    background: rgba(245, 236, 220, 0.753);
+    /* background: rgba(245, 238, 227, 0.2); */
+    /* backdrop-filter: blur(0.3rem); */
     /* overflow: auto; */
 }
 
@@ -17,7 +18,7 @@
     /* overflow: auto; */
 }
 
-.floR{
+.floR {
     margin-top: 2rem;
     /* float: right; */
     /* right: 0; */
@@ -32,6 +33,7 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
+    max-height: 100vh;
 }
 
 .feedT {
