@@ -1,4 +1,4 @@
-.lcsTable {
+/* .lcsTable {
     display: flex;
     justify-content: baseline;
     align-items: baseline;
@@ -9,17 +9,12 @@
     max-width: 100%;
     font-size: var(--tfontSize);
     background: white;
-    /* box-shadow: 0 0 0.4rem black; */
-    /* row-gap: 0; */
-    /* overflow: scroll; */
 
 }
 
 .lcsTable .row {
     display: inline-flex;
     width: auto;
-    /* row-gap: 0; */
-    /* overflow: scroll; */
 }
 
 .lcsTable .row .lcsBox {
@@ -29,7 +24,6 @@
     width: var(--tdataSize);
     height: var(--tdataSize);
     font-size: var(--tfontSize);
-    /* padding: 0.5rem; */
     background: var(--tdataColors);
     border-bottom: 0.2rem solid black;
     border-right: 0.2rem solid black;
@@ -78,7 +72,6 @@
 
 .lcsTable .row:nth-child(2) .lcsBox {
     border-top: 0.2rem solid rgb(0, 0, 0);
-    /* border-top: 0.2rem solid rgb(0, 0, 0); */
 }
 
 .lcsTable .row:nth-child(1) .lcsBox:nth-child(1),
@@ -103,28 +96,17 @@
 
 .Table .row .hight,
 .lcsTable .row .hight {
-    /* background: var(--thightDBg); */
-    /* color: var(--thightDC); */
     animation: anBHight 0.4s 2;
 }
 
 .Table .row .Bhight,
 .lcsTable .row .Bhight {
-    /* background: var(--thightDBg); */
-    /* color: var(--thightDC); */
     animation: anBight 0.4s 2;
 }
 
-.Table .row .hightStr,
-.lcsTable .row .hightStr {
-    /* background: var(--thightDBg); */
-    /* color: var(--thightDC); */
-}
 
 @keyframes goanimate {
     0% {
-        /* opacity: 0.5; */
-        /* background: rgb(49, 49, 49); */
         background: rgb(189, 189, 189);
         border: 0.2rem solid rgb(255, 255, 255);
     }
@@ -158,4 +140,4 @@
         background: lightgreen;
         color: rgb(216, 39, 60);
     }
-}
+} */

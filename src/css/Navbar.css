@@ -348,16 +348,19 @@
     padding: 0.3rem;
 }
 
+.backW {
+    background: white;
+}
 
 @media (max-width: 1100px) {
-    .kjsit {
+    /* .kjsit {
         width: 10rem;
         font-size: 0.5rem !important;
     }
 
     .kjhead {
         font-size: 0.5rem;
-    }
+    } */
 
     .somLogo {
         width: 2rem !important;
@@ -375,20 +378,20 @@
 }
 
 
-@media (max-width:900px) {
+@media (max-width:650px) {
 
-    .dkjLogo,
+    /* .dkjLogo,
     .somTR {
         display: none;
-    }
+    } */
 
     #idnavLink {
         display: none;
     }
 
-    #idcontact {
+    /* #idcontact {
         display: none;
-    }
+    } */
 
     .menuBar {
         display: block;
@@ -398,26 +401,20 @@
         right: 50%;
         transform: translate(50%);
     }
-}
 
-@media (max-width: 800px) {
-    /* .navbar .somLogo {
-        position: absolute;
-        left: 0;
-        width: 8rem;
-    } */
-
-
+    .headLink {
+        gap: 0.2rem !important;
+    }
 }
 
 @media (max-width: 550px) {
-    .kjsit {
+    /* .kjsit {
         width: 10rem;
-    }
+    } */
 
-    .navbar .headLink {
+    /* .navbar .headLink {
         gap: 0.5rem;
-    }
+    } */
 
     .nestedDrop {
         left: 0;
@@ -426,12 +423,48 @@
     }
 }
 
+@media (max-width: 460px) {
+    .navSL {
+        width: 60vw;
+        font-size: 0.5rem !important;
+    }
+
+    .navR1 {
+        padding: 0.2rem 0.3rem !important;
+    }
+
+    .navSL .kjhead {
+        font-size: 0.85rem !important;
+    }
+
+    .somTR {
+        width: clamp(12vw, 15vw, 2rem);
+    }
+}
+
 @media (max-width: 300px) {
+    .navSL {
+        /* width: 40vw; */
+    }
+
+    .all_cards {
+        padding: 1rem 0 !important;
+        margin: 2rem 0;
+    }
+
+    .head {
+        padding-left: 2rem !important;
+    }
+
     .dev_card {
-        width: 90vw !important;
+        width: 95vw !important;
     }
 
     .algoPic {
         width: 90vw !important;
+    }
+
+    .homeTitle {
+        max-width: 90vw;
     }
 }

@@ -328,11 +328,11 @@ function SLcs() {
                             <p id="step0" className="stepH">Step0: </p>
                             <div className="content">
                                 <p className="enHead">Enter two random words</p>
-                                <input id="wordIn1" placeholder="String1" value={inStr1}
+                                <input id="wordIn1" placeholder="String1" value={inStr1} className="insL"
                                     onChange={(e) => { setInStr1(e.target.value) }}>
 
                                 </input>
-                                <input id="wordIn2" placeholder="String2" value={inStr2}
+                                <input id="wordIn2" placeholder="String2" value={inStr2} className="insL"
                                     onChange={(e) => { setInStr2(e.target.value) }}>
                                 </input>
                                 {doneIns ?

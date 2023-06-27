@@ -76,7 +76,7 @@ function SKruskals() {
                 asc++;
             }
             for (var i = 0; i < nEdges; i++) {
-                eArray.push({ id: `${edgeM[i][0]}${edgeM[i][1]}`, from: edgeM[i][0], to: edgeM[i][1], label: String(edgeM[i][2]), weight: String(edgeM[i][2]), ...gedgeOptions });
+                eArray.push({ id: `i${edgeM[i][0]}j${edgeM[i][1]}`, from: edgeM[i][0], to: edgeM[i][1], label: String(edgeM[i][2]), weight: String(edgeM[i][2]), ...gedgeOptions });
             }
             nodes.add(nArray);
             edges.add(eArray);
@@ -164,11 +164,17 @@ function SKruskals() {
 
         let selV1 = edge[i][0];
         let selV2 = edge[i][1];
+        // if (selV1 > selV2) {
+        //     var temp = selV1;
+        //     selV1 = selV2;
+        //     selV2 = temp;
+        // }
         let v1 = findParent(parent, selV1);
         let v2 = findParent(parent, selV2);
         let wt = edge[i][2];
         let mCost = minCost;
-
+        retElId("answerStat").classList.remove("successC");
+        retElId("answerStat").classList.remove("dangerC");
         if (i - 1 >= 0) {
             var prevI = i - 1;
             retElId(prevI + "E").classList.remove("selEShow");
@@ -180,7 +186,7 @@ function SKruskals() {
 
         try {
             sedges.update({
-                id: `${selV1}${selV2}`,
+                id: `i${selV1}j${selV2}`,
                 color: { color: "#000000" },
                 width: 3,
             });
@@ -215,14 +221,16 @@ function SKruskals() {
             }
             resT.push(edge[i]);
             setResultS(resT);
+            retElId("answerStat").classList.add("successC");
             retElId("answerStat").innerHTML = "Loop will not be created, so select edge " + wt;
+
             await timer(300);
             unionSet(v1, v2, parent, rank, n);
             mCost += wt;
             // document.write(edge[i][0] + " -- " + edge[i][1] + " == " + wt);
             try {
                 sedges.update({
-                    id: `${selV1}${selV2}`,
+                    id: `i${selV1}j${selV2}`,
                     color: { color: "#48ff00" },
                     width: 3,
                 });
@@ -231,16 +239,18 @@ function SKruskals() {
             }
         }
         else {
+            retElId("answerStat").classList.add("dangerC");
             retElId("answerStat").innerHTML = "Loop will be created, so discard edge " + wt;
+
             try {
                 sedges.update({
-                    id: `${selV1}${selV2}`,
+                    id: `i${selV1}j${selV2}`,
                     color: { color: "#ff0000" },
                     width: 3,
                 });
                 await timer(500);
                 sedges.update({
-                    id: `${selV1}${selV2}`,
+                    id: `i${selV1}j${selV2}`,
                     ...gedgeOptions
                 });
             } catch (error) {
@@ -270,8 +280,8 @@ function SKruskals() {
         edge.sort((a, b) => {
             return a[2] - b[2];
         })
-
-
+        // console.log(edgeMatrix);
+        // console.log(edge);
         let parent = new Array(n);
         let rank = new Array(n);
 
@@ -298,7 +308,7 @@ function SKruskals() {
             indEdge.id = e + "E";
             retElId("edgeStat").appendChild(indEdge);
         }
-        console.log("started");
+        // console.log("started");
     }
 
     function doKruskals(eT) {

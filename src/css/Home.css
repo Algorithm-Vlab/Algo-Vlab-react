@@ -202,8 +202,9 @@ input:focus {
     background: rgba(255, 255, 255, 0.342);
     padding: 1rem;
     border-radius: 0.4rem;
-    box-shadow: inset 0 0 2rem 0.2rem rgba(255, 187, 187, 0.3);
+    box-shadow: inset 0 0 2rem 0.2rem rgba(255, 211, 211, 0.3);
     backdrop-filter: blur(0.1rem);
+    color: var(--somColor);
     /* border: 0.2rem solid rgb(243, 248, 167); */
     /* animation: titleAnimation 2s normal infinite; */
 }
@@ -286,7 +287,7 @@ input:focus {
 .cards:hover {
     opacity: 1;
     background: rgba(255, 255, 255, 1);
-    transform: scale(1.05);
+    transform: scale(1.05) !important;
     box-shadow: 0 0 0.5rem 0.2rem rgba(172, 172, 172, 1);
 }
 
@@ -374,43 +375,29 @@ input:focus {
 
 }
 
-
-/* .sect5 .sButton {
-    background: rgb(5, 139, 0) !important;
+.sectM {
+    width: 100%;
+    /* background: wheat; */
 }
 
-.sect5 .sButton span {
-    background: rgba(5, 139, 0, 0.151);
-    border-radius: 0.5rem;
-    border: 0.2rem solid rgb(5, 139, 0) !important;
-} */
-
-/* .sect1,
-.sect3 {
-    background: rgba(255, 219, 214, 0.4);
-    color: rgb(1, 46, 194);
-    color: black;
-} */
-
-.sect1 {
-    /* background: rgb(255, 255, 255); */
-    /* color: rgb(5, 139, 0) !important; */
-    color: black;
+.ddM {
+    flex-direction: column;
+    max-width: clamp(35rem, 50vw, 40rem);
+    max-width: 35rem;
+    padding: 2rem 0.5rem;
+    text-align: left;
+    align-items: start !important;
 }
 
-/* .sect6 h1{
-    background: rgb(1, 46, 194);
-} */
-
-/* .sect6 .sButton {
-    background: rgb(0, 51, 219) !important;
+.mt1 {
+    font-size: 3rem;
+    font-weight: 600;
+    /* margin-bottom: 1rem; */
 }
 
-.sect6 .sButton span {
-    background: rgba(1, 46, 194, 0.137);
-    border-radius: 0.5rem;
-    border: 0.2rem solid rgb(1, 51, 212) !important;
-} */
+.mt2 {
+    font-size: 2rem;
+}
 
 .algosN {
     font-size: 2rem;
@@ -478,6 +465,11 @@ input:focus {
     /* resize: both; */
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+}
+
+.left-side .simPT {
+    padding-top: 4rem;
 }
 
 .right-side {
@@ -766,6 +758,10 @@ input:focus {
     opacity: 0.8;
 }
 
+.stepCard .insL{
+    max-width: 6rem;
+}
+
 .restartb {
     width: 100%;
     background: var(--specBG);
@@ -904,9 +900,9 @@ input:focus {
 
 
 @media (max-width: 700px) {
-    .title {
+    /* .title {
         font-size: 2rem !important;
-    }
+    } */
 
     .fnav * {
         /* display: flex; */
@@ -923,7 +919,7 @@ input:focus {
         flex-direction: column-reverse;
         gap: 5rem;
         height: 100%;
-        padding-top: 10rem;
+        /* padding-top: 10rem; */
     }
 
     .left-side {
@@ -936,12 +932,11 @@ input:focus {
         width: 80vw;
     }
 
-    .fullbgHOME,
-    .fullbgHOME h1 {
+    .fullbgHOME {
         flex-direction: column;
         font-size: 1.5rem;
         gap: 0;
-        padding-top: 4rem;
+        padding-top: 7rem;
     }
 }
 
@@ -966,9 +961,9 @@ input:focus {
 }
 
 @media (max-width: 300px) {
-    .headLink .title {
+    /* .headLink .title {
         font-size: 1rem !important;
-    }
+    } */
 
     .stepCard {
         font-size: 0.7rem !important;

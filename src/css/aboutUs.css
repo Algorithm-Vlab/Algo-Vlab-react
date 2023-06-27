@@ -34,7 +34,7 @@
     height: 17rem;
 }
 
-.guide_img{
+.guide_img {
     /* height: 15rem; */
     width: 8rem;
     border-radius: 50%;
@@ -77,7 +77,7 @@
     box-shadow: 0 0 0.4rem 0.01rem rgb(245, 71, 71);
     z-index: 0;
     color: rgb(124, 0, 0) !important;
-    transform: translateY(-0.3rem);
+    transform: translateY(-0.3rem) !important;
 }
 
 .dev_img {
@@ -91,6 +91,7 @@
     margin-top: 0.8rem;
     margin-bottom: 1.2rem;
 }
+
 .dev_card_social {
     padding: 0.1rem;
     /* height: 1.5rem; */

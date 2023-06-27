@@ -34,7 +34,7 @@ function Home() {
                 <motion.section className="homeSect sect1"
                     initial={{ opacity: 0, }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2 }}
                 >
                     <img className="algoPic" src={algo1}></img>
                     <div className="divTitle">
@@ -43,40 +43,75 @@ function Home() {
                         </p>
                     </div>
                 </motion.section>
-                <motion.section className="homeSect sect2"
-                    initial={{ opacity: 0, }}
-                    // animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    whileInView={{opacity: 1}}
-                >
+
+                <motion.section className="homeSect sect2">
                     <div className="boxS">
-                        <button className="cards" name="sorting" onClick={() => { naviTo("sorting") }}>
+                        <motion.button className="cards" name="sorting" onClick={() => { naviTo("sorting") }}
+                            initial={{ y: 100, opacity: 0, }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.2 }}
+                        >
                             <FontAwesomeIcon icon={faArrowUpShortWide} className="algoIcon" />
                             <p className="algoName">Sorting</p>
-                        </button>
-                        <button className="cards" name="greedy" onClick={() => { naviTo("greedy") }}>
+                        </motion.button>
+                        <motion.button className="cards" name="greedy" onClick={() => { naviTo("greedy") }}
+                            initial={{ y: 100, opacity: 0, }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.2 }}
+                        >
                             <FontAwesomeIcon icon={faPersonRunning} className="algoIcon" />
                             <p className="algoName">Greedy</p>
-                        </button>
-                        <button className="cards" name="dynamic-pro" onClick={() => { naviTo("dynamic") }}>
+                        </motion.button>
+                        <motion.button className="cards" name="dynamic-pro" onClick={() => { naviTo("dynamic") }}
+                            initial={{ y: 100, opacity: 0, }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.2 }}
+                        >
                             <FontAwesomeIcon icon={faAtom} className="algoIcon" />
                             <p className="algoName">Dynamic Programming</p>
-                        </button>
-                        <button className="cards" name="dynamic-pro" onClick={() => { naviTo("backtracking") }}>
+                        </motion.button>
+                        <motion.button className="cards" name="dynamic-pro" onClick={() => { naviTo("backtracking") }}
+                            initial={{ y: 100, opacity: 0, }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.2 }}
+                        >
                             <FontAwesomeIcon icon={faBackwardFast} className="algoIcon" />
                             <p className="algoName">Backtracking</p>
-                        </button>
-                        <button className="cards" name="dynamic-pro" onClick={() => { naviTo("string-match") }}>
+                        </motion.button>
+                        <motion.button className="cards" name="dynamic-pro" onClick={() => { naviTo("string-match") }}
+                            initial={{ y: 100, opacity: 0, }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.2 }}
+                        >
                             <FontAwesomeIcon icon={faEquals} className="algoIcon" />
                             <p className="algoName">String Matching</p>
-                        </button>
+                        </motion.button>
                     </div>
 
                 </motion.section>
-                
+                {/* <section className="sectM divf">
+                    <div className="divf ddM">
+                        <motion.div
+                            initial={{ x: -100, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <motion.p
+                                className="mt1">Be it a 15 inch Laptop or</motion.p>
+                            <motion.p
+                                className="mt1">a 6 inch Mobile Phone</motion.p>
+                        </motion.div>
+                        <motion.p
+                            initial={{ y: 50, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.3, delay: 0.5 }}
+                            className="mt2 mUpL">Access the simulators on any device, <span className="hightText">there should be no hindrance to learning!</span></motion.p>
+                    </div>
+
+                </section> */}
                 <AboutUs />
             </motion.div>
-            
+
             <Footer />
         </>
     );

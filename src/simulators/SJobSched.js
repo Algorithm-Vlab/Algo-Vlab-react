@@ -22,6 +22,7 @@ function SJobSched() {
     const [newProf, setNewProf] = useState();
     const [newDead, setNewDead] = useState();
     const [totalProfit, setTotalProfit] = useState(0);
+    const [startSolv, setStSol] = useState(false);
 
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -166,45 +167,100 @@ function SJobSched() {
             ELproc[maxP].classList.remove("matchBox");
 
         }
-
         setStepC(2);
         setCurrNo(1);
     }
 
-    function scheduleNext() {
+    async function startSched(eTid) {
+        retElId(eTid).setAttribute("disabled", "disabled");
+        retElId("procStat").innerHTML = "Sorted Profits: ";
+        var n = procs.length;
+        for (let e = 0; e < n; e++) {
+
+            if (e != 0) {
+                var comma = document.createElement("span");
+                comma.innerHTML = ", ";
+                retElId("procStat").appendChild(comma);
+            }
+
+            var indEdge = document.createElement("span");
+            indEdge.innerHTML = "P" + procs[e].no;
+            indEdge.id = "P" + e;
+            retElId("procStat").appendChild(indEdge);
+        }
+        setStSol(true);
+    }
+
+    async function scheduleNext(eTId) {
         var slotArr = slotG;
         var isSelect = 0;
+        var ELproc = document.querySelectorAll("#allRP");
+        retElId(eTId).setAttribute("disabled", "disabled");
+        if (currNo.length === 1) {
+            retElId("sol2").classList.remove("dangerC");
+            retElId("sol2").classList.add("successC");
+            retElId("sol2").innerHTML = `Thus we obtain the result!`;
+            retElId(`P${currNo - 1}`).classList.remove("selEShow");
+            ELproc[currNo - 1].classList.remove("bgGreen");
+            // console.log(procs.length);
+            retElId("procStat").innerHTML = "";
+            var sts = stepC + 1;
+            setStepC(sts);
+            setCurrNo(1);
+            document.getElementById("schedNext").setAttribute("disabled", true);
+            document.getElementById("nextJ").setAttribute("disabled", true);
+            // retElId(eTId).removeAttribute("disabled", "disabled");
+            return;
+        }
+
+        if (currNo > 1) {
+            retElId(`P${currNo - 2}`).classList.remove("selEShow");
+            ELproc[currNo - 2].classList.remove("bgGreen");
+        }
+        ELproc[currNo - 1].classList.add("bgGreen");
+        retElId(`P${currNo - 1}`).classList.add("selEShow");
         for (var j = Math.min(procs.length, procs[currNo - 1].deadline) - 1; j >= 0; j--) {
             if (slotArr[j] == 0) {
                 slotArr[j] = 1;
                 setSlotG(slotArr);
                 var jIndex = j + 1;
-                document.getElementById(jIndex + "Bx").innerHTML = "P" + procs[currNo - 1].no;
+                retElId(jIndex + "Bx").classList.add("bgGreen");
+                retElId(jIndex + "Bx").innerHTML = "P" + procs[currNo - 1].no;
                 setTotalProfit(Number(totalProfit) + Number(procs[currNo - 1].profit));
                 isSelect = 1;
+                retElId("sol2").classList.remove("dangerC");
+                retElId("sol2").classList.add("successC");
+                if (j === Math.min(procs.length, procs[currNo - 1].deadline) - 1) {
+                    retElId("sol2").innerHTML = `Process P${procs[currNo - 1].no} takes a Slot(${jIndex})`;
+                }
+                else {
+                    retElId("sol2").innerHTML = `Process P${procs[currNo - 1].no} takes a Slot(${jIndex}), since Slot(${procs[currNo - 1].deadline}) was occupied`;
+                }
+                await timer(1000);
+                retElId(jIndex + "Bx").classList.remove("bgGreen");
                 break;
             }
         }
         if (isSelect == 0) {
-            window.alert(`There is no place left for process P${procs[currNo - 1].no} :(`);
+            retElId("sol2").classList.remove("successC");
+            retElId("sol2").innerHTML = `There is no place left for process P${procs[currNo - 1].no} :(`;
+            retElId("sol2").classList.add("dangerC");
         }
         var isFull = 1;
-        for (var i = 0; i < slotG.length; i++) {
-            if (slotG[i] == 0) {
+        for (var i = 0; i < slotArr.length; i++) {
+            if (slotArr[i] == 0) {
                 isFull = 0;
                 break;
             }
         }
-        if (isFull == 1 || currNo === allDeads.length || currNo === procs.length) {
-            var sts = stepC + 1;
-            setStepC(sts);
-            setCurrNo(1);
-            document.getElementById("schedNext").setAttribute("disabled", true);
+        if (isFull == 1) {
+            retElId("nextJ").innerHTML = "Answer";
+            setCurrNo([currNo]);
         }
         else {
             setCurrNo(currNo + 1);
         }
-
+        retElId(eTId).removeAttribute("disabled", "disabled");
     }
 
 
@@ -214,6 +270,11 @@ function SJobSched() {
         setCurrNo(1);
         setTotalProfit(0);
         setSlotG([]);
+        retElId("schedNext").removeAttribute("disabled", "disabled");
+        retElId("sol2").classList.remove("successC");
+        retElId("sol2").innerHTML = "";
+        setStSol(false);
+        document.getElementById("nextJ").removeAttribute("disabled", "disabled");
     }
 
     async function updateStep() {
@@ -223,7 +284,7 @@ function SJobSched() {
     function disBut(e) {
         document.getElementById(e.target.id).setAttribute("disabled", true);
     }
-    
+
     return (
         <>
             <Navbar />
@@ -236,11 +297,23 @@ function SJobSched() {
                 } */}
                 <motion.div className="left-side">
                     <motion.div
-                        className="simulation"
+                        className="simulation simPT"
                         initial={{ x: 50 }}
                         animate={{ x: 0 }}
                         transition={{ duration: 0.5 }}
                     >
+                        <div id="algoStatus" className="algStat">
+                            <div id="idStatCont" className="statContent">
+                                <p id="procStat" style={{ fontWeight: 600 }}></p>
+                                <p id="sol2" className="f1-4"></p>
+                            </div>
+                            {startSolv ?
+                                <>
+                                    <button id="nextJ" className="spec" onClick={(e) => { scheduleNext(e.target.id) }}>Next</button>
+                                </>
+                                : <></>
+                            }
+                        </div>
                         <motion.div className="Table"
                             initial={{ x: -90 }}
                             animate={{ x: 0 }}
@@ -346,13 +419,11 @@ function SJobSched() {
                                 <p id="step2" className="stepH">Step2: </p>
                                 <div className="content">
                                     <p>We Iterate on jobs in decreasing order of profit.For each job, we do the following :</p>
-                                    <p>Find a time slot i, such that slot is empty and i {"<"} deadline and i is greatest.</p>
+                                    <p>Find a time slot i, such that slot is empty and i {"<="} deadline and i is greatest.</p>
                                     <p>Put the job in this slot and mark this slot filled.</p>
                                     <p>If no such i exists, then ignore the job. </p>
-                                    {stepC === 2 ?
-                                        <p>We take process P{procs[currNo - 1].no}</p> : <></>
-                                    }
-                                    <button id="schedNext" className="spec" onClick={(e) => { scheduleNext(); }}>Schedule</button>
+                                    <button id="schedNext" className="spec" onClick={(e) => { startSched(e.target.id) }}>Schedule</button>
+                                    <p>{slotG}</p>
                                 </div>
                                 <FontAwesomeIcon id="0STDN" className="stepDoneIcon" icon={faCircleCheck} />
                             </motion.div> : <></>
