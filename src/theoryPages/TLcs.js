@@ -10,14 +10,20 @@ import iLcs3 from "../img/lcs/3.png";
 import iLcs4 from "../img/lcs/4.png";
 import iLcs5 from "../img/lcs/5.png";
 import iLcsMatch from "../img/lcs/match.png";
+import { AppState } from "../context/appContext";
+import { expR } from "../data/expRoutes";
 
 export default function TLcs() {
 
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
-        navigate("/" + toLink);
+        navigate("/" + toLink + "/simulator");
     }
+
+    const { cuE, algoT } = AppState();
+
+    const [currE, setCE] = cuE;
 
     return (
         <>
@@ -33,6 +39,7 @@ export default function TLcs() {
                         <p className="f1-5 mUpL">
                             <b className="hightText1">LCS</b> the Longest Common Subsequence that is common to all the given sequences, provided that the elements of subsequence need not be in consecutive positions.
                         </p>
+                        <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
                         <div className="f1-5 mUpL">
                             <b className="hightText">Algorithm for LCS</b>
                             <ol className=" algorithm f1-3 mUpM">

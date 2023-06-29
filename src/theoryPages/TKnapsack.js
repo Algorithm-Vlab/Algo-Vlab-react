@@ -5,16 +5,21 @@ import "../css/Theory.css";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer.js";
 import kss1 from "../img/knapsack/kss1.jpeg"
+import { AppState } from "../context/appContext";
 // import rkp2 from "../img/rabinkarp/rkp2.jpeg"
 // import rkp3 from "../img/rabinkarp/rkp3.jpeg"
+import { expR } from "../data/expRoutes";
 
 export default function TKnapsack() {
 
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
-        navigate("/" + toLink);
+        navigate("/" + toLink + "/simulator");
     }
+    const { cuE, algoT } = AppState();
+
+    const [currE, setCE] = cuE;
 
     return (
         <>
@@ -31,7 +36,7 @@ export default function TKnapsack() {
                         <p className="f1-5 mUpL">
                             <b className="hightText1">Knapsack</b> is a container/bag, for which we use the algorithm to find the maximum no. of items that can be included inside the bag with maximum Profit.
                         </p>
-
+                        <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
                         <div className="mUpL"></div>
                         <b className="mUpL f1-5">Algorithm </b>
                         <div className="mUpM algorithm">

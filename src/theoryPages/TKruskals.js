@@ -10,6 +10,8 @@ import Kruskal3 from "../img/kruskals/3.png";
 import Kruskal4 from "../img/kruskals/4.png";
 import Kruskal5 from "../img/kruskals/5.png";
 import Kruskal6 from "../img/kruskals/6.png";
+import { AppState } from "../context/appContext";
+import { expR } from "../data/expRoutes";
 
 export default function TKruskals() {
     const navigate = useNavigate();
@@ -17,6 +19,10 @@ export default function TKruskals() {
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
+
+    const { cuE, algoT } = AppState();
+
+    const [currE, setCE] = cuE;
 
     return (
         <>
@@ -32,6 +38,7 @@ export default function TKruskals() {
                         <p className="f1-5 mUpL">
                             <b className="hightText1">Kruskal's Algorithm</b> is the Algorithm which uses the <b>Greedy Approach</b> to find the <b>Minimum Spanning Tree</b> by <b>traversing</b> through every <b>edge</b>.
                         </p>
+                        <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
                         <div className="f1-5 mUpL">
                             <b className="hightText">Algorithm for Kruskal's Algorithm</b>
                             <ul className=" algorithm intro f1-3 mUpM">

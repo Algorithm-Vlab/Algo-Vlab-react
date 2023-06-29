@@ -44,11 +44,11 @@ function FNavbar() {
             var winHeight = window.innerHeight;
             setPrevST(prevscTop);
             setScrollTop(window.scrollY);
-            if (scTop === 0 || scTop < prevscTop || prevscTop<20) {
-                if (retElId("idFNav")){
+            if (scTop === 0 || scTop < prevscTop || prevscTop < 20) {
+                if (retElId("idFNav")) {
                     retElId("idFNav").classList.remove("goUpF");
                 }
-                
+
             }
             else {
                 if (retElId("idFNav")) {
@@ -78,29 +78,29 @@ function FNavbar() {
                 className="menu">
                 {algoOpt}
             </motion.button> */}
-                <motion.div
-                    initial={{
-                        clipPath: "circle(1.5% at 50% 50%)"
-                    }}
+            <motion.div
+                initial={{
+                    clipPath: "circle(1.5% at 50% 50%)"
+                }}
 
-                    animate={{
-                        clipPath: "circle(80% at 50% 50%) "
-                    }}
-                    exit={{
-                        clipPath: "circle(1.5% at 50% 50%)"
-                    }}
-                    transition={{
-                        type: "spring",
-                        duration: 0.7,
-                    }}
-                    // exit={{ scale: 0 }}
-                    className="fnavmain"
-                >
-                    <button className={"fnB "} onClick={() => { navigate("/") }}><FontAwesomeIcon className="exploreIcon" icon={faHouse} /></button>
-                    <button className={algoTC === 0 ? "fnB explore" : "fnB "} onClick={() => { navigate("/" + algoName) }}><FontAwesomeIcon className="exploreIcon" icon={faBookOpen} /></button>
-                    <button className={algoTC === 1 ? "fnB explore" : "fnB "} onClick={() => { navigate("/" + algoName + "/simulator") }}><FontAwesomeIcon className="exploreIcon" icon={faCirclePlay} /></button>
-                    <button className={algoTC === 2 ? "fnB explore" : "fnB "} onClick={() => { navigate("/" + algoName + "/feedback") }}><FontAwesomeIcon className="exploreIcon" icon={faCommentDots} /></button>
-                </motion.div>
+                animate={{
+                    clipPath: "circle(80% at 50% 50%) "
+                }}
+                exit={{
+                    clipPath: "circle(1.5% at 50% 50%)"
+                }}
+                transition={{
+                    type: "spring",
+                    duration: 0.7,
+                }}
+                // exit={{ scale: 0 }}
+                className="fnavmain"
+            >
+                <button className={"fnB "} onClick={() => { navigate("/") }}><FontAwesomeIcon className="exploreIcon" icon={faHouse} /><span className="hovT">Home</span></button>
+                <button className={algoTC === 0 ? "fnB explore" : "fnB "} onClick={() => { navigate("/" + algoName) }}><FontAwesomeIcon className="exploreIcon" icon={faBookOpen} /><span className="hovT">Theory</span></button>
+                <button className={algoTC === 1 ? "fnB explore" : "fnB "} onClick={() => { navigate("/" + algoName + "/simulator") }}><FontAwesomeIcon className="exploreIcon" icon={faCirclePlay} /><span className="hovT">Simulator</span></button>
+                <button className={algoTC === 2 ? "fnB explore" : "fnB "} onClick={() => { navigate("/" + algoName + "/feedback") }}><FontAwesomeIcon className="exploreIcon" icon={faCommentDots} /><span className="hovT">Feedback</span></button>
+            </motion.div>
         </motion.div>
     )
 }

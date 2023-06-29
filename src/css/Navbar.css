@@ -165,10 +165,11 @@
 .dropNav .drop {
     position: absolute;
     top: 2.6rem;
-    right: 0;
+    right: 50%;
+    transform: translate(50%);
     z-index: 5;
     min-width: 5rem;
-    max-width: 80vw;
+    max-width: clamp(2rem, 11rem, 80vw);
     width: max-content;
     background: rgb(255, 241, 214);
     border-radius: 0.3rem;

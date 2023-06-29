@@ -9,14 +9,20 @@ import Fst1 from "../img/nqueens/4st1.jpg"
 
 import allst from "../img/nqueens/allstep4.webp"
 import queen8 from "../img/nqueens/8queen.png"
+import { AppState } from "../context/appContext";
+import { expR } from "../data/expRoutes";
 
 export default function NqueensTheory() {
 
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
-        navigate("/" + toLink);
+        navigate("/" + toLink + "/simulator");
     }
+
+    const { cuE, algoT } = AppState();
+
+    const [currE, setCE] = cuE;
 
     return (
         <>
@@ -33,7 +39,7 @@ export default function NqueensTheory() {
                         <p className="f1-5 mUpL">
                             <b className="hightText1">Back-Tracking</b> is an algorithmic technique for solving problems recursively by trying to build a solution incrementally, one piece at a time, removing those solutions that fail to satisfy the constraints of the problem at any point of time by time, here, is referred to the time elapsed till reaching any level of the search tree.
                         </p>
-
+                        <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
                         <p className="f1-5 mUpL">
                             <b className="hightText">NQueens Problem</b>
                             <ol className="ols mUpS f1-3">

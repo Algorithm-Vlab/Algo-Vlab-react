@@ -15,7 +15,7 @@
     transition: 0.2s all ease-out;
 }
 
-.goUpF{
+.goUpF {
     top: 0rem;
 }
 
@@ -38,10 +38,10 @@
     font-size: 1.2rem;
     font-weight: 500;
     transition: 0.3s all ease-out;
-    
+
 }
 
-.fnav .menu:hover{
+.fnav .menu:hover {
     opacity: 0;
 }
 
@@ -64,11 +64,25 @@
 }
 
 .fnav .fnB {
+    /* display: block; */
+    position: relative;
     /* border-radius: 50%; */
     margin: 0 0.2rem;
     background: transparent;
     padding: 0.35rem;
     box-sizing: border-box;
+    overflow: visible;
+    /* border-radius: 0; */
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.fnav .fnB:hover {
+    opacity: 1;
+}
+
+.fnav .fnB:hover .exploreIcon {
+    opacity: 0.8;
 }
 
 .fnav .explore {
@@ -80,28 +94,65 @@
 
 .fnav .explore .exploreIcon {
     color: rgb(255, 255, 255);
+    transition: 0.2s all ease-out;
 }
 
 .fnav .fnavmain .exploreIcon {
+    display: block;
     font-size: 1.3rem;
+}
+
+.hovT {
+    transform: scale(0) translate(-25%, 0%);
+    position: absolute;
+    bottom: -2.3rem;
+    left: 0;
+    padding: 0.1rem;
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(85, 0, 0);
+    background: rgb(250, 227, 227);
+    transition: 0.1s all ease-out;
+    z-index: 10;
+    opacity: 1;
+}
+
+.fnB:nth-child(4) .hovT {
+    transform: scale(0);
+    left: auto;
+    right: 0;
+}
+
+.fnB:hover .hovT {
+    transform: scale(1) translate(-25%, 0%);
+    opacity: 1;
+}
+
+.fnB:nth-child(4):hover .hovT {
+    transform: scale(1);
+    opacity: 1;
 }
 
 
 @media (max-width: 450px) {
-    .algoTitle{
+    .algoTitle {
         position: absolute;
         margin: 1rem 0;
         left: 0.5rem;
-        
+
     }
-    .fnav{
+
+    .fnav {
         height: 2.5rem;
     }
-    .fnav .fnB{
+
+    .fnav .fnB {
         margin: 0 0.15rem;
         padding: 0.2rem;
     }
-    .fnav .fnavmain .exploreIcon{
+
+    .fnav .fnavmain .exploreIcon {
         font-size: 1rem !important;
     }
 }

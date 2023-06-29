@@ -7,14 +7,20 @@ import Footer from "../components/Footer.js";
 import rkp1 from "../img/rabinkarp/rkp1.jpeg"
 import rkp2 from "../img/rabinkarp/rkp2.jpeg"
 import rkp3 from "../img/rabinkarp/rkp3.jpeg"
+import { AppState } from "../context/appContext";
+import { expR } from "../data/expRoutes";
 
 export default function RabinkarpTheory() {
 
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
-        navigate("/" + toLink);
+        navigate("/" + toLink + "/simulator");
     }
+
+    const { cuE, algoT } = AppState();
+
+    const [currE, setCE] = cuE;
 
     return (
         <>
@@ -31,7 +37,7 @@ export default function RabinkarpTheory() {
                         <p className="f1-5 mUpL">
                             <b className="hightText1">String Maching Algorithms</b>have greatly influenced computer science and play an essential role in various real-world problems. It helps in performing time-efficient tasks in multiple domains. These algorithms are useful in the case of searching a string within another string.
                         </p>
-
+                        <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
                         <p className="mUpM f1-5 hightText"><b>Algorithm for Rabinkarp</b></p>
                         <div className="algorithm mUpM">
                             <p>

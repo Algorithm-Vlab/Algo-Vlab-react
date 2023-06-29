@@ -30,7 +30,7 @@ export default function ULogin() {
             window.alert("Please fill all details");
             return;
         }
-        console.log(uData);
+        // console.log(uData);
         try {
             await axios.post("http://localhost:5013/y/" + uType + "/login", uData, {
                 withCredentials: true
@@ -54,21 +54,24 @@ export default function ULogin() {
     }
 
     function subForm(tId) {
-        if (uemail.includes("@") && retId("loginB")) {
-            doLogin({
-                email: uemail,
-                password: password
-            }, "user");
+        var f = document.getElementsByTagName('form')[0];
+        var uType = "user";
+        var em = uemail;
+        var pa = password;
+        if (retId("loginBA")) {
+            uType = "admin";
+            em = aEmail;
+            pa = aPassword;
         }
-        else if (aEmail.includes("@") && retId("loginBA")) {
-            doLogin({
-                email: aEmail,
-                password: aPassword,
-            }, "admin");
-        }
-        else {
-            return;
-        }
+        // if (f.reportValidity()) {
+        doLogin({
+            email: em,
+            password: pa,
+        }, uType);
+        // }
+        // else {
+        // return;
+        // }
     }
 
     useEffect(() => {
@@ -152,9 +155,13 @@ export default function ULogin() {
                                     <input required pattern="[^ @]*@[^ @]*" value={aEmail} placeholder="email" type="email" id="idAemail" className="lIns" onChange={(e) => { setAEmail(e.target.value); handleCh(e, "loginBA") }} ></input>
                                     <b className="hideL">email</b>
                                 </div>
-                                <div className="takeInD" id="adminI2 ">
-                                    <input required id="idApassword" value={aPassword} placeholder="password" className="lIns" type="password" onChange={(e) => { setAPassword(e.target.value); handleCh(e, "loginBA") }} ></input>
-                                    <b className="hideL">password</b>
+                                <div>
+                                    <div className="takeInD" id="adminI2 ">
+                                        <input required id="idApassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" value={aPassword} placeholder="password" className="lIns" type="password" onChange={(e) => { setAPassword(e.target.value); handleCh(e, "loginBA") }} ></input>
+                                        <b className="hideL">password</b>
+
+                                    </div>
+                                    <p className="pComment">Password must contain atleast one Uppercase/Lowercase letters and digit, and atleast 8 letters long</p>
                                 </div>
 
                                 <button type="submit" id="loginBA" className="goLogB" onClick={(e) => { subForm(e.target.id) }}>Login</button>
@@ -170,10 +177,14 @@ export default function ULogin() {
                                     <input required pattern="[^ @]*@[^ @]*" value={uemail} placeholder="email" type="email" id="iduemail" className="lIns" onChange={(e) => { setuemail(e.target.value); handleCh(e, "loginB") }} ></input>
                                     <b className="hideL">email</b>
                                 </div>
-                                <div className="takeInD" id="userI2">
-                                    <input required id="idpassword" value={password} placeholder="password" className="lIns" type="password" onChange={(e) => { setPassword(e.target.value); handleCh(e, "loginB") }} ></input>
-                                    <b className="hideL">password</b>
+                                <div>
+                                    <div className="takeInD" id="userI2">
+                                        <input required id="idpassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" value={password} placeholder="password" className="lIns" type="password" onChange={(e) => { setPassword(e.target.value); handleCh(e, "loginB") }} ></input>
+                                        <b className="hideL">password</b>
+                                    </div>
+                                    <p className="pComment">Password must contain atleast one Uppercase/Lowercase letters and digit, and atleast 8 letters long</p>
                                 </div>
+
 
                                 <button type="submit" id="loginB" className="goLogB" onClick={(e) => { subForm(e.target.id) }}>Login</button>
                                 <button className="bNone" onClick={(e) => { e.preventDefault(); navigate("/register") }}>Don't have an Account?</button>

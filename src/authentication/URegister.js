@@ -121,31 +121,31 @@ export default function URegister() {
                         <p className="f2"><b>Registration Form</b></p>
                         <div className="inRow">
                             <div className="takeInD">
-                                <input id="uName" required pattern="[a-zA-Z]+" onChange={(e) => { setUName(e.target.value); handleCh(e, "registerB") }} placeholder="Name" className="lIns"></input>
+                                <input id="uName" required pattern="[a-zA-Z]+" onChange={(e) => { setUName(e.target.value); handleCh(e, "registerB") }} placeholder="Name" className="lIns rIns"></input>
                                 <b className="hideL">Name</b>
                             </div>
                             <div className="takeInD">
-                                <input id="uEmail" required pattern="[^ @]*@[^ @]*" type="email" onChange={(e) => { setEmail(e.target.value); handleCh(e, "registerB") }} placeholder="Email" className="lIns"></input>
+                                <input id="uEmail" required pattern="[^ @]*@[^ @]*" type="email" onChange={(e) => { setEmail(e.target.value); handleCh(e, "registerB") }} placeholder="Email" className="lIns rIns"></input>
                                 <b className="hideL">Email</b>
                             </div>
                         </div>
                         <div className="inRow">
                             <div className="takeInD">
-                                <input id="uUsername" pattern="[a-zA-Z0-9_]+" required onChange={(e) => { setUsername(e.target.value); handleCh(e, "registerB") }} placeholder="Username" className="lIns"></input>
+                                <input id="uUsername" pattern="[a-zA-Z0-9_]+" required onChange={(e) => { setUsername(e.target.value); handleCh(e, "registerB") }} placeholder="Username" className="lIns rIns"></input>
                                 <b className="hideL">Username</b>
                             </div>
                             <div className="takeInD">
-                                <input id="uInstit" pattern="[a-zA-Z]+" required onChange={(e) => { setUInst(e.target.value); handleCh(e, "registerB") }} placeholder="Institute" className="lIns"></input>
+                                <input id="uInstit" pattern="[a-zA-Z]+" required onChange={(e) => { setUInst(e.target.value); handleCh(e, "registerB") }} placeholder="Institute" className="lIns rIns"></input>
                                 <b className="hideL">Institute</b>
                             </div>
                         </div>
                         <div className="inRow">
                             <div className="takeInD">
-                                <input id="uDepartment" pattern="[a-zA-Z]+" required onChange={(e) => { setUDept(e.target.value); handleCh(e, "registerB") }} placeholder="Department" className="lIns"></input>
+                                <input id="uDepartment" pattern="[a-zA-Z]+" required onChange={(e) => { setUDept(e.target.value); handleCh(e, "registerB") }} placeholder="Department" className="lIns rIns"></input>
                                 <b className="hideL">Department</b>
                             </div>
                             <div className="takeInD">
-                                <select id="uDesig" className="lIns" onChange={({ target: { value } }) => { setUDesig(value) }}>
+                                <select id="uDesig" className="lIns rIns" onChange={({ target: { value } }) => { setUDesig(value) }}>
                                     <option selected="true" value="Student">Student</option>
                                     <option value="Faculty">Faculty</option>
                                     <option value="Other">Other</option>
@@ -156,15 +156,18 @@ export default function URegister() {
                         </div>
                         <div className="inRow">
                             <div className="takeInD">
-                                <input id="uPassword" required type="password" onChange={(e) => { setPassword(e.target.value); handleCh(e, "registerB") }} placeholder="Password" className="lIns"></input>
+                                <input id="uPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required type="password" onChange={(e) => { setPassword(e.target.value); handleCh(e, "registerB") }} placeholder="Password" className="lIns rIns"></input>
                                 <b className="hideL">Password</b>
                             </div>
                             <div className="takeInD">
-                                <input id="uCPassword" required type="password" onChange={(e) => { setCPassword(e.target.value); handleCh(e, "registerB") }} placeholder="Password" className="lIns"></input>
-                                <b className="hideL">Confirm Password</b>
+                                <input id="uCPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required type="password" onChange={(e) => { setCPassword(e.target.value); handleCh(e, "registerB") }} placeholder="Password" className="lIns rIns"></input>
+                                <b className="hideL">Confirm Pass</b>
                             </div>
+                            
                         </div>
-
+                        <div className="inRow">
+                            <p className="rPComment">Password must contain atleast one Uppercase/Lowercase letters and digit, and atleast 8 letters long</p>
+                        </div>
 
                         <button type="submit" id="registerB" className="goLogB" onClick={(e) => { subForm(e.target.id) }}>Register</button>
                         {/* <button className="bNone">Don't have an Account?</button> */}

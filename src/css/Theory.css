@@ -222,6 +222,25 @@
     height: 3462px;
 }
 
+.goToSim{
+    /* background: ; */
+    padding: 0.3rem;
+    font-size: 1.5rem;
+    font-family: 'Share Tech', sans-serif;
+    color: var(--somColor);
+    background: rgb(255, 255, 255);
+    font-weight: 700;
+    border: 0.2rem solid var(--somColor);
+    border-radius: 0.5rem;
+    
+    /* text-decoration: solid; */
+    /* text-decoration-line: underline; */
+}
+
+.goToSim:hover{
+    opacity: 0.8;
+}
+
 @media (max-width: 600px) {
 
     .im1,

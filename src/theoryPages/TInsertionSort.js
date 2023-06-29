@@ -1,12 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
 import "../css/Theory.css";
 import { animate, delay, motion } from "framer-motion";
 import Footer from "../components/Footer";
+import { AppState } from "../context/appContext";
+import { expR } from "../data/expRoutes";
 
 export default function TInsertionSort() {
   const navigate = useNavigate();
+
+  const { cuE, algoT } = AppState();
+
+  const [currE, setCE] = cuE;
 
   const naviTo = (toLink) => {
     navigate("/" + toLink + "/simulator");
@@ -23,17 +29,18 @@ export default function TInsertionSort() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
           >
-              <p className="f1-5 mUpL">
-                <b className="hightText1">Insertion sort</b> is a simple sorting algorithm that works by
-                repeatedly dividing the input into sorted and unsorted portions.
-                It starts with an empty sorted portion and gradually inserts
-                each element from the unsorted portion into its correct position
-                within the sorted portion. The algorithm iterates through the
-                unsorted portion, comparing each element with the elements in
-                the sorted portion and shifting them to the right until the
-                correct position is found. This process continues until all
-                elements are inserted into their proper places.
-              </p>
+            <p className="f1-5 mUpL">
+              <b className="hightText1">Insertion sort</b> is a simple sorting algorithm that works by
+              repeatedly dividing the input into sorted and unsorted portions.
+              It starts with an empty sorted portion and gradually inserts
+              each element from the unsorted portion into its correct position
+              within the sorted portion. The algorithm iterates through the
+              unsorted portion, comparing each element with the elements in
+              the sorted portion and shifting them to the right until the
+              correct position is found. This process continues until all
+              elements are inserted into their proper places.
+            </p>
+            <button className="goToSim mUpL" onClick={()=>{naviTo(expR[currE[0]][currE[1]][1])}}>Go to Simulator</button>
             <div className="f1-5 mUpL">
               <b className="hightText">Algorithm for Insertion Sort</b>
               <ul className=" algorithm intro f1-3 mUpM">
@@ -137,8 +144,8 @@ export default function TInsertionSort() {
                   </li>
                 </ul>
               </div>
-              
-              
+
+
             </div>
             <div className="f1-5 mUpL">
               <b className="hightText f1-5">Advantages of Insertion Sort</b>

@@ -94,7 +94,7 @@ const AppProvider = ({ children }) => {
     function retElId(idname) {
         return document.getElementById(idname);
     }
-    console.log(algoT);
+    // console.log(algoT);
     return (
         <AppContext.Provider value={{ cuE: [cE, setCE], algoT: [algoT, setAlgoT], userD: [uData, setUData] }}>{children}</AppContext.Provider>
     )

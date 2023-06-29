@@ -4,9 +4,15 @@ import Navbar from "../components/Navbar";
 import "../css/Theory.css";
 import { animate, delay, motion } from "framer-motion";
 import Footer from "../components/Footer";
+import { AppState } from "../context/appContext";
+import { expR } from "../data/expRoutes";
 
 export default function TSelectS() {
     const navigate = useNavigate();
+
+    const { cuE, algoT } = AppState();
+
+    const [currE, setCE] = cuE;
 
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
@@ -26,6 +32,7 @@ export default function TSelectS() {
                         <p className="f1-5 mUpL">
                             <b className="hightText1">Selection sort</b> is an efficient sorting algorithm that repeatedly checks and selects the smallest (or largest) element from the unsorted portion of the list and moves it to the sorted portion of the list.
                         </p>
+                        <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
                         <div className="f1-5 mUpL">
                             <b className="hightText">Algorithm for Selection Sort</b>
                             <ul className=" algorithm intro f1-3 mUpM">

@@ -11,6 +11,8 @@ import IDijkstra3 from "../img/dijkstra/3.png";
 import IDijkstra4 from "../img/dijkstra/4.png";
 import IDijkstra5 from "../img/dijkstra/5.png";
 import IDijkstra6 from "../img/dijkstra/6.png";
+import { AppState } from "../context/appContext";
+import { expR } from "../data/expRoutes";
 
 export default function TDijkstra() {
     const navigate = useNavigate();
@@ -18,6 +20,10 @@ export default function TDijkstra() {
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
+
+    const { cuE, algoT } = AppState();
+
+    const [currE, setCE] = cuE;
 
     return (
         <>
@@ -33,6 +39,7 @@ export default function TDijkstra() {
                         <p className="f1-5 mUpL">
                             <b className="hightText1">Dijkstra's Algorithm</b> is the Algorithm which uses the <b>Greedy Approach</b> to find the <b>shortest path</b> from <b>source</b> to every <b>vertice in graph</b>.
                         </p>
+                        <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
                         <div className="f1-5 mUpL">
                             <b className="hightText">Algorithm for Dijkstra's Algorithm</b>
                             <ul className=" algorithm intro f1-3 mUpM">
