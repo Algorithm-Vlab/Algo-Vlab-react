@@ -758,7 +758,7 @@ input:focus {
     opacity: 0.8;
 }
 
-.stepCard .insL{
+.stepCard .insL {
     max-width: 6rem;
 }
 
@@ -924,7 +924,7 @@ input:focus {
 
     .left-side {
         width: 80vw;
-        height: 25rem;
+        height: clamp(35rem, 80vh, 50rem);
         margin-bottom: 5rem;
     }
 

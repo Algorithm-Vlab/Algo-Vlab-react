@@ -76,7 +76,7 @@ export default function SInsertionSort() {
         Ele.readOnly = true;
         Arr.push(Ele.value);
       }
-      
+
       setArray1(Arr);
       displayArray(Arr);
       setStepC(2);
@@ -88,17 +88,21 @@ export default function SInsertionSort() {
     let n = inputArr.length;
 
     for (let i = 0; i < n; i++) {
+      retElId("sol1").innerHTML = `Counter: ${Number(i + 1)}`;
       retElId(`box-${i}`).classList.add("boxKSel");
-      await timer(1000);
+      await timer(500);
       // Finding the smallest number in the subarray
       let min = i;
+      retElId("sol12").innerHTML = `Minimum element: ${inputArr[min]}`;
       for (let j = i + 1; j < n; j++) {
+
         retElId(`box-${j}`).classList.add("goBox");
         await timer(500);
         retElId(`box-${j}`).classList.remove("goBox");
         if (inputArr[j] - inputArr[min] < 0) {
           min = j;
           retElId(`box-${j}`).classList.add("matchBox");
+          retElId("sol12").innerHTML = `Minimum element: ${inputArr[min]}`;
           await timer(500);
           retElId(`box-${j}`).classList.remove("matchBox");
           await timer(500);
@@ -126,7 +130,10 @@ export default function SInsertionSort() {
       }
       retElId(`box-${i}`).classList.remove("boxKSel");
     }
-    
+    retElId("sol1").innerHTML = "";
+    retElId("sol12").innerHTML = "";
+    retElId("sol2").classList.add("successC");
+    retElId("sol2").innerHTML = "Array is sorted!";
     setStepC(3);
   }
 
@@ -154,7 +161,16 @@ export default function SInsertionSort() {
       <div className="aboveSim"></div>
       <motion.div className="fullbg simbg" id="main">
         <motion.div className="left-side">
-          <motion.div id="sim" className="simulation testK"></motion.div>
+          <motion.div className="simulation simPT">
+            <div id="algoStatus" className="algStat">
+              <div id="idStatCont" className="statContent">
+                <p id="sol1" style={{ fontWeight: 600 }}></p>
+                <p id="sol12" style={{ fontWeight: 600 }}></p>
+                <p id="sol2"></p>
+              </div>
+            </div>
+            <div id="sim" className="divf testK"></div>
+          </motion.div>
         </motion.div>
         <motion.div className="right-side">
           <motion.div id="idAllSteps" className="allSteps">
@@ -213,9 +229,9 @@ export default function SInsertionSort() {
             ) : (
               <></>
             )}
-            {stepC >= 3 ? 
-              <button className="spec restartb" onClick={()=>{window.location.reload()}}>Restart</button>
-             : <></>}
+            {stepC >= 3 ?
+              <button className="spec restartb" onClick={() => { window.location.reload() }}>Restart</button>
+              : <></>}
           </motion.div>
         </motion.div>
       </motion.div>

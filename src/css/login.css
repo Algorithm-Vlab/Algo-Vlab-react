@@ -120,6 +120,7 @@
     /* word-break: break-all; */
     font-size: 1rem !important;
     width: clamp(10rem, 50vw, 22rem);
+    color: red;
 }
 
 .hideL {

@@ -41,5 +41,7 @@
     flex-direction: row !important;
     justify-content: baseline !important;
     align-items:end !important;
+    width: 100%;
+    height: 100%;
   }
  

@@ -1,101 +1,89 @@
-
-
-.showArr {
-    margin-top: 1rem;
-    overflow: auto;
-    height: 15rem;
-    overflow-x: hidden;
-    scrollbar-width: 0;
+.nqT {
+    display: grid;
+    border: 0.11rem solid rgb(44, 44, 44);
 }
 
-.showArr table {
-    border-collapse: collapse;
+#cellContainer4 {
+    grid-template-columns: repeat(4, auto);
 }
 
 
-
-
-
-
-
-.makeBold {
-    font-weight: 600;
+#cellContainer8 {
+    grid-template-columns: repeat(8, auto);
 }
 
-.t2 {
-    font-size: 1.5rem;
-}
-
-
-.selectedBox {
-    background: red;
-    color: white;
-    background: rgb(224, 224, 224);
-    color: black;
-    font-weight: 600;
-}
-
-.goBox {
-    background: rgb(227, 227, 0);
-    color: black;
-    background: rgb(147, 147, 147);
-    color: black;
-}
-
-.matchBox {
-    background: green;
-    color: black;
-    background: rgb(224, 224, 224);
-    color: black;
-    box-shadow: 0 0 0.5rem white;
-    font-weight: 600;
-}
-
-.cell{
+.cell {
     width: 50px;
     height: 50px;
-    border: 2px solid black;
-
-    cursor: pointer;
-    font-size: 35px;
-    
+    border: 0.11rem solid rgb(44, 44, 44);
+    display: grid;
+    /* cursor: pointer; */
+    font-size: 2rem;
+    place-items: center;
     text-align: center;
     color: rgb(95, 94, 93);
-    
-    font-family: cursive;
-    
+    background: white;
+    border-collapse: separate;
+    /* font-family: cursive; */
+
+}
+
+.noCell {
+    background: rgb(230, 230, 230);
+    color: black;
+}
+
+.nqT h3 {
+    font-size: 2rem;
+    color: black;
+    transition: 0.1s all ease-out;
 }
 
 
-
-#cellContainer4{
-    display: grid;
-    grid-template-columns: repeat(4,auto);
-    
-    background-color: rgb(248, 249, 247);
-   
-    border-radius: 10px;
-    
-    margin: 20px;
-}
-#cellContainer4 h3{
-   font-size: larger;
-   width: 50px;
-    height: 50px;
-}
-#cellContainer8{
-    display: grid;
-    grid-template-columns: repeat(8,auto);
-    
-    background-color: rgb(248, 249, 247);
-   
-    border-radius: 10px;
-    
-    margin: 20px;
+.NqDone {
+    background: rgb(196, 255, 196);
+    transition: 0.2s all ease-out;
+    color: rgb(0, 75, 0);
 }
 
-#cellContainer8 h3{
-    font-size: larger;
-    width: 50px;
-     height: 50px;
- }
+.NgCurr {
+    background: rgb(141, 255, 141);
+    transition: 0.2s all ease-out;
+    color: rgb(0, 75, 0);
+    animation: anCurrN 0.8s normal infinite;
+}
+
+.rangeI {
+    box-shadow: 0 0 0 0 transparent !important;
+}
+
+.nqD {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    overflow: auto;
+    width: 100%;
+    /* height: 100%; */
+}
+
+@keyframes anCurrN {
+    0% {
+        background: rgb(180, 255, 180);
+    }
+
+    100% {
+        background: rgb(7, 255, 7);
+    }
+}
+
+
+@media (max-width: 600px) {
+    .nqLS {
+        height: clamp(35rem, 80vh, 50rem) !important;
+    }
+
+    .nqD {
+        justify-content: flex-start;
+    }
+}

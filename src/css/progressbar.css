@@ -49,7 +49,7 @@
 
 }
 
-.btn {
+/* .btn {
   padding: 10px;
   background-color: rgb(22, 108, 238);
   margin-left: 1em;
@@ -60,12 +60,11 @@
   text-decoration: none;
   color: aliceblue;
 
-}
+} */
 
 form {
   display: flex;
   flex-direction: column;
-
 }
 
 .progbar {
@@ -76,10 +75,10 @@ form .n {
   margin-top: 50px;
   margin-bottom: 0px;
 }
-
+/* 
 h3 {
   margin-left: 35%;
-}
+} */
 
 
 

@@ -109,7 +109,7 @@ export default function SInsertionSort() {
     boxA.style.backgroundColor = "green";
     boxB.style.backgroundColor = "red";
 
-    await timer(1000);
+    await timer(500);
 
     boxA.style.backgroundColor = "";
     boxB.style.backgroundColor = "";
@@ -121,7 +121,7 @@ export default function SInsertionSort() {
   async function bubbleSort(arr) {
     retElId("2sStartSort").setAttribute("disabled", "disabled");
     for (var i = 0; i < arr.length; i++) {
-
+      retElId("sol1").innerHTML = `Counter: ${Number(i + 1)}`;
       // Last i elements are already in place  
       for (var j = 0; j < (arr.length - i - 1); j++) {
         retElId(`box-${j}`).classList.add("goBox");
@@ -141,6 +141,9 @@ export default function SInsertionSort() {
         retElId(`box-${j}`).classList.remove("goBox");
       }
     }
+    retElId("sol1").innerHTML = "";
+    retElId("sol2").classList.add("successC");
+    retElId("sol2").innerHTML = "Array is Sorted!";
   }
 
   //Main HTML Code Start
@@ -151,7 +154,15 @@ export default function SInsertionSort() {
       <div className="aboveSim"></div>
       <div className="fullbg simbg" id="main">
         <motion.div className="left-side">
-          <motion.div id="sim" className="simulation testK"></motion.div>
+          <motion.div className="simulation simPT">
+            <div id="algoStatus" className="algStat">
+              <div id="idStatCont" className="statContent">
+                <p id="sol1" style={{ fontWeight: 600 }}></p>
+                <p id="sol2"></p>
+              </div>
+            </div>
+            <div id="sim" className="divf testK"></div>
+          </motion.div>
         </motion.div>
         <motion.div className="right-side">
           <motion.div id="idAllSteps" className="allSteps">

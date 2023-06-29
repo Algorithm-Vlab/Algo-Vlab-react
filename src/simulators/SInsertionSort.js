@@ -92,7 +92,7 @@ export default function SInsertionSort() {
     boxA.style.backgroundColor = "green";
     boxB.style.backgroundColor = "red";
 
-    await timer(1000);
+    await timer(500);
 
     boxA.style.backgroundColor = "";
     boxB.style.backgroundColor = "";
@@ -112,7 +112,7 @@ export default function SInsertionSort() {
       box.id = `box-${index}`;
       arrayContainer.appendChild(box);
     });
-    setStepC(3);
+    // setStepC(3);
   }
 
   async function insertionSort(array) {
@@ -121,7 +121,8 @@ export default function SInsertionSort() {
 
     for (let i = 1; i < n; i++) {
       retElId(`box-${i}`).classList.add("boxKSel");
-      await timer(1000);
+      retElId("sol1").innerHTML = "Counter: " + Number(i + 1);
+      await timer(500);
       let j = i;
       while (j > 0 && array[j - 1] - array[j] > 0) {
         if (array[j - 1] > array[j]) {
@@ -132,11 +133,14 @@ export default function SInsertionSort() {
       }
       await timer(500);
       retElId(`box-${i}`).classList.remove("boxKSel");
-      
+
     }
+    retElId("sol1").innerHTML = "";
+    retElId("sol2").classList.add("successC");
+    retElId("sol2").innerHTML = "Array is Sorted!";
     setStepC(3);
   }
-  
+
   //Main HTML Code Start
   return (
     <>
@@ -145,7 +149,15 @@ export default function SInsertionSort() {
       <div className="aboveSim"></div>
       <div className="fullbg simbg" id="main">
         <motion.div className="left-side">
-          <motion.div id="sim" className="simulation testK"></motion.div>
+          <motion.div className="simulation simPT">
+            <div id="algoStatus" className="algStat">
+              <div id="idStatCont" className="statContent">
+                <p id="sol1" style={{ fontWeight: 600 }}></p>
+                <p id="sol2"></p>
+              </div>
+            </div>
+            <div id="sim" className="divf testK"></div>
+          </motion.div>
         </motion.div>
         <motion.div className="right-side">
           <motion.div id="idAllSteps" className="allSteps">
