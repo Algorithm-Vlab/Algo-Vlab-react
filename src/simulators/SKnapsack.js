@@ -11,6 +11,9 @@ import "../css/Lcs.css";
 import "../css/JobSched.css";
 import "../css/Knapsack.css";
 import FNavbar from "../components/FNavbar";
+import { AppState } from "../context/appContext";
+import { AlgoPer } from "../funcs/AlgoP";
+import { expR } from "../data/expRoutes";
 
 
 function SKnapsack() {
@@ -29,6 +32,9 @@ function SKnapsack() {
     const [solution, setSolution] = useState();
     const [autoSim, setAutoSim] = useState(false);
     const [startSolv, setStSol] = useState(false);
+
+    const { cuE, algoT, userD } = AppState();
+    const [currE, setCE] = cuE;
 
     function retElId(idname) {
         return document.getElementById(idname);
@@ -271,6 +277,7 @@ function SKnapsack() {
                 return j;
             });
             setSolArr(kMatrix);
+            AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
             return true;
         }
         else {

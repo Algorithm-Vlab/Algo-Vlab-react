@@ -51,7 +51,9 @@ import PageNotFound from "./components/NotFound";
 import ULogin from "./authentication/ULogin";
 import URegister from "./authentication/URegister";
 import UserDash from "./components/userDash";
-import AdminDash from "./components/adminDash";
+import AdminDash from "./components/Admin/adminDash";
+import AUserDet from "./components/Admin/AuserDet";
+import AFeedbacks from "./components/Admin/Afeeds";
 
 function App() {
   return (
@@ -127,6 +129,9 @@ function App() {
 
           <Route path="/user" element={<UserDash />}></Route>
           <Route path="/admin" element={<AdminDash />}></Route>
+          <Route path="/admin/user-details" element={<AUserDet />}></Route>
+          <Route path="/admin/feedbacks" element={<AFeedbacks />}></Route>
+
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>

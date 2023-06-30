@@ -21,7 +21,7 @@ export default function JobSchedTheory() {
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
-        navigate("/" + toLink +"/simulator");
+        navigate("/" + toLink + "/simulator");
     }
 
     const { cuE, algoT } = AppState();

@@ -15,12 +15,15 @@ import "../css/graph.css";
 import graphD from "../data/graphD";
 import FNavbar from "../components/FNavbar";
 import { goptions, gnodeOptions, gedgeOptions } from "../data/gOptions";
+import { AppState } from "../context/appContext";
+import { AlgoPer } from "../funcs/AlgoP";
+import { expR } from "../data/expRoutes";
 
 function SKruskals() {
 
     const [stepC, setStepC] = useState(0);
 
-    const [noNodes, setNoNodes] = useState(0);
+    const [noNodes, setNoNodes] = useState();
     const [showNE, setShowNE] = useState(false);
     const [node1, setNode1] = useState();
     const [node2, setNode2] = useState();
@@ -38,6 +41,9 @@ function SKruskals() {
     const [resultS, setResultS] = useState();
 
     const [currI, setCurrI] = useState(-1);
+
+    const { cuE, algoT, userD } = AppState();
+    const [currE, setCE] = cuE;
 
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -313,13 +319,14 @@ function SKruskals() {
 
     function doKruskals(eT) {
         retElId(eT.id).setAttribute("disabled", "disable");
-        kruskalAlgo(noNodes, edgeMatrix);
+        kruskalAlgo(edgeMatrix.length, edgeMatrix);
     }
 
     function goNextEdge(eT) {
         var cI = currI + 1;
         var mCost = minCost;
         if (cI < edgeMatrix.length) {
+            console.log(cI);
             nextEdge(cI, eT);
             setCurrI(cI);
         }
@@ -335,7 +342,7 @@ function SKruskals() {
             retElId("showMstP").classList.remove("dNoneP");
             createGraph("mynetwork2", resultS);
             setStepC(2);
-
+            AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
         }
         if (cI === edgeMatrix.length - 1) {
             retElId("nextEd").innerHTML = "Answer";
@@ -463,7 +470,7 @@ function SKruskals() {
                             <p id="step0" className="stepH">Step0: </p>
                             <div className="content">
                                 <p>Enter the number of nodes for Graph:</p>
-                                <input required id="noOfEdge" placeholder="no of Edges" value={noNodes} onChange={(e) => { setNoNodes(e.target.value); etCheck(e.target.value, e.target) }}></input>
+                                <input type="Number" required id="noOfEdge" placeholder="no of Edges" value={noNodes} onChange={(e) => { setNoNodes(e.target.value); etCheck(e.target.value, e.target) }}></input>
                                 {noNodes && !showNE ?
                                     <motion.button
                                         initial={{ y: 20 }}
@@ -525,6 +532,10 @@ function SKruskals() {
                                 </div>
                                 <FontAwesomeIcon id="1STDN" className="stepDoneIcon" icon={faCircleCheck} />
                             </motion.div> : <></>
+                        }
+                        {stepC >= 2 ?
+                            <button className="spec restartb" onClick={() => { window.location.reload() }}>Restart</button>
+                            : <></>
                         }
                     </motion.div>
                 </motion.div>

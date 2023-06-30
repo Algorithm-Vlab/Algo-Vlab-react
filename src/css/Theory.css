@@ -136,6 +136,10 @@
     font-size: 4rem;
 }
 
+.f3 {
+    font-size: 3rem;
+}
+
 .f6 {
     font-size: 6rem;
 }
@@ -222,7 +226,7 @@
     height: 3462px;
 }
 
-.goToSim{
+.goToSim {
     /* background: ; */
     padding: 0.3rem;
     font-size: 1.5rem;
@@ -232,14 +236,31 @@
     font-weight: 700;
     border: 0.2rem solid var(--somColor);
     border-radius: 0.5rem;
-    
+
     /* text-decoration: solid; */
     /* text-decoration-line: underline; */
 }
 
-.goToSim:hover{
+.goToSim:hover {
     opacity: 0.8;
 }
+
+.cNavy {
+    color: rgb(0, 0, 88);
+}
+
+.dividerT1 {
+    position: relative;
+    width: 100%;
+    background: rgb(2, 0, 94);
+    /* box-shadow: 0 0 0.5rem 0.1rem rgb(213, 244, 255); */
+    height: 0.12rem;
+}
+
+.bgHead {
+    background: rgb(255, 225, 225);
+}
+
 
 @media (max-width: 600px) {
 

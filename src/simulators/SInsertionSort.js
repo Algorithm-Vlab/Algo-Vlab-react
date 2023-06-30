@@ -8,10 +8,16 @@ import Navbar from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import FNavbar from "../components/FNavbar";
+import { expR } from "../data/expRoutes";
+import { AppState } from "../context/appContext";
+import { AlgoPer } from "../funcs/AlgoP";
 
 export default function SInsertionSort() {
   const [stepC, setStepC] = useState(0);
   const [array1, setArray1] = useState([]);
+
+  const { cuE, algoT, userD } = AppState();
+  const [currE, setCE] = cuE;
 
   useEffect(() => {
     for (var i = 1; i < stepC; i++) {
@@ -139,6 +145,7 @@ export default function SInsertionSort() {
     retElId("sol2").classList.add("successC");
     retElId("sol2").innerHTML = "Array is Sorted!";
     setStepC(3);
+    AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
   }
 
   //Main HTML Code Start

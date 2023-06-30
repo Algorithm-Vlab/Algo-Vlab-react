@@ -15,12 +15,15 @@ import "../css/graph.css";
 import graphD from "../data/graphD";
 import FNavbar from "../components/FNavbar";
 import { goptions, gnodeOptions, gedgeOptions } from "../data/gOptions";
+import { AppState } from "../context/appContext";
+import { AlgoPer } from "../funcs/AlgoP";
+import { expR } from "../data/expRoutes";
 
 
 function SDijkstra() {
     const [stepC, setStepC] = useState(0);
 
-    const [noNodes, setNoNodes] = useState(0);
+    const [noNodes, setNoNodes] = useState();
     const [showNE, setShowNE] = useState(false);
     const [node1, setNode1] = useState();
     const [node2, setNode2] = useState();
@@ -41,6 +44,9 @@ function SDijkstra() {
     const [mU, setMU] = useState(0);
     const [currSI, setCurrSI] = useState([]);
     const [resultS, setResultS] = useState();
+
+    const { cuE, algoT, userD } = AppState();
+    const [currE, setCE] = cuE;
 
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -420,7 +426,7 @@ function SDijkstra() {
                 retElId("mynetwork2").classList.add("smallNet");
                 retElId("showMstP").classList.remove("dNoneP");
                 setStepC(2);
-                // createMG();
+                AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
                 break;
             }
 
@@ -609,7 +615,7 @@ function SDijkstra() {
                             <p id="step0" className="stepH">Step0: </p>
                             <div className="content">
                                 <p>Enter the number of nodes for Graph:</p>
-                                <input required id="noOfEdge" placeholder="no of Edges" value={noNodes} onChange={(e) => { setNoNodes(e.target.value); etCheck(e.target.value, e.target) }}></input>
+                                <input type="Number" required id="noOfEdge" placeholder="no of Edges" value={noNodes} onChange={(e) => { setNoNodes(e.target.value); etCheck(e.target.value, e.target) }}></input>
                                 {noNodes && !showNE ?
                                     <motion.button
                                         initial={{ y: 20 }}
@@ -675,6 +681,10 @@ function SDijkstra() {
                                 </div>
                                 <FontAwesomeIcon id="1STDN" className="stepDoneIcon" icon={faCircleCheck} />
                             </motion.div> : <></>
+                        }
+                        {stepC >= 2 ?
+                            <button className="spec restartb" onClick={() => { window.location.reload() }}>Restart</button>
+                            : <></>
                         }
                     </motion.div>
                 </motion.div>

@@ -64,13 +64,13 @@ export default function ULogin() {
             pa = aPassword;
         }
         // if (f.reportValidity()) {
-        doLogin({
-            email: em,
-            password: pa,
-        }, uType);
+            doLogin({
+                email: em,
+                password: pa,
+            }, uType);
         // }
         // else {
-        // return;
+        //     return;
         // }
     }
 

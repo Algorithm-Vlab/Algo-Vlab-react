@@ -34,13 +34,10 @@ export default function FKruskals() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        // console.log(cd.getMonth());
     }, [index])
 
     function nextbtn() {
         if (index >= 1) {
-
-            // console.log(index);
             setIndex(prevIndex => prevIndex + 1);
         }
     }
@@ -55,7 +52,7 @@ export default function FKruskals() {
 
     function reloadStates() {
         setIndex(1);
-        setDate(null);
+        setDate(`${cd.getDate()}/${cd.getMonth() + 1}/${cd.getFullYear()}`);
         setQuest1(null);
         setQuest2(null);
         setQuest3(null);
@@ -188,17 +185,10 @@ export default function FKruskals() {
                             }}>
                                 Date<sup className="mandF">*</sup>
                             </div>
-                            <input readOnly type="text" value={date} className="inputt" onChange={e => setDate(e.target.value)} placeholder="Example: January 7, 2019" required />
-
-
+                            <input readOnly type="text" value={date} className="inputt" placeholder="Example: January 7, 2019" required />
 
                             <div className="formfooter">
-                                {/* <button className="spec prev" disabled={index === 1} onClick={prevbtn} >Previous</button> */}
-                                {/* {institute && designation && department ? */}
                                 <button className="spec next" onClick={nextbtn}>Next</button>
-                                {/* : <></> */}
-                                {/* } */}
-
                             </div>
 
                         </div>

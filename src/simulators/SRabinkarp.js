@@ -11,6 +11,9 @@ import "../css/Home.css";
 import "../css/Lcs.css";
 import "../css/Rabinkarp.css";
 import FNavbar from "../components/FNavbar.js"
+import { AppState } from "../context/appContext";
+import { AlgoPer } from "../funcs/AlgoP";
+import { expR } from "../data/expRoutes";
 
 function SRabinkarp() {
     const [text, settext] = useState("");
@@ -20,11 +23,12 @@ function SRabinkarp() {
     const [hasht, setHashT] = useState(0);
     const [stepC, setStepC] = useState(0);
     const [o, seto] = useState(0);
+    const [doneIns, setDoneIns] = useState(false);
     const [anDuration, setAnDuration] = useState(800);
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
-
-
+    const { cuE, algoT, userD } = AppState();
+    const [currE, setCE] = cuE;
 
     useEffect(() => {
         for (var i = 1; i < stepC; i++) {
@@ -102,9 +106,10 @@ function SRabinkarp() {
                 if (j === M) {
                     hightRow(i, 1);
                     await timer(1000);
-                    console.log(i);
+                    // console.log(i);
                     setFound(1);
                     seto(i);
+                    AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
                     break;
 
                 }
@@ -113,7 +118,7 @@ function SRabinkarp() {
 
             if (i <= N - M) {
                 let z = 0;
-                console.log(text[i + M]);
+                // console.log(text[i + M]);
                 let s = "";
                 for (j = i; j <= i + M - 1; j++) {
 
@@ -122,8 +127,8 @@ function SRabinkarp() {
                 }
 
 
-                console.log(s);
-                console.log(z)
+                // console.log(s);
+                // console.log(z)
                 setHashT(z);
                 await timer(1000);
 
@@ -190,7 +195,35 @@ function SRabinkarp() {
     }
 
 
+    function subLcsStrings(val) {
+        const regex = /[^A-Za-z ]/;
+        if (val.search(regex) === -1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
+    function netCheck(val, eT) {
+        if (subLcsStrings(val)) {
+            retElId(eT.id).classList.remove("inValidIn");
+        }
+        else {
+            retElId(eT.id).classList.add("inValidIn");
+        }
+        if (text && pattern && subLcsStrings(text) && subLcsStrings(pattern)) {
+            if (stepC === 0) {
+                setDoneIns(true);
+            }
+            else {
+                setDoneIns(false);
+            }
+        }
+        else {
+            setDoneIns(false);
+        }
+    }
 
     async function restart() {
         settext("");
@@ -248,7 +281,7 @@ function SRabinkarp() {
 
                                 <div id="Row0" className="row">
 
-                                    <div style={{ padding: '3px', background: 'none', color: 'red', border: "none" }} id={`M00`} className="lcsBox th2"><p>ASCII</p></div>
+                                    <div style={{ padding: '3px', background: 'none', border: "none" }} id={`ASC1`} className="lcsBox th2"><p>ASCII</p></div>
                                     {text && text.map((el, index2) => {
 
                                         return <div id={`S1M${index2 + 1}`} className="lcsBox th2"><p>{el}</p></div>
@@ -260,13 +293,13 @@ function SRabinkarp() {
 
                                     <div className="lcsBox 2 "></div>
                                     {pattern && pattern.map((el, index1) => {
-                                        return <div id={`M1${index1} `} style={{ padding: '3px', background: 'none', border: "none" }} className="lcsBox letter"><p>{index1}</p></div>
+                                        return <div id={`M1${index1} `} style={{ padding: '3px', background: 'none', border: "none", color: "#97081c" }} className="lcsBox letter"><b>{index1}</b></div>
                                     })}
                                 </div>
 
                                 <div id="Row0" className="row">
 
-                                    <div style={{ padding: '3px', background: 'none', border: "none" }} id={`M00`} className="lcsBox th2"><p>ASCII</p></div>
+                                    <div style={{ padding: '3px', background: 'none', border: "none" }} id={`ASC2`} className="lcsBox th2"><p>ASCII</p></div>
                                     {pattern && pattern.map((el, index2) => {
 
                                         return <div id={`S2M${index2 + 1}`} className="lcsBox th2"><p>{el}</p></div>
@@ -294,18 +327,15 @@ function SRabinkarp() {
                             <div className="content">
                                 <p className="enHead">Enter two Text Pattern</p>
                                 <input id="wordIn1" placeholder="String1" value={text}
-                                    onChange={(e) => { let z = e.target.value; settext(z); }}>
+                                    onChange={(e) => { let z = e.target.value; settext(z); netCheck(e.target.value, e.target) }}>
 
                                 </input>
-
-
-
                                 <input id="wordIn2" placeholder="String2" value={pattern}
-                                    onChange={(e) => { setpattern(e.target.value) }}>
+                                    onChange={(e) => { setpattern(e.target.value); netCheck(e.target.value, e.target) }}>
                                 </input>
-
-                                <button className={"cbutton"} onClick={saveIns}><FontAwesomeIcon className="writeCheck" icon={faCheck} /></button>
-
+                                {doneIns ?
+                                    <button className={"cbutton"} onClick={saveIns}><FontAwesomeIcon className="writeCheck" icon={faCheck} /></button>
+                                    : <></>}
                             </div>
                             <FontAwesomeIcon id="0STDN" className="stepDoneIcon" icon={faCircleCheck} />
 

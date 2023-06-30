@@ -10,6 +10,9 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import "../css/Home.css";
 import "../css/Lcs.css";
 import FNavbar from "../components/FNavbar.js"
+import { AppState } from "../context/appContext";
+import { AlgoPer } from "../funcs/AlgoP";
+import { expR } from "../data/expRoutes";
 
 
 function SNQueens() {
@@ -18,8 +21,12 @@ function SNQueens() {
     const [o, seto] = useState(0);
     const [simSp, setSimSp] = useState(300);
     const [startA, setStA] = useState(false);
+    const [algoDone, setAlgD] = useState(99);
     const timer = ms => new Promise(res => setTimeout(res, ms));
     const navigate = useNavigate();
+
+    const { cuE, algoT, userD } = AppState();
+    const [currE, setCE] = cuE;
 
     let option = [[0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -42,7 +49,13 @@ function SNQueens() {
     [0, 0, 0, 0, 0, 0, 0, 0]];
 
 
+    useEffect(() => {
+        if (algoDone === 0) {
+            AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
+            setAlgD(false);
+        }
 
+    }, [algoDone]);
 
 
     useEffect(() => {
@@ -199,6 +212,8 @@ function SNQueens() {
                     retElId(`iL${Number(col + 1)}`).classList.remove("NgCurr");
                     retElId(`Ci${i}j${col}`).classList.add("bgGreen");
                     setStepC(2);
+                    // console.log(col);
+                    setAlgD(col);
                     return true;
                 }
                 option[i][col] = 0;

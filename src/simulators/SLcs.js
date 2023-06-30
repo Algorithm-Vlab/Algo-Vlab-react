@@ -9,6 +9,9 @@ import { faArrowUp, faCheck, faCircleCheck } from '@fortawesome/free-solid-svg-i
 import "../css/Home.css";
 import "../css/Lcs.css";
 import FNavbar from "../components/FNavbar";
+import { AppState } from "../context/appContext";
+import { AlgoPer } from "../funcs/AlgoP";
+import { expR } from "../data/expRoutes";
 
 function SLcs() {
     const navigate = useNavigate();
@@ -23,10 +26,13 @@ function SLcs() {
     const [finalSeq, setFinalSeq] = useState("");
     const [anDuration, setAnDuration] = useState(800);
 
+    const { cuE, algoT, userD } = AppState();
+    const [currE, setCE] = cuE;
+
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
     useEffect(() => {
-        if (inStr1 && inStr2 && subLcsStrings()) {
+        if (inStr1 && inStr2 && subLcsStrings(inStr1) && subLcsStrings(inStr2)) {
             if (stepC === 0) {
                 setDoneIns(true);
             }
@@ -79,9 +85,9 @@ function SLcs() {
         retElId("wordIn2").setAttribute("readonly", "readonly");
     }
 
-    function subLcsStrings() {
+    function subLcsStrings(val) {
         const regex = /[^A-Za-z ]/;
-        if (inStr1.search(regex) === -1 && inStr2.search(regex) === -1) {
+        if (val.search(regex) === -1) {
             return true;
         }
         else {
@@ -266,10 +272,22 @@ function SLcs() {
         setStepC(4);
         setAlgoPart(2);
         setFinalSeq(sequence);
+        AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
     }
 
     function disBut(e) {
         document.getElementById(e.target.id).setAttribute("disabled", true);
+    }
+
+
+
+    function netCheck(val, eT) {
+        if (subLcsStrings(val)) {
+            retElId(eT.id).classList.remove("inValidIn");
+        }
+        else {
+            retElId(eT.id).classList.add("inValidIn");
+        }
     }
 
     return (
@@ -329,11 +347,11 @@ function SLcs() {
                             <div className="content">
                                 <p className="enHead">Enter two random words</p>
                                 <input id="wordIn1" placeholder="String1" value={inStr1} className="insL"
-                                    onChange={(e) => { setInStr1(e.target.value) }}>
+                                    onChange={(e) => { setInStr1(e.target.value); netCheck(e.target.value, e.target) }}>
 
                                 </input>
                                 <input id="wordIn2" placeholder="String2" value={inStr2} className="insL"
-                                    onChange={(e) => { setInStr2(e.target.value) }}>
+                                    onChange={(e) => { setInStr2(e.target.value); netCheck(e.target.value, e.target) }}>
                                 </input>
                                 {doneIns ?
                                     <button className={"cbutton"} onClick={saveIns}><FontAwesomeIcon className="writeCheck" icon={faCheck} /></button>

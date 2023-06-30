@@ -12,6 +12,9 @@ import "../css/Home.css";
 import "../css/JobSched.css";
 import FNavbar from "../components/FNavbar";
 import Footer from "../components/Footer";
+import { AppState } from "../context/appContext";
+import { AlgoPer } from "../funcs/AlgoP";
+import { expR } from "../data/expRoutes";
 function SJobSched() {
 
     const [stepC, setStepC] = useState(0);
@@ -23,6 +26,9 @@ function SJobSched() {
     const [newDead, setNewDead] = useState();
     const [totalProfit, setTotalProfit] = useState(0);
     const [startSolv, setStSol] = useState(false);
+
+    const { cuE, algoT, userD } = AppState();
+    const [currE, setCE] = cuE;
 
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -209,6 +215,7 @@ function SJobSched() {
             setCurrNo(1);
             document.getElementById("schedNext").setAttribute("disabled", true);
             document.getElementById("nextJ").setAttribute("disabled", true);
+            AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
             // retElId(eTId).removeAttribute("disabled", "disabled");
             return;
         }
@@ -253,7 +260,7 @@ function SJobSched() {
                 break;
             }
         }
-        if (isFull == 1) {
+        if (currNo===procs.length || isFull === 1) {
             retElId("nextJ").innerHTML = "Answer";
             setCurrNo([currNo]);
         }
@@ -423,7 +430,7 @@ function SJobSched() {
                                     <p>Put the job in this slot and mark this slot filled.</p>
                                     <p>If no such i exists, then ignore the job. </p>
                                     <button id="schedNext" className="spec" onClick={(e) => { startSched(e.target.id) }}>Schedule</button>
-                                    <p>{slotG}</p>
+                                    
                                 </div>
                                 <FontAwesomeIcon id="0STDN" className="stepDoneIcon" icon={faCircleCheck} />
                             </motion.div> : <></>

@@ -59,3 +59,29 @@
     /* word-break: break-all; */
     word-wrap: break-word;
 }
+
+.divudInfo {
+    justify-content: space-between !important;
+}
+
+.tCenter {
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .AuserD {
+        justify-content: left !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .divudInfo {
+        display: block !important;
+    }
+}
+
+/* .uDashInfo {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+} */

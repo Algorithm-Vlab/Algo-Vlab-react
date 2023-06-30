@@ -31,18 +31,21 @@ const AppProvider = ({ children }) => {
                 withCredentials: true
             })
                 .then((data) => {
-                    // console.log(data.data);
                     setUData(data.data);
                     uDD = data.data;
                 })
                 .catch((err) => {
                     setUData(false);
                 })
-            if (fullLocation.pathname === "/admin") {
+            if (fullLocation.pathname.split("/")[1] === "admin") {
                 if (!uDD || uDD.isAdmin === false) {
                     navigate("/");
                 }
-
+            }
+            if (fullLocation.pathname.split("/")[1] === "user") {
+                if (!uDD || uDD.isAdmin === true) {
+                    navigate("/");
+                }
             }
         }
         fetchUser();
@@ -55,7 +58,6 @@ const AppProvider = ({ children }) => {
         var expJ = false;
         window.scrollTo(0, 0);
         if (location === "/") {
-            // console.log("Home");
             setCE([4, 0]);
         }
         else {
@@ -64,7 +66,6 @@ const AppProvider = ({ children }) => {
                     if (expJ === false && topicI === false && location === expR[i][j][1]) {
                         topicI = i;
                         expJ = j;
-                        // console.log(expR[i][j][1]);
                         setCE([i, j]);
                         break;
                     }
@@ -91,10 +92,6 @@ const AppProvider = ({ children }) => {
         }
     }, [scLocation])
 
-    function retElId(idname) {
-        return document.getElementById(idname);
-    }
-    // console.log(algoT);
     return (
         <AppContext.Provider value={{ cuE: [cE, setCE], algoT: [algoT, setAlgoT], userD: [uData, setUData] }}>{children}</AppContext.Provider>
     )

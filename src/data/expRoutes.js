@@ -1,8 +1,8 @@
 export var expR = [
     [
-        ["Insertion", "insertion"],
-        ["Selection", "selection"],
-        ["Bubble", "bubble"]
+        ["Insertion Sort", "insertion"],
+        ["Selection Sort", "selection"],
+        ["Bubble Sort", "bubble"]
     ],
     [
         ["Job Scheduling", "job-scheduling"],

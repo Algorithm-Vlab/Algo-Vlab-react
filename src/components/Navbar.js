@@ -86,6 +86,21 @@ function Navbar() {
         }
     }, [openSide]);
 
+    useEffect(() => {
+        const updateUser = async () => {
+            await axios.get("http://localhost:5013/y/user/g", {
+                withCredentials: true
+            })
+                .then((data) => {
+                    setUD(data.data);
+                })
+                .catch((err) => {
+                    setUD(false);
+                })
+        }
+        updateUser();
+    }, [])
+
     function retElId(idname) {
         return document.getElementById(idname);
     }
@@ -337,21 +352,35 @@ function Navbar() {
                                     exit={{ clipPath: "circle(0% at 100% 1%)" }}
                                     transition={{ duration: 0.3 }}
                                 >
-                                    {uD.isAdmin ?
+                                    {uD && uD.isAdmin ?
                                         <p className="uTag hightText">Admin</p>
                                         : <p className="uTag hightText">Student</p>
                                     }
-                                    <p className="uname">{uD.name}</p>
+                                    <p className="uname cNavy">{uD.name}</p>
                                     <p className="uemail">{uD.email}</p>
                                     <div className="dividerN"></div>
-                                    {uD.isAdmin ?
+                                    {uD && uD.isAdmin ?
                                         <button className="exptP" onClick={() => { navigate("/admin") }}>
                                             Dashboard
                                         </button>
                                         :
-                                        <button className="exptP" onClick={() => { navigate("/user") }}>
-                                            No. of experiments performed: 2
-                                        </button>
+                                        <>
+                                            {
+                                                uD.algoPerformed && uD.algoPerformed.length > 0 ?
+
+                                                    <>
+                                                        <button className="exptP" onClick={() => { navigate("/user") }}>
+                                                            No. of experiments performed: {uD.algoPerformed.length}
+                                                        </button>
+                                                    </>
+                                                    : <>
+                                                        <button className="exptP" onClick={() => { navigate("/user") }}>
+                                                            No. of experiments performed: 0
+                                                        </button>
+                                                    </>
+                                            }
+                                        </>
+
                                     }
 
                                     <button className="logout" onClick={logoutUser} >Logout</button>
