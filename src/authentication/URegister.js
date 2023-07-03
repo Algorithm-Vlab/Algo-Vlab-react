@@ -32,16 +32,22 @@ export default function URegister() {
             window.alert("Please fill all details");
             return;
         }
+        if (password != cpassword) {
+            window.alert("Confirm password must be same as password");
+            return;
+        }
         try {
             await axios.post("http://localhost:5013/y/" + uType + "/register", uData, {
                 withCredentials: true
             }, config)
                 .then((data) => {
-                    // window.location.reload();
+                    retId("registerB").setAttribute("disabled", "disabled");
+                    console.clear();
                     window.alert(data.data);
                     navigate("/login");
                 })
                 .catch((err) => {
+                    console.clear();
                     const errs = err.response.data.error;
                     for (var i = 0; i < errs.length; i++) {
                         window.alert(errs[i]);
@@ -49,13 +55,15 @@ export default function URegister() {
                 })
         }
         catch (err) {
+            console.clear();
             window.alert(err);
         }
     }
 
-    function subForm(tId) {
+    function subForm(e, tId) {
         var f = document.getElementsByTagName('form')[0];
         if (f.reportValidity()) {
+            e.preventDefault();
             doRegister({
                 email: uemail,
                 password: password,
@@ -67,6 +75,7 @@ export default function URegister() {
             }, "user");
         }
         else {
+            e.preventDefault();
             return;
         }
     }
@@ -110,9 +119,6 @@ export default function URegister() {
                 <div className="divf loginCard lpd0 registerMW">
                     <div className="lOptions">
                         <button id="studentS"
-                            // onClick={(e) => {
-                            //     setCurrLS(false);
-                            // }}
                             className="wFullBL"
                         >Student</button>
                     </div>
@@ -163,13 +169,13 @@ export default function URegister() {
                                 <input id="uCPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required type="password" onChange={(e) => { setCPassword(e.target.value); handleCh(e, "registerB") }} placeholder="Password" className="lIns rIns"></input>
                                 <b className="hideL">Confirm Pass</b>
                             </div>
-                            
+
                         </div>
                         <div className="inRow">
-                            <p className="rPComment">Password must contain atleast one Uppercase/Lowercase letters and digit, and atleast 8 letters long</p>
+                            <p className="pComment">Password must contain atleast one Uppercase/Lowercase letters and digit, and atleast 8 letters long</p>
                         </div>
 
-                        <button type="submit" id="registerB" className="goLogB" onClick={(e) => { subForm(e.target.id) }}>Register</button>
+                        <button type="submit" id="registerB" className="goLogB" onClick={(e) => { subForm(e, e.target.id) }}>Register</button>
                         {/* <button className="bNone">Don't have an Account?</button> */}
                     </form>
                     {/* </div> */}

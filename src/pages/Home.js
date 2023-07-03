@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { animate, delay, motion } from "framer-motion";
 import "../css/Home.css";
 import Navbar from "../components/Navbar";
-import algo1 from "../img/algo1.png";
+import algo1 from "../img/acLogo3.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAddressCard, faArrowUpShortWide, faAtom, faBackwardFast, faEquals, faPersonRunning } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../components/Footer";

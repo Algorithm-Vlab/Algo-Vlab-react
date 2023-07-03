@@ -22,15 +22,21 @@ export default function UserDash() {
 
     useEffect(() => {
         const updateUser = async () => {
-            await timer(500);
+            await timer(300);
             await axios.get("http://localhost:5013/y/user/g", {
                 withCredentials: true
             })
                 .then((data) => {
+                    console.clear();
                     setuDY(data.data);
                     // console.log(data.data);
                 })
                 .catch((err) => {
+                    console.clear();
+                    var errs = err.response.data.error;
+                    for (var i = 0; i < errs.length; i++) {
+                        console.log(errs[i]);
+                    }
                     // setuDY(false);
                 })
         }
@@ -57,7 +63,7 @@ export default function UserDash() {
 
 
                                     <div className="uDashInfo">
-                                        <p className="f1-5 mUpM"><span style={{ color: "black" }}>Institute</span>: <b>{uDY.institution}</b></p>
+                                        <p className="f1-5 mUpM"><span style={{ color: "black" }}>Institute</span>: <b>{uDY.institute}</b></p>
                                         <p className="f1-5"><span style={{ color: "black" }}>Department</span>: <b>{uDY.department}</b></p>
                                     </div>
                                 </div>
@@ -67,38 +73,41 @@ export default function UserDash() {
                                 {uDY.algoPerformed && uDY.algoPerformed.length > 0 ?
 
                                     <>
-                                        <p className="mUpM f2">No. of Experiments Performed: {uDY.algoPerformed.length}</p>
+                                        <p className="mUpM f2">No. of Simulations Performed: {uDY.algoPerformed.length}</p>
                                     </>
                                     : <>
-                                        <p className="mUpM f2">No. of Experiments Performed: 0</p>
+                                        <p className="mUpM f2">No. of Simulations Performed: 0</p>
                                     </>
                                 }
-                                <div className="ftContainer">
+                                <div className="ftContainer mUpM">
                                     <table className="feedT">
                                         <thead className="bgHead">
-                                            <td className="f1-5"><b>Algorithm</b></td>
-                                            <td className="f1-5"><b>Performed</b></td>
-                                            <td className="f1-5"><b>Feedback</b></td>
+                                            <tr>
+                                                <th className="f1-2 bgHead"><span>Algorithm</span></th>
+                                                <th className="f1-2 bgHead"><span>Performed</span></th>
+                                                <th className="f1-2 bgHead"><span>Feedback</span></th>
+                                            </tr>
                                         </thead>
-                                        {algosData.map((el, index) => {
-                                            return (
-                                                <tr>
-                                                    <td><b>{el}</b></td>
-                                                    {uDY.algoPerformed.includes(el) ?
-                                                        <td><FontAwesomeIcon icon={faCheck} /></td>
-                                                        :
-                                                        <td><FontAwesomeIcon icon={faXmark} /></td>
-                                                    }
-                                                    {uDY.feedP.includes(algosData[index]) ?
-                                                        <td><FontAwesomeIcon icon={faCheck} /></td>
-                                                        : <td><FontAwesomeIcon icon={faXmark} /></td>
-                                                    }
+                                        <tbody>
+                                            {algosData.map((el, index) => {
+                                                return (
+                                                    <tr>
+                                                        <td><b>{el}</b></td>
+                                                        {uDY.algoPerformed.includes(el) ?
+                                                            <td><FontAwesomeIcon icon={faCheck} /></td>
+                                                            :
+                                                            <td><FontAwesomeIcon icon={faXmark} /></td>
+                                                        }
+                                                        {uDY.feedP.includes(algosData[index]) ?
+                                                            <td><FontAwesomeIcon icon={faCheck} /></td>
+                                                            : <td><FontAwesomeIcon icon={faXmark} /></td>
+                                                        }
 
-                                                </tr>
-                                            )
+                                                    </tr>
+                                                )
 
-                                        })}
-
+                                            })}
+                                        </tbody>
                                     </table>
                                 </div>
                                 {/* <button onClick={() => { AlgoPer({ algoName: "N-Queens" }) }}>Submit</button> */}

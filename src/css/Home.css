@@ -27,6 +27,7 @@
     /* IE10+/Edge */
     user-select: none;
     /* Standard */
+    overflow-wrap: break-word;
 
 }
 
@@ -177,7 +178,7 @@ input:focus {
 }
 
 .sect1 {
-    background: linear-gradient(white, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+    background: linear-gradient(white, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
     /* height: 25rem; */
     gap: 10vw;
     /* padding: 0 20%; */
@@ -886,6 +887,11 @@ input:focus {
     }
 }
 
+.nfound1 {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 1rem;
+}
 
 @media (max-width: 800px) {
     .sect1 {

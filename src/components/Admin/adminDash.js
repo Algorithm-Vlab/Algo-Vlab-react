@@ -18,35 +18,6 @@ export default function AdminDash() {
     const timer = ms => new Promise(res => setTimeout(res, ms));
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchFeeds = async () => {
-            await timer(300);
-            await axios.get("http://localhost:5013/y/admin/dash", {
-                withCredentials: true
-            })
-                .then((data) => {
-                    // console.log(data.data);
-                    setFData(data.data);
-                })
-                .catch((err) => {
-
-                });
-        }
-
-        fetchFeeds();
-    }, []);
-
-    const downEx = async () => {
-        try {
-            const res = await fetch("http://localhost:5013/y/admin/exportE")
-            const blob = await res.blob();
-            download(blob, 'exportd.xlsx');
-        } catch (error) {
-            // 
-        }
-
-    }
-
     return (
         <>
             <Navbar />

@@ -31,11 +31,18 @@ const AppProvider = ({ children }) => {
                 withCredentials: true
             })
                 .then((data) => {
+                    console.clear();
                     setUData(data.data);
                     uDD = data.data;
+                    console.log(uDD.isAdmin ? "Hello Admin": "Hello User");
                 })
                 .catch((err) => {
                     setUData(false);
+                    console.clear();
+                    var errs = err.response.data.error;
+                    for (var i = 0; i < errs.length; i++) {
+                        console.log(errs[i]);
+                    }
                 })
             if (fullLocation.pathname.split("/")[1] === "admin") {
                 if (!uDD || uDD.isAdmin === false) {

@@ -3,7 +3,7 @@ import "../css/Navbar.css";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import somLogo from "../img/somaiyaLogo.png";
 import kjsitLogo from "../img/kjsit.png";
-import algo1 from "../img/algo1.jpg";
+import algo1 from "../img/acLogo3.png";
 import { animate, delay, motion, spring } from "framer-motion";
 import { faBars, faCancel, faEnvelope, faUser, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -92,10 +92,16 @@ function Navbar() {
                 withCredentials: true
             })
                 .then((data) => {
+                    console.clear();
                     setUD(data.data);
                 })
                 .catch((err) => {
                     setUD(false);
+                    console.clear();
+                    var errs = err.response.data.error;
+                    for (var i = 0; i < errs.length; i++) {
+                        console.log(errs[i]);
+                    }
                 })
         }
         updateUser();
@@ -370,12 +376,12 @@ function Navbar() {
 
                                                     <>
                                                         <button className="exptP" onClick={() => { navigate("/user") }}>
-                                                            No. of experiments performed: {uD.algoPerformed.length}
+                                                            No. of Simulations performed: {uD.algoPerformed.length}
                                                         </button>
                                                     </>
                                                     : <>
                                                         <button className="exptP" onClick={() => { navigate("/user") }}>
-                                                            No. of experiments performed: 0
+                                                            No. of Simulations performed: 0
                                                         </button>
                                                     </>
                                             }

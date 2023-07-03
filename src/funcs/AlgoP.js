@@ -15,9 +15,11 @@ export async function AlgoPer(props) {
         withCredentials: true
     })
         .then((data) => {
+            console.clear();
             window.alert(data.data);
         })
         .catch((err) => {
+            console.clear();
             const errs = err.response.data.error;
             for (var i = 0; i < errs.length; i++) {
                 window.alert(errs[i]);

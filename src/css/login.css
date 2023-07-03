@@ -24,6 +24,10 @@
     margin: 3rem 0;
 }
 
+.fpCard{
+    min-height: 10rem;
+}
+
 .loginCard button {
     font-family: 'Share Tech', sans-serif;
 }
@@ -52,6 +56,10 @@
 .takeInD {
     position: relative;
     /* width: 100%; */
+}
+
+.wLogin{
+    width: clamp(10rem, 50vw, 22rem);
 }
 
 .lIns {
@@ -107,17 +115,6 @@
 }
 
 .pComment {
-    /* position: absolute; */
-    /* bottom: -1.3rem; */
-    /* width: 100%; */
-    font-size: 1rem !important;
-    width: clamp(10rem, 50vw, 22rem);
-    color: red;
-}
-
-.rPComment {
-    word-wrap: break-word;
-    /* word-break: break-all; */
     font-size: 1rem !important;
     width: clamp(10rem, 50vw, 22rem);
     color: red;
@@ -177,6 +174,11 @@
     left: 70%;
 }
 
+.fpBut:enabled:hover::before{
+    left: 80%;
+}
+
+
 .loginBG {
     padding-top: var(--pTopH);
     min-height: 100vh;
@@ -232,7 +234,12 @@
     background: none;
     color: black;
     padding: 0;
-    font-size: 1rem;
+    font-size: 1.1rem;
+}
+
+.ldivFUV {
+    justify-content: space-between !important;
+    width: clamp(10rem, 50vw, 22rem);
 }
 
 
@@ -253,7 +260,7 @@
         flex-direction: column;
     }
 
-    .lIns {
+    .lIns, .wLogin {
         width: 70vw;
     }
 }

@@ -20,16 +20,21 @@ export default function AUserDet() {
 
     useEffect(() => {
         const fetchUserD = async () => {
-            await timer(300);
+            await timer(200);
             await axios.get("http://localhost:5013/y/admin/dash/user-details", {
                 withCredentials: true
             })
                 .then((data) => {
+                    console.clear();
                     setuData(data.data);
-                    // console.log(data.data);
+
                 })
                 .catch((err) => {
-
+                    console.clear();
+                    var errs = err.response.data.error;
+                    for (var i = 0; i < errs.length; i++) {
+                        console.log(errs[i]);
+                    }
                 });
         }
 
@@ -55,55 +60,59 @@ export default function AUserDet() {
                         {uData ?
                             <>
                                 <p className="f1-5 mUpM"><b>Total Registered Users: {uData.length}</b></p>
-                                <div className="ftContainer divf AuserD">
+                                <div className="ftContainer divf AuserD mUpM">
                                     <table className="feedT">
                                         <thead className="bgHead">
-                                            <td className="f1-5"><b>Sr.No</b></td>
-                                            <td className="f1-5"><b>Email</b></td>
-                                            <td className="f1-5"><b>Username</b></td>
-                                            <td className="f1-5"><b>Algorithms Performed</b></td>
-                                            <td className="f1-5"><b>Feedbacks Filled</b></td>
-                                        </thead>
-                                        {uData && uData.map((el, index) => {
-                                            return <tr>
-                                                <td>{index + 1}</td>
-                                                <td>{el.email}</td>
-                                                <td>{el.username}</td>
-                                                <td>
-                                                    {el.algoPerformed && el.algoPerformed.map((alN, index) => {
-                                                        if (index === el.algoPerformed.length - 1) {
-                                                            return (
-                                                                <>{alN}. <b>[{el.algoPerformed.length}]</b></>
-                                                            )
-                                                        }
-                                                        else {
-                                                            return (
-                                                                <>{alN}, </>
-                                                            )
-                                                        }
-                                                    })
-                                                    }
-                                                </td>
-                                                <td>
-                                                    {el.feedP && el.feedP.map((alN, index) => {
-                                                        if (index === el.feedP.length - 1) {
-                                                            return (
-                                                                <>{alN}. <b>[{el.feedP.length}]</b></>
-                                                            )
-                                                        }
-                                                        else {
-                                                            return (
-                                                                <>{alN}, </>
-                                                            )
-                                                        }
-                                                    })
-                                                    }
-                                                </td>
-
-
+                                            <tr>
+                                                <th className="f1-2 bgHead"><span>Sr.No</span></th>
+                                                <th className="f1-2 bgHead"><span>Email</span></th>
+                                                <th className="f1-2 bgHead"><span>Username</span></th>
+                                                <th className="f1-2 bgHead"><span>Algorithms Performed</span></th>
+                                                <th className="f1-2 bgHead"><span>Feedbacks Filled</span></th>
                                             </tr>
-                                        })
-                                        }
+                                        </thead>
+                                        <tbody>
+                                            {uData && uData.map((el, index) => {
+                                                return <tr>
+                                                    <td>{index + 1}</td>
+                                                    <td>{el.email}</td>
+                                                    <td>{el.username}</td>
+                                                    <td>
+                                                        {el.algoPerformed && el.algoPerformed.map((alN, index) => {
+                                                            if (index === el.algoPerformed.length - 1) {
+                                                                return (
+                                                                    <>{alN}. <b>[{el.algoPerformed.length}]</b></>
+                                                                )
+                                                            }
+                                                            else {
+                                                                return (
+                                                                    <>{alN}, </>
+                                                                )
+                                                            }
+                                                        })
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        {el.feedP && el.feedP.map((alN, index) => {
+                                                            if (index === el.feedP.length - 1) {
+                                                                return (
+                                                                    <>{alN}. <b>[{el.feedP.length}]</b></>
+                                                                )
+                                                            }
+                                                            else {
+                                                                return (
+                                                                    <>{alN}, </>
+                                                                )
+                                                            }
+                                                        })
+                                                        }
+                                                    </td>
+
+
+                                                </tr>
+                                            })
+                                            }
+                                        </tbody>
                                     </table>
 
 

@@ -20,16 +20,20 @@ export default function AFeedbacks() {
 
     useEffect(() => {
         const fetchFeeds = async () => {
-            await timer(300);
+            await timer(200);
             await axios.get("http://localhost:5013/y/admin/dash", {
                 withCredentials: true
             })
                 .then((data) => {
-                    // console.log(data.data);
+                    console.clear();
                     setFData(data.data);
                 })
                 .catch((err) => {
-
+                    console.clear();
+                    var errs = err.response.data.error;
+                    for (var i = 0; i < errs.length; i++) {
+                        console.log(errs[i]);
+                    }
                 });
         }
 
@@ -41,16 +45,16 @@ export default function AFeedbacks() {
         try {
             const authA = await axios.get("http://localhost:5013/y/admin/auth", { withCredentials: true })
                 .then(async (data) => {
-                    // console.log(data.data);
+                    console.clear();
                     const res = await fetch("http://localhost:5013/y/admin/exportE")
                     const blob = await res.blob();
                     download(blob, 'exportd.xlsx');
                 })
                 .catch((err) => {
-                    // 
+                    console.clear();
                 })
         } catch (error) {
-            // 
+            console.clear();
         }
 
     }
@@ -74,45 +78,49 @@ export default function AFeedbacks() {
                             <>
                                 <p className="f1-5 mUpM"><b>Total Feedbacks: {fData.length}</b></p>
                                 <button className="spec floR mUpL" onClick={() => { downEx() }}>Download Excel</button>
-                                <div className="ftContainer">
+                                <div className="ftContainer mUpM">
                                     <table className="feedT">
-                                        <thead className="bgHead">
-                                            <td className="f1-5"><b>Sr.No.</b></td>
-                                            <td className="f1-5"><b>Name</b></td>
-                                            <td className="f1-5"><b>Email</b></td>
-                                            <td className="f1-5"><b>Date</b></td>
-                                            <td className="f1-5"><b>Institute</b></td>
-                                            <td className="f1-5"><b>Department</b></td>
-                                            <td className="f1-5"><b>Designation</b></td>
-                                            <td className="f1-5"><b>Algorithm</b></td>
-                                            <td className="f1-5"><b>Ease of understanding of concept using virtual lab</b></td>
-                                            <td className="f1-5"><b>Simulation is easy and step by step</b></td>
-                                            <td className="f1-5"><b>Relevant theory is provided for all experiments</b></td>
-                                            <td className="f1-5"><b>Operating the website is easy and convenient </b></td>
-                                            <td className="f1-5"><b>Any difficulties during performing the experiments?</b></td>
-                                            <td className="f1-5"><b>Suggestions for further improvement </b></td>
-                                            <td className="f1-5"><b>Experiment that can be added and not available in existing Algorithms VLAB.</b></td>
-                                        </thead>
-                                        {fData && fData.map((el, index) => {
-                                            return <tr>
-                                                <td>{index + 1}</td>
-                                                <td>{el.userId.name}</td>
-                                                <td>{el.userId.email}</td>
-                                                <td>{el.dateP}</td>
-                                                <td>{el.institute}</td>
-                                                <td>{el.department}</td>
-                                                <td>{el.designation}</td>
-                                                <td>{el.algoName}</td>
-                                                <td>{el.q1}</td>
-                                                <td>{el.q2}</td>
-                                                <td>{el.q3}</td>
-                                                <td>{el.q4}</td>
-                                                <td>{el.q5}</td>
-                                                <td>{el.q6}</td>
-                                                <td>{el.q7}</td>
+                                        <thead>
+                                            <tr>
+                                                <th className="f1-2 bgHead"><span>Sr.No.</span></th>
+                                                <th className="f1-2 bgHead"><span>Name</span></th>
+                                                <th className="f1-2 bgHead"><span>Email</span></th>
+                                                <th className="f1-2 bgHead"><span>Date</span></th>
+                                                <th className="f1-2 bgHead"><span>Institute</span></th>
+                                                <th className="f1-2 bgHead"><span>Department</span></th>
+                                                <th className="f1-2 bgHead"><span>Designation</span></th>
+                                                <th className="f1-2 bgHead"><span>Algorithm</span></th>
+                                                <th className="f1-2 bgHead"><span>Ease of understanding of concept using virtual lab</span></th>
+                                                <th className="f1-2 bgHead"><span>Simulation is easy and step by step</span></th>
+                                                <th className="f1-2 bgHead"><span>Relevant theory is provided for all experiments</span></th>
+                                                <th className="f1-2 bgHead"><span>Operating the website is easy and convenient </span></th>
+                                                <th className="f1-2 bgHead"><span>Any difficulties during performing the experiments?</span></th>
+                                                <th className="f1-2 bgHead"><span>Suggestions for further improvement </span></th>
+                                                <th className="f1-2 bgHead"><span>Experiment that can be added and not available in existing Algorithms VLAB.</span></th>
                                             </tr>
-                                        })
-                                        }
+                                        </thead>
+                                        <tbody>
+                                            {fData && fData.map((el, index) => {
+                                                return <tr>
+                                                    <td>{index + 1}</td>
+                                                    <td>{el.userId.name}</td>
+                                                    <td>{el.userId.email}</td>
+                                                    <td>{el.dateP}</td>
+                                                    <td>{el.institute}</td>
+                                                    <td>{el.department}</td>
+                                                    <td>{el.designation}</td>
+                                                    <td>{el.algoName}</td>
+                                                    <td>{el.q1}</td>
+                                                    <td>{el.q2}</td>
+                                                    <td>{el.q3}</td>
+                                                    <td>{el.q4}</td>
+                                                    <td>{el.q5}</td>
+                                                    <td>{el.q6}</td>
+                                                    <td>{el.q7}</td>
+                                                </tr>
+                                            })
+                                            }
+                                        </tbody>
                                     </table>
 
 

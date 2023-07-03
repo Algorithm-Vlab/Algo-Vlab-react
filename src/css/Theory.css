@@ -258,9 +258,13 @@
 }
 
 .bgHead {
-    background: rgb(255, 225, 225);
+    background: var(--somColor);
+    color: rgb(255, 255, 255);
 }
 
+.brWord{
+    overflow-wrap: break-word;
+}
 
 @media (max-width: 600px) {
 

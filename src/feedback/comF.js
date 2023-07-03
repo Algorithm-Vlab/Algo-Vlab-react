@@ -5,11 +5,12 @@ import { expR } from "../data/expRoutes";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
 import '../css/progressbar.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../components/Footer";
+import PageNotFound from "../components/NotFound";
 
-export default function FRabin() {
+export default function ComF() {
 
     const cd = new Date();
     const [date, setDate] = useState(
@@ -28,13 +29,31 @@ export default function FRabin() {
     const [currE, setCE] = cuE;
     const { userD } = AppState();
     const [uD, setUD] = userD;
-    const algoName = expR[currE[0]][currE[1]][0];
+    const [algoName, setAlgN] = useState();
     const [index, setIndex] = useState(1);
     const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [index])
+
+    const pAlgN = useParams();
+
+    useEffect(() => {
+        var found = false;
+        for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < expR[i].length; j++) {
+                if (pAlgN.algo === expR[i][j][1]) {
+                    setAlgN(expR[i][j][0]);
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            // navigate("/");
+        }
+    }, []);
 
     function nextbtn() {
         if (index >= 1) {
@@ -70,7 +89,7 @@ export default function FRabin() {
         }
         const dataF = {
             algoName,
-            institute: uD.institution,
+            institute: uD.institute,
             department: uD.department,
             designation: uD.designation,
             q1: Quest1,
@@ -87,11 +106,12 @@ export default function FRabin() {
                 withCredentials: true
             }, config)
                 .then((data) => {
+                    console.clear();
                     window.alert(data.data);
-
                     reloadStates();
                 })
                 .catch((err) => {
+                    console.clear();
                     const errs = err.response.data.error;
                     for (var i = 0; i < errs.length; i++) {
                         window.alert(errs[i]);
@@ -101,9 +121,11 @@ export default function FRabin() {
             window.alert(error);
         }
     }
+
     function naviTo(locName) {
         navigate("/" + locName);
     }
+
     function formm(step) {
 
 
@@ -394,29 +416,38 @@ export default function FRabin() {
     }
     return (
         <>
-            <Navbar />
-            <FNavbar />
-            {uD ?
-                <div className="fullbg">
-                    <div
-                        className="feedDiv"
-                    >
-                        <Multiprogressbar steps={index} />
-                        <b style={{ fontSize: "2rem", marginBottom: "1.5rem", marginTop: "2rem", justifySelf: "center", alignSelf: "center" }} className="hightText">
-                            {algoName} Feedback
-                        </b>
-                        {formm(index)}
+            {
+                algoName ?
 
 
-                    </div>
+                    <>
+                        < Navbar />
+                        <FNavbar />
+                        {
+                            uD ?
+                                <div className="fullbg">
+                                    <div
+                                        className="feedDiv"
+                                    >
+                                        <Multiprogressbar steps={index} />
+                                        <b style={{ fontSize: "2rem", marginBottom: "1.5rem", marginTop: "2rem", justifySelf: "center", alignSelf: "center" }} className="hightText">
+                                            {algoName} Feedback
+                                        </b>
+                                        {formm(index)}
 
-                </div>
-                :
-                <div className="fullbg">
-                    <h1>Please Login to Fill the feedback!</h1>
-                </div>
+
+                                    </div>
+
+                                </div>
+                                :
+                                <div className="fullbg">
+                                    <h1>Please Login to Fill the feedback!</h1>
+                                </div>
+                        }
+                        <Footer />
+                    </>
+                    : <PageNotFound />
             }
-            <Footer />
         </>
     )
 }

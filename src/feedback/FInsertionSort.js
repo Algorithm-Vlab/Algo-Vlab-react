@@ -70,7 +70,7 @@ export default function FInsertion() {
         }
         const dataF = {
             algoName,
-            institute: uD.institution,
+            institute: uD.institute,
             department: uD.department,
             designation: uD.designation,
             q1: Quest1,
@@ -150,7 +150,7 @@ export default function FInsertion() {
                             }}>
                                 Name Of the Institute<sup className="mandF">*</sup>
                             </div>
-                            <input readOnly value={uD.institution} className="inputt" placeholder="Institute Name" required />
+                            <input readOnly value={uD.institute} className="inputt" placeholder="Institute Name" required />
 
                             <div style={{
                                 marginBottom: "1.0rem",

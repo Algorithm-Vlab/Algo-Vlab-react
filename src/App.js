@@ -1,4 +1,4 @@
-import { HashRouter, Route, Link, Routes } from "react-router-dom";
+import { HashRouter, Route, Link, Routes, BrowserRouter } from "react-router-dom";
 import Home from './pages/Home';
 import AppProvider from "./context/appContext";
 import SJobSched from "./simulators/SJobSched";
@@ -54,10 +54,15 @@ import UserDash from "./components/userDash";
 import AdminDash from "./components/Admin/adminDash";
 import AUserDet from "./components/Admin/AuserDet";
 import AFeedbacks from "./components/Admin/Afeeds";
+import VAccount from "./components/verify/VAccount";
+import ComF from "./feedback/comF";
+import FPUser from "./components/Forgot-Password/FpUser";
+import ChangePassUser from "./components/Forgot-Password/changePUser";
 
 function App() {
   return (
-    <HashRouter>
+
+    <BrowserRouter>
       <AppProvider>
         <Routes>
 
@@ -73,70 +78,78 @@ function App() {
           <Route path="/dynamic" element={<Dynamic />}></Route>
           <Route path="/backtracking" element={<Backtracking />}></Route>
           <Route path="/string-match" element={<StrMatch />}></Route>
+
+          <Route path="/:algo/feedback" element={<ComF />}></Route>
+
           {/* lcs */}
           {/* <Route path="/lcs" element={<Lcs />}></Route> */}
           <Route path="/lcs" element={<TLcs />}></Route>
-          <Route path="/lcs/feedback" element={<FLcs />}></Route>
+          {/* <Route path="/lcs/feedback" element={<FLcs />}></Route> */}
           <Route path="/lcs/simulator" element={<SLcs />}></Route>
 
           {/* job sched */}
           {/* <Route path="/job-scheduling" element={<JobSched />}></Route> */}
           <Route path="/job-scheduling" element={<JobSchedTheory />}></Route>
           <Route path="/job-scheduling/simulator" element={<SJobSched />}></Route>
-          <Route path="/job-scheduling/feedback" element={<FJobS />}></Route>
+          {/* <Route path="/job-scheduling/feedback" element={<FJobS />}></Route> */}
 
           {/* Dijkstra */}
           <Route path="/dijkstra" element={<TDijkstra />}></Route>
           <Route path="/dijkstra/simulator" element={<SDijkstra />}></Route>
-          <Route path="/dijkstra/feedback" element={<FDijkstra />}></Route>
+          {/* <Route path="/dijkstra/feedback" element={<FDijkstra />}></Route> */}
 
           {/* N queens */}
           {/* <Route path='/nqueens' element={<Nqueens />}></Route> */}
           <Route path="/nqueens" element={<NqueensTheory />}></Route>
           <Route path='/nqueens/simulator' element={<SNQueens />}></Route>
-          <Route path='/nqueens/feedback' element={<FNQueens />}></Route>
+          {/* <Route path='/nqueens/feedback' element={<FNQueens />}></Route> */}
 
           {/* kruskals */}
           <Route path="/kruskals" element={<TKruskals />}></Route>
           <Route path="/kruskals/simulator" element={<SKruskals />}></Route>
-          <Route path="/kruskals/feedback" element={<FKruskals />}></Route>
+          {/* <Route path="/kruskals/feedback" element={<FKruskals />}></Route> */}
 
           {/* knapsack */}
           <Route path="/knapsack" element={<TKnapsack />}></Route>
           <Route path="/knapsack/simulator" element={<SKnapsack />}></Route>
-          <Route path="/knapsack/feedback" element={<FKnapsack />}></Route>
+          {/* <Route path="/knapsack/feedback" element={<FKnapsack />}></Route> */}
 
           {/* rabinkarp */}
           {/* <Route path="/rabinkarp" element={<RabinK />}></Route> */}
           <Route path="/rabinkarp" element={<RabinkarpTheory />}></Route>
           <Route path="/rabinkarp/simulator" element={<SRabinkarp />}></Route>
-          <Route path="/rabinkarp/feedback" element={<FRabin />}></Route>
+          {/* <Route path="/rabinkarp/feedback" element={<FRabin />}></Route> */}
 
           {/* insertion */}
           <Route path="/insertion" element={<TInsertionSort />}></Route>
           <Route path="/insertion/simulator" element={<SInsertionSort />}></Route>
-          <Route path="/insertion/feedback" element={<FInsertion />}></Route>
+          {/* <Route path="/insertion/feedback" element={<FInsertion />}></Route> */}
 
           {/* selection */}
           <Route path="/selection" element={<TSelectS />}></Route>
           <Route path="/selection/simulator" element={<SSelectionSort />}></Route>
-          <Route path="/selection/feedback" element={<FSelection />}></Route>
+          {/* <Route path="/selection/feedback" element={<FSelection />}></Route> */}
 
           {/* bubble */}
           <Route path="/bubble" element={<TBubbleS />}></Route>
           <Route path="/bubble/simulator" element={<SBubbleSort />}></Route>
-          <Route path="/bubble/feedback" element={<FBubble />}></Route>
+          {/* <Route path="/bubble/feedback" element={<FBubble />}></Route> */}
 
           <Route path="/user" element={<UserDash />}></Route>
           <Route path="/admin" element={<AdminDash />}></Route>
           <Route path="/admin/user-details" element={<AUserDet />}></Route>
           <Route path="/admin/feedbacks" element={<AFeedbacks />}></Route>
 
+          <Route path="/login/forgot-password" element={<FPUser />}></Route>
+
+          <Route path="/account/user/change-password/:pT" element={<ChangePassUser />}></Route>
+          <Route path="/account/user/verify/:tt" element={<VAccount />}></Route>
+
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </AppProvider>
-    </HashRouter >
+    </BrowserRouter >
   );
 }
 

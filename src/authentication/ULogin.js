@@ -36,12 +36,14 @@ export default function ULogin() {
                 withCredentials: true
             }, config)
                 .then((data) => {
-                    // console.log(data);
-                    // window.location.reload();
+                    console.clear();
+                    const bId = uType === "user" ? "loginB" : "loginBA";
+                    retId(bId).setAttribute("disabled", "disabled");
                     window.alert("Login successful");
                     navigate("/");
                 })
                 .catch((err) => {
+                    console.clear();
                     const errs = err.response.data.error;
                     for (var i = 0; i < errs.length; i++) {
                         window.alert(errs[i]);
@@ -49,11 +51,12 @@ export default function ULogin() {
                 })
         }
         catch (err) {
+            console.clear();
             window.alert(err);
         }
     }
 
-    function subForm(tId) {
+    function subForm(e, tId) {
         var f = document.getElementsByTagName('form')[0];
         var uType = "user";
         var em = uemail;
@@ -64,12 +67,14 @@ export default function ULogin() {
             pa = aPassword;
         }
         // if (f.reportValidity()) {
-            doLogin({
-                email: em,
-                password: pa,
-            }, uType);
+        e.preventDefault();
+        doLogin({
+            email: em,
+            password: pa,
+        }, uType);
         // }
         // else {
+        //     e.preventDefault();
         //     return;
         // }
     }
@@ -114,6 +119,7 @@ export default function ULogin() {
         if (!currLS) {
             retId("adminS").classList.remove("sel");
             retId("studentS").classList.add("sel");
+            retId("loginB").setAttribute("disabled", "disabled");
             setuemail("");
             setPassword("");
             retId("iduemail").classList.remove("valid");
@@ -122,11 +128,14 @@ export default function ULogin() {
         else {
             retId("adminS").classList.add("sel");
             retId("studentS").classList.remove("sel");
+            retId("loginBA").setAttribute("disabled", "disabled");
             setAEmail("");
             setAPassword("");
             retId("idAemail").classList.remove("valid");
             retId("idApassword").classList.remove("valid");
         }
+
+
     }, [currLS])
 
 
@@ -164,7 +173,7 @@ export default function ULogin() {
                                     <p className="pComment">Password must contain atleast one Uppercase/Lowercase letters and digit, and atleast 8 letters long</p>
                                 </div>
 
-                                <button type="submit" id="loginBA" className="goLogB" onClick={(e) => { subForm(e.target.id) }}>Login</button>
+                                <button type="submit" id="loginBA" className="goLogB" onClick={(e) => { subForm(e, e.target.id) }}>Login</button>
                                 {/* <button className="bNone">Don't have an Account?</button> */}
                             </form>
                         </div>
@@ -185,9 +194,11 @@ export default function ULogin() {
                                     <p className="pComment">Password must contain atleast one Uppercase/Lowercase letters and digit, and atleast 8 letters long</p>
                                 </div>
 
-
-                                <button type="submit" id="loginB" className="goLogB" onClick={(e) => { subForm(e.target.id) }}>Login</button>
-                                <button className="bNone" onClick={(e) => { e.preventDefault(); navigate("/register") }}>Don't have an Account?</button>
+                                <div className="divf ldivFUV">
+                                    <button className="bNone" onClick={(e) => { e.preventDefault(); navigate("/login/forgot-password") }}>Forgot Password?</button>
+                                    <button className="bNone" onClick={(e) => { e.preventDefault(); navigate("/register") }}>Don't have an Account?</button>
+                                </div>
+                                <button type="submit" id="loginB" className="goLogB" onClick={(e) => { subForm(e, e.target.id) }}>Login</button>
                             </form>
                         </div>
                     }
