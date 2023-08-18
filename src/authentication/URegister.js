@@ -258,7 +258,7 @@ export default function URegister(props) {
                             <div className="takeInD">
                                 <input
                                     id="uUsername"
-                                    pattern="^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$"
+                                    pattern="[a-zA-Z0-9_]"
                                     required
                                     onChange={(e) => {
                                         setUsername(e.target.value);
