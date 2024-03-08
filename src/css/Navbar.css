@@ -1,14 +1,10 @@
-.fullNav {
-    transition: 0.2s all ease-out;
-}
-
 .navbar {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    /* position: absolute; */
-    /* top: 0; */
-    /* left: 0; */
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     /* padding: 0 0.5rem; */
     height: 7.5rem;
@@ -16,10 +12,10 @@
     flex-direction: column;
     background: white;
     box-shadow: 0 0 0.8rem rgb(175, 175, 175);
-    /* z-index: 10; */
+    z-index: 10;
     box-sizing: border-box;
     opacity: 1;
-    transition: 0.2s all ease-out;
+    transition: 0.3s all ease-out;
 }
 
 .navR1 {
@@ -234,7 +230,7 @@
 }
 
 .sideBar {
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,7 +240,6 @@
     width: 100vw;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(0.6rem);
-    z-index: 100;
 }
 
 .sideBar .naviLinks {
@@ -309,7 +304,6 @@
     padding: 0.5rem;
     text-align: center;
     word-wrap: break-word;
-    z-index: 50;
 }
 
 .userDash button:hover {

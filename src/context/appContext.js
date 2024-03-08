@@ -28,6 +28,7 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             var uDD;
+            // console.log(process.env.REACT_APP_BACKEND_DOMAIN);
             await axios.get(process.env.REACT_APP_BACKEND_DOMAIN + "/y/user/g", {
                 withCredentials: true
             })

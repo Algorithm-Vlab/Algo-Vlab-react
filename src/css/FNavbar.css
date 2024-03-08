@@ -2,17 +2,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    /* left: 0rem; */
-    /* top: 7.5rem; */
+    position: fixed;
+    left: 0rem;
+    top: 7.5rem;
     width: 100%;
     padding: 0.5rem;
     background: linear-gradient(rgba(209, 209, 209, 0.5), rgba(233, 233, 233, 0.411), rgba(255, 255, 255, 0.616));
     box-sizing: border-box;
     box-shadow: 0 0.2rem 0.1rem rgba(143, 0, 0, 0.548);
     backdrop-filter: blur(0.4rem);
-    /* z-index: 4; */
-    transition: 0.2s all ease-out;
+    z-index: 4;
+    transition: 0.3s all ease-out;
 }
 
 .goUpF {

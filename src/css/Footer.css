@@ -1,4 +1,4 @@
-.footer {
+.footer{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@
     border-top: 0.2rem solid rgb(207, 207, 207);
 }
 
-.footer .row {
+.footer .row{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,33 +21,32 @@
     /* background: wheat; */
 }
 
-.trustLogo {
+.trustLogo{
     margin-left: 1rem;
     height: 4rem;
 }
 
-.fkjLogo {
+.fkjLogo{
     margin-left: 1rem;
     /* width: 22rem; */
     height: 4rem;
 }
-
-.dev1,
-.dev1 * {
+ 
+.dev1, .dev1 *{
     font-size: 1.5rem;
     color: rgb(0, 0, 0);
     font-weight: 600;
-
+    
     /* box-sizing: border-box; */
     text-align: center;
 }
 
-.fR {
+.fR{
     text-align: right;
     flex-grow: 1;
 }
 
-.compLink {
+.compLink{
     color: blue;
 }
 
@@ -63,12 +62,12 @@
     color: rgb(131, 0, 0);
 }
 
-.dev2:hover {
+.dev2:hover{
     opacity: 1;
     text-decoration-color: rgb(47, 0, 255);
 }
 
-.links {
+.links{
     position: absolute;
     top: -4rem;
     display: flex;
@@ -81,36 +80,25 @@
     padding-bottom: 0;
 }
 
-.links:hover {
+.links:hover{
     opacity: 1;
 }
 
-.linkL {
+.linkL{
     margin: 0 0.4rem;
     text-decoration: none;
 }
 
-.linkL img {
-    width: 1.7rem;
+.linkL img{
+        width: 1.7rem;
 }
 
 @media (max-width:900px) {
-
-    .fkjLogo,
-    .trustLogo {
+    .fkjLogo, .trustLogo{
         display: none;
     }
-
-    .fR {
+    .fR{
         text-align: center;
     }
-
 }
 
-@media (max-width:450px) {
-
-    .dev1,
-    .dev1 * {
-        font-size: 1rem;
-    }
-}
