@@ -11,18 +11,32 @@ export async function AlgoPer(props) {
     // const algoName = expR[currE[0]][currE[1]][0];
     // const algoName = "Insertion";
 
+<<<<<<< HEAD
     await axios.post("http://localhost:5013/y/user/perform/algo", { algoName: props.algoName }, {
+=======
+    await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/perform/algo`, { algoName: props.algoName }, {
+>>>>>>> frontend
         withCredentials: true
     })
         .then((data) => {
             console.clear();
+<<<<<<< HEAD
             window.alert(data.data);
+=======
+            // window.alert(data.data);
+            console.log(data.data);
+>>>>>>> frontend
         })
         .catch((err) => {
             console.clear();
             const errs = err.response.data.error;
             for (var i = 0; i < errs.length; i++) {
+<<<<<<< HEAD
                 window.alert(errs[i]);
+=======
+                console.log(errs[i]);
+                // window.alert(errs[i]);
+>>>>>>> frontend
             }
         })
 

@@ -12,6 +12,10 @@ import { AppState } from "../context/appContext";
 import SomTrust from "../img/somaiyaTrust.png";
 import SomL from "./somL";
 import axios from "axios";
+<<<<<<< HEAD
+=======
+import { ErrNoti } from "../funcs/swals";
+>>>>>>> frontend
 
 function Navbar() {
     const navigate = useNavigate();
@@ -33,6 +37,7 @@ function Navbar() {
     const [showUD, setShowUD] = useState(false);
 
     const logoutUser = async () => {
+<<<<<<< HEAD
         await axios.post("http://localhost:5013/y/user/logout", {}, { withCredentials: true })
             .then((data) => {
                 window.location.reload();
@@ -43,11 +48,25 @@ function Navbar() {
                 for (var i = 0; i < errs.length; i++) {
                     window.alert(errs[i]);
                 }
+=======
+        await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/logout`, {}, { withCredentials: true })
+            .then((data) => {
+                window.location.reload();
+            })
+            .catch((err) => {
+                if (!err.response) {
+                    ErrNoti({ errMessage: "Some error occurred, Please try again!" })
+                    return;
+                }
+                const errs = err.response.data.error;
+                ErrNoti({ errMessage: errs })
+>>>>>>> frontend
             })
     }
 
     const currL = useLocation();
 
+<<<<<<< HEAD
     useEffect(() => {
 
         function updateY() {
@@ -76,6 +95,33 @@ function Navbar() {
         }
         window.addEventListener("scroll", updateY);
     });
+=======
+    function updateY() {
+
+        var prevscTop = scrollTop;
+        var scTop = window.scrollY;
+        var winHeight = window.innerHeight;
+        setPrevST(prevscTop);
+        setScrollTop(window.scrollY);
+        var cname = "goUp";
+        var currN = currL.pathname.split("/")[1];
+        for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < expR[i].length; j++) {
+                if (currN === expR[i][j][1]) {
+                    cname = "goUpA";
+                    break;
+                }
+            }
+        }
+        if (scTop === 0 || scTop < prevscTop || prevscTop < 20) {
+            retElId("idnavbar").classList.remove(cname);
+        }
+        else {
+            retElId("idnavbar").classList.add(cname);
+        }
+    }
+    window.addEventListener("scroll", updateY);
+>>>>>>> frontend
 
     useEffect(() => {
         if (openSide === false) {
@@ -86,6 +132,7 @@ function Navbar() {
         }
     }, [openSide]);
 
+<<<<<<< HEAD
     useEffect(() => {
         const updateUser = async () => {
             await axios.get("http://localhost:5013/y/user/g", {
@@ -106,6 +153,28 @@ function Navbar() {
         }
         updateUser();
     }, [])
+=======
+    // useEffect(() => {
+    //     const updateUser = async () => {
+    //         await axios.get(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/g`, {
+    //             withCredentials: true
+    //         })
+    //             .then((data) => {
+    //                 console.clear();
+    //                 setUD(data.data);
+    //             })
+    //             .catch((err) => {
+    //                 setUD(false);
+    //                 console.clear();
+    //                 var errs = err.response.data.error;
+    //                 for (var i = 0; i < errs.length; i++) {
+    //                     console.log(errs[i]);
+    //                 }
+    //             })
+    //     }
+    //     updateUser();
+    // }, [])
+>>>>>>> frontend
 
     function retElId(idname) {
         return document.getElementById(idname);

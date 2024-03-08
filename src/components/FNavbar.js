@@ -37,6 +37,7 @@ function FNavbar() {
         return document.getElementById(idname);
     }
 
+<<<<<<< HEAD
     useEffect(() => {
         function updateY() {
             var prevscTop = scrollTop;
@@ -59,6 +60,30 @@ function FNavbar() {
         }
         window.addEventListener("scroll", updateY);
     });
+=======
+    // useEffect(() => {
+    function updateY() {
+        var prevscTop = scrollTop;
+        var scTop = window.scrollY;
+        var winHeight = window.innerHeight;
+        setPrevST(prevscTop);
+        setScrollTop(window.scrollY);
+        if (scTop === 0 || scTop < prevscTop || prevscTop < 20) {
+            if (retElId("idFNav")) {
+                retElId("idFNav").classList.remove("goUpF");
+            }
+
+        }
+        else {
+            if (retElId("idFNav")) {
+                retElId("idFNav").classList.add("goUpF");
+            }
+        }
+
+    }
+    window.addEventListener("scroll", updateY);
+    // });
+>>>>>>> frontend
 
     return (
         <motion.div

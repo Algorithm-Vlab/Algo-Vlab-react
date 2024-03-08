@@ -9,6 +9,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../components/Footer";
 import PageNotFound from "../components/NotFound";
+<<<<<<< HEAD
+=======
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+>>>>>>> frontend
 
 export default function ComF() {
 
@@ -33,6 +38,33 @@ export default function ComF() {
     const [index, setIndex] = useState(1);
     const navigate = useNavigate();
 
+<<<<<<< HEAD
+=======
+    const notifyS = () => toast.success('Feedback Posted Successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+    });
+
+    function notifyE(errM) {
+        toast.error(errM, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "colored",
+        });
+    }
+
+>>>>>>> frontend
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [index])
@@ -87,6 +119,14 @@ export default function ComF() {
                 "Content-type": "application/json"
             }
         }
+<<<<<<< HEAD
+=======
+        if (!algoName || !uD.institute || !uD.department || !uD.designation || !Quest1 || !Quest2 || !Quest3 || !Quest4 || !Quest5 || !Quest6 || !Quest7 || !date) {
+            console.log("Fill all details!");
+            notifyE("Please fill all fields!");
+            return;
+        }
+>>>>>>> frontend
         const dataF = {
             algoName,
             institute: uD.institute,
@@ -102,16 +142,26 @@ export default function ComF() {
             dateP: date
         }
         try {
+<<<<<<< HEAD
             await axios.post("http://localhost:5013/y/user/post/feedback", dataF, {
+=======
+            await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/post/feedback`, dataF, {
+>>>>>>> frontend
                 withCredentials: true
             }, config)
                 .then((data) => {
                     console.clear();
+<<<<<<< HEAD
                     window.alert(data.data);
+=======
+                    // window.alert(data.data);
+                    notifyS();
+>>>>>>> frontend
                     reloadStates();
                 })
                 .catch((err) => {
                     console.clear();
+<<<<<<< HEAD
                     const errs = err.response.data.error;
                     for (var i = 0; i < errs.length; i++) {
                         window.alert(errs[i]);
@@ -119,6 +169,13 @@ export default function ComF() {
                 })
         } catch (error) {
             window.alert(error);
+=======
+                    notifyE(err.response.data.error[0]);
+                })
+        } catch (error) {
+            console.clear();
+            notifyE("Some error Occurred!");
+>>>>>>> frontend
         }
     }
 
@@ -393,7 +450,11 @@ export default function ComF() {
                         {(Quest1 && Quest2 && Quest3 && Quest4 && Quest5) ?
                             <div className="formfooter">
                                 <button className="spec prev" disabled={index === 1} onClick={prevbtn} >Previous</button>
+<<<<<<< HEAD
                                 <button className="spec next" type='submit' onClick={submitFeed}>Submit</button>
+=======
+                                <button className="spec next" onClick={submitFeed}>Submit</button>
+>>>>>>> frontend
                             </div>
                             :
                             <>
@@ -426,6 +487,10 @@ export default function ComF() {
                         {
                             uD ?
                                 <div className="fullbg">
+<<<<<<< HEAD
+=======
+                                    <ToastContainer />
+>>>>>>> frontend
                                     <div
                                         className="feedDiv"
                                     >

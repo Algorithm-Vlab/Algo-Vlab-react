@@ -23,7 +23,11 @@ export default function UserDash() {
     useEffect(() => {
         const updateUser = async () => {
             await timer(300);
+<<<<<<< HEAD
             await axios.get("http://localhost:5013/y/user/g", {
+=======
+            await axios.get(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/g`, {
+>>>>>>> frontend
                 withCredentials: true
             })
                 .then((data) => {
@@ -37,7 +41,11 @@ export default function UserDash() {
                     for (var i = 0; i < errs.length; i++) {
                         console.log(errs[i]);
                     }
+<<<<<<< HEAD
                     // setuDY(false);
+=======
+                    setuDY(false);
+>>>>>>> frontend
                 })
         }
         updateUser();
@@ -79,7 +87,11 @@ export default function UserDash() {
                                         <p className="mUpM f2">No. of Simulations Performed: 0</p>
                                     </>
                                 }
+<<<<<<< HEAD
                                 <div className="ftContainer mUpM">
+=======
+                                <div className="ftContainer mUpM jusLeft">
+>>>>>>> frontend
                                     <table className="feedT">
                                         <thead className="bgHead">
                                             <tr>

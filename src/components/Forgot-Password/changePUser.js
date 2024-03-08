@@ -9,6 +9,10 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSadTear } from "@fortawesome/free-solid-svg-icons";
+<<<<<<< HEAD
+=======
+import { ErrNoti, SuccNoti } from "../../funcs/swals";
+>>>>>>> frontend
 
 export default function ChangePassUser() {
     const [uemail, setuemail] = useState();
@@ -29,7 +33,11 @@ export default function ChangePassUser() {
         async function verifyPassToken() {
             const cpToken = passToken.pT;
             try {
+<<<<<<< HEAD
                 await axios.post("http://localhost:5013/y/user/auth/account/login/forgot-password/verify-token", { cpToken }, {
+=======
+                await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/auth/account/login/forgot-password/verify-token`, { cpToken }, {
+>>>>>>> frontend
                     withCredentials: true
                 })
                     .then((data) => {
@@ -74,17 +82,35 @@ export default function ChangePassUser() {
             return;
         }
         try {
+<<<<<<< HEAD
             const passChanged = await axios.post("http://localhost:5013/y/user/auth/account/login/forgot-password/do", uData, {
+=======
+            const passChanged = await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/auth/account/login/forgot-password/do`, uData, {
+>>>>>>> frontend
                 withCredentials: true
             })
                 .then((data) => {
                     setPChanged(true);
                     console.clear();
+<<<<<<< HEAD
                     window.alert(data.data);
+=======
+                    const doN = async () => {
+                        const resultS = await SuccNoti({ title: "Password Changed!", message: "Password has been successfully changed for your registered account!" })
+                        if (resultS.isConfirmed) {
+                            window.location.reload();
+                        }
+                        else {
+                            window.location.reload();
+                        }
+                    }
+                    doN();
+>>>>>>> frontend
 
                 })
                 .catch((err) => {
                     console.clear();
+<<<<<<< HEAD
                     const errs = err.response.data.error;
                     for (var i = 0; i < errs.length; i++) {
                         window.alert(errs[i]);
@@ -92,6 +118,18 @@ export default function ChangePassUser() {
                 })
         } catch (error) {
             console.clear();
+=======
+                    if (!err.response) {
+                        ErrNoti({ errMessage: "Some error occurred, Please try again!" })
+                        return;
+                    }
+                    const errs = err.response.data.error;
+                    ErrNoti({ errMessage: errs })
+                })
+        } catch (error) {
+            console.clear();
+            ErrNoti({ errMessage: "Some error occurred, Please try again!" })
+>>>>>>> frontend
         }
     }
 

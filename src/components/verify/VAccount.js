@@ -6,6 +6,10 @@ import giphC from "../../img/giphy.gif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSadTear } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+<<<<<<< HEAD
+=======
+import { ErrNoti, SuccNoti } from "../../funcs/swals";
+>>>>>>> frontend
 
 export default function VAccount() {
 
@@ -22,7 +26,11 @@ export default function VAccount() {
                     "Content-type": "application/json"
                 }
             }
+<<<<<<< HEAD
             await axios.post("http://localhost:5013/y/user/auth/account/verify/g", { token: pToken.tt })
+=======
+            await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/auth/account/verify/g`, { token: pToken.tt })
+>>>>>>> frontend
                 .then((data) => {
                     console.clear();
                     setTExist(1);
@@ -36,18 +44,43 @@ export default function VAccount() {
     }, []);
 
     const doVerifyAcc = async () => {
+<<<<<<< HEAD
         await axios.post("http://localhost:5013/y/user/auth/account/verify/g/do", { token: pToken.tt })
             .then((data) => {
                 console.clear();
                 window.alert(data.data)
+=======
+        await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/auth/account/verify/g/do`, { token: pToken.tt })
+            .then((data) => {
+                console.clear();
+                const doN = async () => {
+                    const resultS = await SuccNoti({ title: "Account Verified!", message: "Your account has been successfully verified! You can proceed to Login!" })
+                    if (resultS.isConfirmed) {
+                        navigate("/login");
+                    }
+                    else {
+                        // navigate("/login");
+                    }
+                }
+                doN();
+>>>>>>> frontend
                 setAVerified(1);
             })
             .catch((err) => {
                 console.clear();
+<<<<<<< HEAD
                 const errs = err.response.data.error;
                 for (var i = 0; i < errs.length; i++) {
                     window.alert(errs[i]);
                 }
+=======
+                if (!err.response) {
+                    ErrNoti({ errMessage: "Some error occurred, Please try again!" })
+                    return;
+                }
+                const errs = err.response.data.error;
+                ErrNoti({ errMessage: errs })
+>>>>>>> frontend
             })
     }
 

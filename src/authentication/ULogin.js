@@ -7,6 +7,11 @@ import "../css/Theory.css";
 import "../css/login.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+<<<<<<< HEAD
+=======
+import Swal from "sweetalert2";
+import { ErrNoti, SuccNoti } from "../funcs/swals";
+>>>>>>> frontend
 
 export default function ULogin() {
     const [uemail, setuemail] = useState();
@@ -32,11 +37,18 @@ export default function ULogin() {
         }
         // console.log(uData);
         try {
+<<<<<<< HEAD
             await axios.post("http://localhost:5013/y/" + uType + "/login", uData, {
+=======
+            const bId = uType === "user" ? "loginB" : "loginBA";
+            retId(bId).setAttribute("disabled", "disabled");
+            await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/` + uType + "/login", uData, {
+>>>>>>> frontend
                 withCredentials: true
             }, config)
                 .then((data) => {
                     console.clear();
+<<<<<<< HEAD
                     const bId = uType === "user" ? "loginB" : "loginBA";
                     retId(bId).setAttribute("disabled", "disabled");
                     window.alert("Login successful");
@@ -48,11 +60,37 @@ export default function ULogin() {
                     for (var i = 0; i < errs.length; i++) {
                         window.alert(errs[i]);
                     }
+=======
+                    const doN = async () => {
+                        const resultS = await SuccNoti({ title: "Login successful!", message: "You are logged in successful" })
+                        if (resultS.isConfirmed) {
+                            navigate("/");
+                        }
+                        else {
+                            window.location.reload();
+                        }
+                    }
+                    doN();
+                })
+                .catch((err) => {
+                    retId(bId).removeAttribute("disabled", "disabled");
+                    console.clear();
+                    if (!err.response) {
+                        ErrNoti({ errMessage: "Some error occurred, Please try again!" })
+                        return;
+                    }
+                    const errs = err.response.data.error;
+                    ErrNoti({ errMessage: errs })
+>>>>>>> frontend
                 })
         }
         catch (err) {
             console.clear();
+<<<<<<< HEAD
             window.alert(err);
+=======
+            ErrNoti({ errMessage: "Some error occurred, Please try again!" })
+>>>>>>> frontend
         }
     }
 
@@ -172,7 +210,13 @@ export default function ULogin() {
                                     </div>
                                     <p className="pComment">Password must contain atleast one Uppercase/Lowercase letters and digit, and atleast 8 letters long</p>
                                 </div>
+<<<<<<< HEAD
 
+=======
+                                <div className="divf ldivFUV">
+                                    <button type="button" className="bNone" onClick={(e) => { e.preventDefault(); navigate("/login/forgot-password") }}>Forgot Password?</button>
+                                </div>
+>>>>>>> frontend
                                 <button type="submit" id="loginBA" className="goLogB" onClick={(e) => { subForm(e, e.target.id) }}>Login</button>
                                 {/* <button className="bNone">Don't have an Account?</button> */}
                             </form>
@@ -195,8 +239,13 @@ export default function ULogin() {
                                 </div>
 
                                 <div className="divf ldivFUV">
+<<<<<<< HEAD
                                     <button className="bNone" onClick={(e) => { e.preventDefault(); navigate("/login/forgot-password") }}>Forgot Password?</button>
                                     <button className="bNone" onClick={(e) => { e.preventDefault(); navigate("/register") }}>Don't have an Account?</button>
+=======
+                                    <button type="button" className="bNone" onClick={(e) => { e.preventDefault(); navigate("/login/forgot-password") }}>Forgot Password?</button>
+                                    <button type="button" className="bNone" onClick={(e) => { e.preventDefault(); navigate("/register") }}>Don't have an Account?</button>
+>>>>>>> frontend
                                 </div>
                                 <button type="submit" id="loginB" className="goLogB" onClick={(e) => { subForm(e, e.target.id) }}>Login</button>
                             </form>

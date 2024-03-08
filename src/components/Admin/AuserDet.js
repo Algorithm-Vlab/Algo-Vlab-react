@@ -21,7 +21,11 @@ export default function AUserDet() {
     useEffect(() => {
         const fetchUserD = async () => {
             await timer(200);
+<<<<<<< HEAD
             await axios.get("http://localhost:5013/y/admin/dash/user-details", {
+=======
+            await axios.get(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/admin/dash/user-details`, {
+>>>>>>> frontend
                 withCredentials: true
             })
                 .then((data) => {

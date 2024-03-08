@@ -15,7 +15,11 @@
     z-index: 10;
     box-sizing: border-box;
     opacity: 1;
+<<<<<<< HEAD
     transition: 0.2s all ease-out;
+=======
+    transition: 0.3s all ease-out;
+>>>>>>> frontend
 }
 
 .navR1 {
@@ -443,11 +447,27 @@
     }
 }
 
+<<<<<<< HEAD
 @media (max-width: 300px) {
+=======
+@media (max-width: 330px) {
+>>>>>>> frontend
     .navSL {
         /* width: 40vw; */
     }
 
+<<<<<<< HEAD
+=======
+    .headLink .title {
+        font-size: 1.3rem;
+    }
+
+    .navbar .navImg {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+    }
+
+>>>>>>> frontend
     .all_cards {
         padding: 1rem 0 !important;
         margin: 2rem 0;
