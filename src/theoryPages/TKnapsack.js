@@ -4,10 +4,8 @@ import Navbar from "../components/Navbar";
 import "../css/Theory.css";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer.js";
-import kss1 from "../img/knapsack/kss1.jpeg"
+import kss1 from "../img/knapsack/kss1.png";
 import { AppState } from "../context/appContext";
-// import rkp2 from "../img/rabinkarp/rkp2.jpeg"
-// import rkp3 from "../img/rabinkarp/rkp3.jpeg"
 import { expR } from "../data/expRoutes";
 
 export default function TKnapsack() {
@@ -17,8 +15,8 @@ export default function TKnapsack() {
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     }
-    const { cuE, algoT } = AppState();
 
+    const { cuE, algoT } = AppState();
     const [currE, setCE] = cuE;
 
     return (
@@ -34,11 +32,11 @@ export default function TKnapsack() {
                         transition={{ duration: 0.3 }}
                     >
                         <p className="f1-5 mUpL">
-                            <b className="hightText1">Knapsack</b> is a container/bag, for which we use the algorithm to find the maximum no. of items that can be included inside the bag with maximum Profit.
+                            <b className="hightText1">Knapsack Problem</b> involves determining the most valuable combination of items that can be included in a knapsack without exceeding its weight capacity. It’s an optimization problem where we aim to maximize profit.
                         </p>
                         <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
                         <div className="mUpL"></div>
-                        <b className="mUpL f1-5">Algorithm </b>
+                        <b className="mUpL f1-5">Algorithm</b>
                         <div className="mUpM algorithm">
                             <p>
                                 Dynamic-0-1-knapsack (v, w, n, W)<br />
@@ -53,7 +51,6 @@ export default function TKnapsack() {
                                 &nbsp;&nbsp;&nbsp;&nbsp;        else c[i, w] = c[i-1, w]<br />
                                 &nbsp;&nbsp;    else<br />
                                 &nbsp;&nbsp; &nbsp;       c[i, w] = c[i-1, w]<br />
-
                             </p>
                         </div>
                         <p className="f1-5 mUpL">
@@ -62,82 +59,59 @@ export default function TKnapsack() {
                                 <li>
                                     <div className="mUpL"></div>
 
-                                    <p className="mUpM">Here knapsack is like a container or a bag. Suppose we have given some items which have some weights or profits. We have to put some items in the knapsack in such a way total value produces a maximum profit.</p>
+                                    <p className="mUpM">In this problem, we are given items with specific weights and values. The goal is to maximize the profit while ensuring that the total weight of selected items does not exceed the knapsack's capacity.</p>
                                     <p className="mUpM">
-
                                         <ul>
-                                            <li>As the name suggests, items are indivisible here.</li>
-                                            <li>We can not take the fraction of any item.</li>
-                                            <li>We have to either take an item completely or leave it completely.</li>
-                                            <li>It is solved using dynamic programming approach.</li>
+                                            <li>The items are indivisible, meaning you cannot take fractions of items.</li>
+                                            <li>You either take an item in full or leave it entirely.</li>
+                                            <li>The problem is solved using dynamic programming.</li>
                                         </ul>
                                     </p>
-                                    <p className="mUpM">For example, the weight of the container is 20 kg. We have to select the items in such a way that the sum of the weight of items should be either smaller than or equal to the weight of the container, and the profit should be maximum.</p>
+                                    <p className="mUpM">For example, if the knapsack has a weight capacity of 20 kg, we must select items in such a way that the total weight does not exceed 20 kg, and the profit is maximized.</p>
 
                                     <div className="f1">
-                                        {/* <img className="navImg" src={Fst2}></img> */}
                                         <p className="mUpM">Consider-<br />
-                                            Knapsack weight capacity = w<br />
-                                            Number of items each having some weight and value = n<br />
+                                            Knapsack weight capacity = W<br />
+                                            Number of items, each with specific weights and values = n<br />
                                             Step-01:<br />
-                                            Draw a table say ‘T’ with (n+1) number of rows and (w+1) number of columns.<br />
-                                            Fill all the boxes of 0th row and 0th column with zeroes as shown-<br /></p>
+                                            Draw a table with (n+1) rows and (W+1) columns.<br />
+                                            Initialize the 0th row and 0th column with zeroes.<br />
+                                            Example:</p>
 
-                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }} >
-
-                                            <img className="navImg" style={{ width: "55vw" }} src={kss1}></img>
+                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
+                                            <img className="im1 kim1" style={{ width: "55vw" }} src={kss1} alt="Knapsack Table"></img>
                                         </div>
                                         <p className="mUpM">Step-02:<br />
-                                            Start filling the table row wise top to bottom from left to right.<br />
-                                            Use the following formula-<br />
-                                            T (i , j) = max [ T ( i-1 , j ) , valuei + T( i-1 , j – weighti ) ]<br />
-                                            Here, T(i , j) = maximum value of the selected items if we can take items 1 to i and have weight restrictions of j.<br />
-                                            This step leads to completely filling the table.<br />
-                                            Then, value of the last box represents the maximum possible value that can be put into the knapsack.<br />
-
+                                            Fill the table row by row from top to bottom and left to right using this formula:<br />
+                                            T(i, j) = max [ T(i-1, j), valuei + T(i-1, j – weighti) ]<br />
+                                            T(i, j) gives the maximum value if we can take items 1 to i, and j is the weight limit.<br />
+                                            Once the table is fully filled, the last cell gives the maximum possible profit for the knapsack.<br />
                                         </p>
 
                                         <p className="mUpM">Step-03:<br />
                                             <ul>
-                                                <li>Consider the last column of the table.</li>
-                                                <li>Start scanning the entries from bottom to top.</li>
-                                                <li>On encountering an entry whose value is not same as the value stored in the entry immediately above it, mark the row label of that entry.</li>
-                                                <li>After all the entries are scanned, the marked labels represent the items that must be put into the knapsack.</li>
+                                                <li>Examine the last column from bottom to top.</li>
+                                                <li>If the value differs from the entry immediately above it, that item should be included in the knapsack.</li>
+                                                <li>Repeat this until the necessary items are identified.</li>
                                             </ul>
-
                                         </p>
-
-
                                     </div>
-
-
-
                                 </li>
+
                                 <li>
                                     <div className="mUpL"></div>
-                                    <div className="mUpL"></div>
                                     <b>Time Complexity</b>
-                                    <p className="mUpM">This algorithm takes Ɵ(n.w) times as table c has (n+1).(w+1) entries, where each entry requires Ɵ(1) time to compute.</p>
-
-
-
+                                    <p className="mUpM">This algorithm runs in O(nW) time, where n is the number of items and W is the knapsack capacity. Each entry in the table is computed in constant time, making it efficient for larger problems.</p>
                                 </li>
                             </ol>
-
                         </p>
+
                         <p className="f1-5 mUpL">
                             <b className="hightText">Applications of Dynamic Programming</b>
                             <ul className="ols mUpS f1-3">
-                                <li>
-                                    machine scheduling
-                                </li>
-                                <li>
-                                    space allocation
-                                </li>
-                                <li>
-                                    asset optimization
-                                </li>
-
+                                <li>Machine scheduling</li>
+                                <li>Space allocation</li>
+                                <li>Asset optimization</li>
                             </ul>
                         </p>
                     </motion.div>
@@ -145,5 +119,5 @@ export default function TKnapsack() {
             </div>
             <Footer />
         </>
-    )
+    );
 }
