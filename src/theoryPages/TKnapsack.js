@@ -5,6 +5,8 @@ import "../css/Theory.css";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer.js";
 import kss1 from "../img/knapsack/kss1.png";
+import kss2 from "../img/knapsack/kss2.png";
+import kss3 from "../img/knapsack/kss3.png";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
@@ -73,28 +75,35 @@ export default function TKnapsack() {
                                         <p className="mUpM">Consider-<br />
                                             Knapsack weight capacity = W<br />
                                             Number of items, each with specific weights and values = n<br />
-                                            Step-01:<br />
+                                            <b>Step 1:</b><br />
                                             Draw a table with (n+1) rows and (W+1) columns.<br />
                                             Initialize the 0th row and 0th column with zeroes.<br />
-                                            Example:</p>
+                                            Example: Let's take 4 as our capacity, profit as (1,2,3,4) and weights as (3,1,4,2)</p>
 
-                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
-                                            <img className="im1 kim1" style={{ width: "55vw" }} src={kss1} alt="Knapsack Table"></img>
+                                        <div className="mUpM" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
+                                            <img className="im1 kim1" src={kss1} alt="Knapsack Table"></img>
                                         </div>
-                                        <p className="mUpM">Step-02:<br />
+                                        <p className="mUpM"><b>Step 2:</b><br />
                                             Fill the table row by row from top to bottom and left to right using this formula:<br />
                                             T(i, j) = max [ T(i-1, j), valuei + T(i-1, j – weighti) ]<br />
                                             T(i, j) gives the maximum value if we can take items 1 to i, and j is the weight limit.<br />
                                             Once the table is fully filled, the last cell gives the maximum possible profit for the knapsack.<br />
                                         </p>
+                                        <div className="mUpM" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
+                                            <img className="im1 kim1" src={kss2} alt="Knapsack Table"></img>
+                                        </div>
 
-                                        <p className="mUpM">Step-03:<br />
+                                        <p className="mUpM"><b>Step 3:</b><br />
                                             <ul>
                                                 <li>Examine the last column from bottom to top.</li>
                                                 <li>If the value differs from the entry immediately above it, that item should be included in the knapsack.</li>
                                                 <li>Repeat this until the necessary items are identified.</li>
+                                                <p>Here, In our problem we gat the <b>Maximum Profit</b> as <b>6</b></p>
                                             </ul>
                                         </p>
+                                        <div className="mUpM" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
+                                            <img className="im1 kim1" src={kss3} alt="Knapsack Table"></img>
+                                        </div>
                                     </div>
                                 </li>
 

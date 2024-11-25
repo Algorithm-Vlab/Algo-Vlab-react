@@ -94,7 +94,7 @@ export default function RabinkarpTheory() {
                                 <li>
                                     <div className="mUpL"></div>
                                     <p className="mUpM">
-                                        <b>Step 2: Parse the Text</b> <br />
+                                        <b>Parse the Text</b> <br />
                                         The algorithm slides the pattern over the text, comparing the hash values. If the hash values match, it performs a character-by-character comparison to check for an exact match of the pattern. If not, it moves to the next substring by updating the hash value.
                                     </p>
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
@@ -105,8 +105,8 @@ export default function RabinkarpTheory() {
                                 <li>
                                     <div className="mUpL"></div>
                                     <p className="mUpM">
-                                        <b>Step 3: If Match Found, Return the Index</b> <br />
-                                        If a match is found (i.e., the hash values and character comparisons are equal), the algorithm returns the index where the pattern starts in the text. If no match is found, the algorithm continues sliding through the text until all substrings are checked.
+                                        <b>If Match Found, Return the Index</b> <br />
+                                        If a match is found (i.e., the hash values and character comparisons are equal), the algorithm returns the index where the pattern starts in the text (here, we return index 1). If no match is found, the algorithm continues sliding through the text until all substrings are checked.
                                     </p>
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
                                         <img className="im1 kim1" src={rkp3} alt="Step 3: Match Found" />
