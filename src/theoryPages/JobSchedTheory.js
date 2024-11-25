@@ -73,49 +73,49 @@ export default function JobSchedTheory() {
                                             </ul>
                                         </p>
 
-                                        <p className="mUpM">Example</p>
+                                        <p className="mUpM"><b>Example</b></p>
                                         <p className="mUpM">Given the following jobs, deadlines, and profits:</p>
 
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1em" }}>
                                             <img className="im1 kim1" src={jss1} alt="Job Scheduling Example"></img>
                                         </div>
 
-                                        <p className="mUpM">Step 1: Sort jobs by profit.</p>
+                                        <p className="mUpM"><b>Step 1:</b> Sort jobs by profit.</p>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
                                             <img className="im1 kim1" src={jss2} alt="Sorted Jobs by Profit"></img>
                                         </div>
 
-                                        <p className="mUpM">Step 2: Draw a Gantt chart with maximum time equal to the highest deadline (5 in this case).</p>
+                                        <p className="mUpM"><b>Step 2:</b> Draw a Gantt chart with maximum time equal to the highest deadline (5 in this case).</p>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
                                             <img className="im1 kim1" src={jss3} alt="Gantt Chart"></img>
                                         </div>
 
-                                        <p className="mUpM">Step 3: Schedule Job J4 at its latest possible slot before the deadline (2).</p>
+                                        <p className="mUpM"><b>Step 3:</b> Schedule Job J4 at its latest possible slot before the deadline (2).</p>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
                                             <img className="im1 kim1"  src={jss4} alt="Job J4 Scheduled"></img>
                                         </div>
 
-                                        <p className="mUpM">Step 4: Schedule Job J1 at its deadline (5).</p>
+                                        <p className="mUpM"><b>Step 4:</b> Schedule Job J1 at its deadline (5).</p>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
                                             <img className="im1 kim1"  src={jss5} alt="Job J1 Scheduled"></img>
                                         </div>
 
-                                        <p className="mUpM">Step 5: Schedule Job J3 at the first available slot before its deadline (3).</p>
+                                        <p className="mUpM"><b>Step 5:</b> Schedule Job J3 at the first available slot before its deadline (3).</p>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
                                             <img className="im1 kim1"  src={jss6} alt="Job J3 Scheduled"></img>
                                         </div>
 
-                                        <p className="mUpM">Step 6: Schedule Job J5 before its deadline (4).</p>
+                                        <p className="mUpM"><b>Step 6:</b> Schedule Job J2 before its deadline (3).</p>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
                                             <img className="im1 kim1" src={jss7} alt="Job J5 Scheduled"></img>
                                         </div>
 
-                                        <p className="mUpM">Step 7: Schedule Job J2 before its deadline (3) in the first available slot.</p>
+                                        <p className="mUpM"><b>Step 7:</b> Schedule Job J5 before its deadline (4) in the available slot.</p>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
                                             <img className="im1 kim1" src={jss8} alt="Job J2 Scheduled"></img>
                                         </div>
 
-                                        <p className="mUpM">The maximum earned profit = 990 units.</p>
+                                        <p className="mUpM"><b>Maximum Earned Profit = 990 units.</b></p>
                                     </div>
                                 </li>
 
