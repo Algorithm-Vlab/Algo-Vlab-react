@@ -83,7 +83,7 @@ export default function FNQueens() {
             dateP: date
         }
         try {
-            await axios.post("http://localhost:5013/y/user/post/feedback", dataF, {
+            await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/post/feedback`, dataF, {
                 withCredentials: true
             }, config)
                 .then((data) => {
