@@ -4,7 +4,7 @@ import githubL from "../img/github.svg";
 import linkedinL from "../img/linkedin.svg";
 import instagramL from "../img/instagram.svg";
 import { Link } from "react-router-dom";
-import yashImg from "../img/yash.jpg";
+import yashImg from "../img/yash2.jpeg";
 import kushalImg from "../img/kushal.jpg";
 import dubeyImg from "../img/yashkumar.jpg";
 import profMD from "../img/profMD.jpg";
@@ -18,12 +18,18 @@ export default function AboutUs() {
             <b className="f2 mUpL">Developed by:</b>
             <div className="all_cards divf mUpS">
                 <motion.div id="iddev_card" class="dev_card divf"
-                    initial={{ scale: 0.8, opacity: 0}}
+                    initial={{ scale: 0.8, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.2 }}
                 >
-                    <b id="iddev_name" class="f1-5">Yash K Chauhan</b>
-                    <img src={yashImg} class="dev_img mUpS"></img>
+                    <b id="iddev_name" class="f1-5">Yash Chauhan</b>
+                    <Link
+                        to="https://yashchauhan.onrender.com"
+                        target="_blank"
+                    >
+                        <img src={yashImg} class="dev_img mUpS"></img>
+                    </Link>
+
                     <Link className="mUpS remL" to="mailto:chauhan.y@somaiya.edu">
                         <b class="f1-1 ">chauhan.y@somaiya.edu</b>
                     </Link>
@@ -38,8 +44,13 @@ export default function AboutUs() {
                     whileInView={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.2 }}
                 >
-                    <b id="iddev_name" class="f1-5">Yashkumar S Dubey</b>
-                    <img src={dubeyImg} class="dev_img mUpS"></img>
+                    <b id="iddev_name" class="f1-5">Yashkumar Dubey</b>
+                    <Link
+                        to="https://yashapro1.github.io/MyPortfolio/"
+                        target="_blank"
+                    >
+                        <img src={dubeyImg} class="dev_img mUpS"></img>
+                    </Link>
                     <Link className="mUpS remL" to="mailto:yashkumar.d@somaiya.edu">
                         <b class="f1-1 ">yashkumar.d@somaiya.edu</b>
                     </Link>
@@ -54,7 +65,7 @@ export default function AboutUs() {
                     whileInView={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.2 }}
                 >
-                    <b id="iddev_name" class="f1-5">Kushal C Harsora</b>
+                    <b id="iddev_name" class="f1-5">Kushal Harsora</b>
                     <img src={kushalImg} class="dev_img mUpS"></img>
                     <Link className="mUpS remL" to="mailto:kushal.h@somaiya.edu">
                         <b class="f1-1 ">kushal.h@somaiya.edu</b>

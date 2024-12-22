@@ -2,7 +2,7 @@ import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
 import "../css/Theory.css";
 import { animate, delay, motion } from "framer-motion";
-import Sorting1 from "../img/Sorting1.png";
+import Sorting1 from "../img/sorting.svg";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 

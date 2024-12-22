@@ -5,6 +5,7 @@ import { animate, delay, motion } from "framer-motion";
 import StrMatchImg from "../img/string-matching.webp";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import StringMatchSVG from "../img/string_match.svg"
 
 export default function StrMatch() {
     const navigate = useNavigate();
@@ -51,9 +52,9 @@ export default function StrMatch() {
                                 Consider the following example
                             </b>
                         </div>
-                        
+
                         <div className="divf mUpM">
-                            <img src={StrMatchImg} className="im2" />
+                            <img src={StringMatchSVG} className="im2" />
                         </div>
                         <p className="f1-5 mUpL">
                             <ul className="ols f1-3">

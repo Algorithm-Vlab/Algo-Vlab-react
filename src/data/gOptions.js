@@ -9,7 +9,6 @@ export const goptions = {
         hideEdgesOnDrag: false,
         hideEdgesOnZoom: false,
         hideNodesOnDrag: false,
-        // hover: true,
         hoverConnectedEdges: true,
         keyboard: {
             enabled: true,
@@ -28,7 +27,6 @@ export const goptions = {
     },
     physics: {
         stabilization: true,
-        // solver: "forceAtlas2Based",
         enabled: true,
     },
     layout: {
@@ -39,7 +37,6 @@ export const goptions = {
             enabled: false,
             levelSeparation: 150,
             nodeSpacing: 100,
-            // edgeSpacing: 150,
             treeSpacing: 100,
             blockShifting: true,
             edgeMinimization: true,

@@ -5,6 +5,7 @@ import { animate, delay, motion } from "framer-motion";
 import backImg from "../img/backtracking.webp";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import BacktrackingSVG from "../img/back_track.svg"
 
 export default function Backtracking() {
     const navigate = useNavigate();
@@ -67,7 +68,7 @@ export default function Backtracking() {
                                 You will first check the first box, if it does not contain the coin, you will have to close it and check the second box and so on until you find the coin.
                             </p>
                             <p className="mLeS  f1-3">
-                                This is what backtracking is, that is solving all sub-problems one by one in order to reach the best possible solution. 
+                                This is what backtracking is, that is solving all sub-problems one by one in order to reach the best possible solution.
                             </p>
                         </p>
                         <p className="f1-5 mUpL">
@@ -76,8 +77,8 @@ export default function Backtracking() {
                                 A space state tree is a tree representing all the possible states (solution or nonsolution) of the problem from the root as an initial state to the leaf as a terminal state.
                             </p>
                         </p>
-                        <div className="divf mUpM">
-                            <img src={backImg} className="im2" />
+                        <div className="divf mUpL">
+                            <img src={BacktrackingSVG} className="im2" />
                         </div>
                         <p className="f1-5 mUpL">
                             <b className="hightText">Applications of Backtracking Algorithm</b>
