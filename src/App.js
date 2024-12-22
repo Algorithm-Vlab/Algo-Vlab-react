@@ -7,7 +7,13 @@ import SDijkstra from "./simulators/SDijkstra";
 import SNQueens from "./simulators/SNqueens";
 import SKruskals from "./simulators/SKruskals";
 import SKnapsack from "./simulators/SKnapsack";
+<<<<<<< HEAD
+import Lcs from "./mainPages/Lcs";
 import TLcs from "./theoryPages/TLcs";
+import FLcs from "./feedback/FLcs";
+=======
+import TLcs from "./theoryPages/TLcs";
+>>>>>>> frontend
 import SRabinkarp from "./simulators/SRabinkarp";
 import Sorting from "./pages/Sorting";
 import Greedy from "./pages/Greedy";
@@ -17,15 +23,43 @@ import StrMatch from "./pages/StringM";
 import SInsertionSort from "./simulators/SInsertionSort";
 import SSelectionSort from "./simulators/SSelectionSort";
 import SBubbleSort from "./simulators/SBubbleSort";
+<<<<<<< HEAD
+import JobSched from "./mainPages/jobSched";
+import Dijkstra from "./mainPages/dijkstra";
+import Nqueens from "./mainPages/nqueens";
+import Kruskals from "./mainPages/kruskal";
+import Knapsack from "./mainPages/knapsack";
+import RabinK from "./mainPages/rabinK";
+import Insertion from "./mainPages/insertion";
+import ASelection from "./mainPages/selection";
+import Bubble from "./mainPages/bubble";
+=======
+>>>>>>> frontend
 import RabinkarpTheory from "./theoryPages/RabinkarpTheory";
 import NqueensTheory from "./theoryPages/NqueensTheory";
 import JobSchedTheory from "./theoryPages/JobSchedTheory";
 import TInsertionSort from "./theoryPages/TInsertionSort";
+<<<<<<< HEAD
+import TInsertS from "./theoryPages/TSelectS";
+=======
+>>>>>>> frontend
 import TSelectS from "./theoryPages/TSelectS";
 import TBubbleS from "./theoryPages/TBubbleS";
 import TKruskals from "./theoryPages/TKruskals";
 import TKnapsack from "./theoryPages/TKnapsack";
 import TDijkstra from "./theoryPages/Tdijkstra";
+<<<<<<< HEAD
+import FJobS from "./feedback/FJobS";
+import FDijkstra from "./feedback/FDijkstra";
+import FNQueens from "./feedback/FNQueens";
+import FKruskals from "./feedback/FKruskals";
+import FKnapsack from "./feedback/FKnapsack";
+import FRabin from "./feedback/FRabin";
+import FInsertion from "./feedback/FInsertionSort";
+import FSelection from "./feedback/FSelection";
+import FBubble from "./feedback/FBubble";
+=======
+>>>>>>> frontend
 import PageNotFound from "./components/NotFound";
 import ULogin from "./authentication/ULogin";
 import URegister from "./authentication/URegister";
@@ -37,7 +71,10 @@ import VAccount from "./components/verify/VAccount";
 import ComF from "./feedback/comF";
 import FPUser from "./components/Forgot-Password/FpUser";
 import ChangePassUser from "./components/Forgot-Password/changePUser";
+<<<<<<< HEAD
+=======
 import DAdmins from "./components/Admin/Dadmins";
+>>>>>>> frontend
 
 function App() {
   return (
@@ -50,7 +87,11 @@ function App() {
 
           {/* Authentication */}
           <Route exact path="/login" element={<ULogin />}></Route>
+<<<<<<< HEAD
+          <Route exact path="/register" element={<URegister />}></Route>
+=======
           <Route exact path="/register" element={<URegister userType="User" />}></Route>
+>>>>>>> frontend
 
           {/* pages for concept of algos */}
           <Route path="/sorting" element={<Sorting />}></Route>
@@ -116,12 +157,18 @@ function App() {
           {/* <Route path="/bubble/feedback" element={<FBubble />}></Route> */}
 
           <Route path="/user" element={<UserDash />}></Route>
+<<<<<<< HEAD
+          <Route path="/admin" element={<AdminDash />}></Route>
+          <Route path="/admin/user-details" element={<AUserDet />}></Route>
+          <Route path="/admin/feedbacks" element={<AFeedbacks />}></Route>
+=======
 
           <Route path={process.env.REACT_APP_ADMIN_LOGIN} element={<URegister userType="Admin" />}></Route>
           <Route path="/admin" element={<AdminDash />}></Route>
           <Route path="/admin/user-details" element={<AUserDet />}></Route>
           <Route path="/admin/feedbacks" element={<AFeedbacks />}></Route>
           <Route path="/admin/admins" element={<DAdmins />}></Route>
+>>>>>>> frontend
 
           <Route path="/login/forgot-password" element={<FPUser />}></Route>
 

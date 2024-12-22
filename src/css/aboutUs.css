@@ -49,7 +49,10 @@
     column-gap: 2rem;
     row-gap: 2rem;
     padding: 2rem;
+<<<<<<< HEAD
+=======
     overflow: hidden;
+>>>>>>> frontend
 }
 
 /* Developer Card */
@@ -75,9 +78,14 @@
     position: relative;
     /* transform: scale(1.05); */
     border: 0.2rem solid rgb(163, 21, 21);
+<<<<<<< HEAD
+    box-shadow: 0 0 0.4rem 0.01rem rgb(245, 71, 71);
+    z-index: 0;
+=======
     box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(245, 71, 71, 0.6);
     z-index: 0;
     /* box-shadow: 0 0 1rem 50rem rgba(212, 212, 212, 0.1); */
+>>>>>>> frontend
     color: rgb(124, 0, 0) !important;
     transform: translateY(-0.3rem) !important;
 }
@@ -92,7 +100,6 @@
     /* border: 0.2rem solid rgba(202, 52, 52, 0.651); */
     margin-top: 0.8rem;
     margin-bottom: 1.2rem;
-    box-shadow: 0 0 0.8rem 0.2rem rgb(236, 236, 236);
 }
 
 .dev_card_social {

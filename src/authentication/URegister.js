@@ -1,10 +1,21 @@
 import axios from "axios";
+<<<<<<< HEAD
+import { useState } from "react"
+=======
 import { useState } from "react";
+>>>>>>> frontend
 import { useNavigate } from "react-router-dom";
 import { AppState } from "../context/appContext";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+<<<<<<< HEAD
+
+export default function URegister() {
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
+    const [cpassword, setCPassword] = useState();
+=======
 import Swal from "sweetalert2";
 
 export default function URegister(props) {
@@ -12,6 +23,7 @@ export default function URegister(props) {
     const [password, setPassword] = useState();
     const [cpassword, setCPassword] = useState();
     const [secretK, setSecretK] = useState();
+>>>>>>> frontend
     const [uemail, setEmail] = useState();
     const [uName, setUName] = useState();
     const [uInst, setUInst] = useState();
@@ -27,6 +39,12 @@ export default function URegister(props) {
     async function doRegister(uData, uType) {
         const config = {
             headers: {
+<<<<<<< HEAD
+                "Content-type": "application/json"
+            }
+        }
+        if (!uData.email || !uData.password || !uData.name || !uData.username || !uData.institute || !uData.department || !uData.designation) {
+=======
                 "Content-type": "application/json",
             },
         };
@@ -39,6 +57,7 @@ export default function URegister(props) {
             !uData.department ||
             !uData.designation
         ) {
+>>>>>>> frontend
             window.alert("Please fill all details");
             return;
         }
@@ -47,6 +66,28 @@ export default function URegister(props) {
             return;
         }
         try {
+<<<<<<< HEAD
+            await axios.post("http://localhost:5013/y/" + uType + "/register", uData, {
+                withCredentials: true
+            }, config)
+                .then((data) => {
+                    retId("registerB").setAttribute("disabled", "disabled");
+                    console.clear();
+                    window.alert(data.data);
+                    navigate("/login");
+                })
+                .catch((err) => {
+                    console.clear();
+                    const errs = err.response.data.error;
+                    for (var i = 0; i < errs.length; i++) {
+                        window.alert(errs[i]);
+                    }
+                })
+        }
+        catch (err) {
+            console.clear();
+            window.alert(err);
+=======
             retId("registerB").setAttribute("disabled", "disabled");
             await axios
                 .post(
@@ -117,20 +158,34 @@ export default function URegister(props) {
                 text: "Some error occurred, Please try again!",
                 confirmButtonColor: "rgb(185,28,28)",
             });
+>>>>>>> frontend
         }
     }
 
     function subForm(e, tId) {
+<<<<<<< HEAD
+        var f = document.getElementsByTagName('form')[0];
+        if (f.reportValidity()) {
+            e.preventDefault();
+            doRegister({
+=======
         var f = document.getElementsByTagName("form")[0];
         if (f.reportValidity()) {
             e.preventDefault();
             var uData = {
+>>>>>>> frontend
                 email: uemail,
                 password: password,
                 name: uName,
                 username: username,
                 institute: uInst,
                 department: uDept,
+<<<<<<< HEAD
+                designation: uDesig
+            }, "user");
+        }
+        else {
+=======
                 designation: uDesig,
             };
             if (props.userType === "Admin") {
@@ -138,12 +193,16 @@ export default function URegister(props) {
             }
             doRegister(uData, props.userType.toLowerCase());
         } else {
+>>>>>>> frontend
             e.preventDefault();
             return;
         }
     }
 
     useEffect(() => {
+<<<<<<< HEAD
+        if ((!uemail || !password || !uName || !username || !uDesig || !uDept || !uInst || !cpassword) && retId("registerB")) {
+=======
         if (props.userType === "Admin" && !secretK) {
             retId("registerB").setAttribute("disabled", "disabled");
         }
@@ -158,6 +217,7 @@ export default function URegister(props) {
                 !cpassword) &&
             retId("registerB")
         ) {
+>>>>>>> frontend
             retId("registerB").setAttribute("disabled", "disabled");
         }
     }, [uemail, password, uName, username, uDesig, uDept, uInst, cpassword]);
@@ -170,12 +230,21 @@ export default function URegister(props) {
             retId(idn).classList.remove("valid");
             retId(idn).classList.add("notValid");
             retId(lId).setAttribute("disabled", "disabled");
+<<<<<<< HEAD
+        }
+        else {
+=======
         } else {
+>>>>>>> frontend
             retId(idn).classList.add("valid");
             retId(idn).classList.remove("notValid");
             retId(lId).removeAttribute("disabled");
         }
+<<<<<<< HEAD
+    }
+=======
     };
+>>>>>>> frontend
 
     useEffect(() => {
         if (uD) {
@@ -193,6 +262,22 @@ export default function URegister(props) {
             <div className="fullbgHOME divf loginBG">
                 <div className="divf loginCard lpd0 registerMW">
                     <div className="lOptions">
+<<<<<<< HEAD
+                        <button id="studentS"
+                            className="wFullBL"
+                        >Student</button>
+                    </div>
+                    {/* <div id="adminForm"> */}
+                    <form className="divf logC " id="aForm">
+                        <p className="f2"><b>Registration Form</b></p>
+                        <div className="inRow">
+                            <div className="takeInD">
+                                <input id="uName" required pattern="[a-zA-Z]+" onChange={(e) => { setUName(e.target.value); handleCh(e, "registerB") }} placeholder="Name" className="lIns rIns"></input>
+                                <b className="hideL">Name</b>
+                            </div>
+                            <div className="takeInD">
+                                <input id="uEmail" required pattern="[^ @]*@[^ @]*" type="email" onChange={(e) => { setEmail(e.target.value); handleCh(e, "registerB") }} placeholder="Email" className="lIns rIns"></input>
+=======
                         <button id="studentS" className="wFullBL">
                             {props.userType}
                         </button>
@@ -228,7 +313,7 @@ export default function URegister(props) {
                                 <input
                                     id="uName"
                                     required
-                                    pattern="^[a-zA-Z]+( [a-zA-Z]+)*$"
+                                    pattern="[a-zA-Z]+"
                                     onChange={(e) => {
                                         setUName(e.target.value);
                                         handleCh(e, "registerB");
@@ -251,11 +336,19 @@ export default function URegister(props) {
                                     placeholder="Email"
                                     className="lIns rIns"
                                 ></input>
+>>>>>>> frontend
                                 <b className="hideL">Email</b>
                             </div>
                         </div>
                         <div className="inRow">
                             <div className="takeInD">
+<<<<<<< HEAD
+                                <input id="uUsername" pattern="[a-zA-Z0-9_]+" required onChange={(e) => { setUsername(e.target.value); handleCh(e, "registerB") }} placeholder="Username" className="lIns rIns"></input>
+                                <b className="hideL">Username</b>
+                            </div>
+                            <div className="takeInD">
+                                <input id="uInstit" pattern="[a-zA-Z]+" required onChange={(e) => { setUInst(e.target.value); handleCh(e, "registerB") }} placeholder="Institute" className="lIns rIns"></input>
+=======
                                 <input
                                     id="uUsername"
                                     pattern="[a-zA-Z0-9_]+"
@@ -272,7 +365,7 @@ export default function URegister(props) {
                             <div className="takeInD">
                                 <input
                                     id="uInstit"
-                                    pattern="^[a-zA-Z]+( [a-zA-Z]+)*$"
+                                    pattern="[a-zA-Z]+"
                                     required
                                     onChange={(e) => {
                                         setUInst(e.target.value);
@@ -281,14 +374,23 @@ export default function URegister(props) {
                                     placeholder="Institute"
                                     className="lIns rIns"
                                 ></input>
+>>>>>>> frontend
                                 <b className="hideL">Institute</b>
                             </div>
                         </div>
                         <div className="inRow">
                             <div className="takeInD">
+<<<<<<< HEAD
+                                <input id="uDepartment" pattern="[a-zA-Z]+" required onChange={(e) => { setUDept(e.target.value); handleCh(e, "registerB") }} placeholder="Department" className="lIns rIns"></input>
+                                <b className="hideL">Department</b>
+                            </div>
+                            <div className="takeInD">
+                                <select id="uDesig" className="lIns rIns" onChange={({ target: { value } }) => { setUDesig(value) }}>
+                                    <option selected="true" value="Student">Student</option>
+=======
                                 <input
                                     id="uDepartment"
-                                    pattern="^[a-zA-Z]+( [a-zA-Z]+)*$"
+                                    pattern="[a-zA-Z]+"
                                     required
                                     onChange={(e) => {
                                         setUDept(e.target.value);
@@ -310,6 +412,7 @@ export default function URegister(props) {
                                     <option selected="true" value="Student">
                                         Student
                                     </option>
+>>>>>>> frontend
                                     <option value="Faculty">Faculty</option>
                                     <option value="Other">Other</option>
                                 </select>
@@ -319,6 +422,35 @@ export default function URegister(props) {
                         </div>
                         <div className="inRow">
                             <div className="takeInD">
+<<<<<<< HEAD
+                                <input id="uPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required type="password" onChange={(e) => { setPassword(e.target.value); handleCh(e, "registerB") }} placeholder="Password" className="lIns rIns"></input>
+                                <b className="hideL">Password</b>
+                            </div>
+                            <div className="takeInD">
+                                <input id="uCPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required type="password" onChange={(e) => { setCPassword(e.target.value); handleCh(e, "registerB") }} placeholder="Password" className="lIns rIns"></input>
+                                <b className="hideL">Confirm Pass</b>
+                            </div>
+
+                        </div>
+                        <div className="inRow">
+                            <p className="pComment">Password must contain atleast one Uppercase/Lowercase letters and digit, and atleast 8 letters long</p>
+                        </div>
+
+                        <button type="submit" id="registerB" className="goLogB" onClick={(e) => { subForm(e, e.target.id) }}>Register</button>
+                        {/* <button className="bNone">Don't have an Account?</button> */}
+                    </form>
+                    {/* </div> */}
+                </div>
+            </div>
+            <Footer />
+
+
+
+
+        </>
+    )
+}
+=======
                                 <input
                                     id="uPassword"
                                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -373,3 +505,4 @@ export default function URegister(props) {
         </>
     );
 }
+>>>>>>> frontend

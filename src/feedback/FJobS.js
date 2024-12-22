@@ -5,17 +5,11 @@ import { expR } from "../data/expRoutes";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
 import '../css/progressbar.css';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../components/Footer";
-import PageNotFound from "../components/NotFound";
-<<<<<<< HEAD
-=======
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
->>>>>>> frontend
 
-export default function ComF() {
+export default function FJobS() {
 
     const cd = new Date();
     const [date, setDate] = useState(
@@ -34,58 +28,13 @@ export default function ComF() {
     const [currE, setCE] = cuE;
     const { userD } = AppState();
     const [uD, setUD] = userD;
-    const [algoName, setAlgN] = useState();
+    const algoName = expR[currE[0]][currE[1]][0];
     const [index, setIndex] = useState(1);
     const navigate = useNavigate();
 
-<<<<<<< HEAD
-=======
-    const notifyS = () => toast.success('Feedback Posted Successfully!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "colored",
-    });
-
-    function notifyE(errM) {
-        toast.error(errM, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: "colored",
-        });
-    }
-
->>>>>>> frontend
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [index])
-
-    const pAlgN = useParams();
-
-    useEffect(() => {
-        var found = false;
-        for (var i = 0; i < 4; i++) {
-            for (var j = 0; j < expR[i].length; j++) {
-                if (pAlgN.algo === expR[i][j][1]) {
-                    setAlgN(expR[i][j][0]);
-                    found = true;
-                    break;
-                }
-            }
-        }
-        if (!found) {
-            // navigate("/");
-        }
-    }, []);
 
     function nextbtn() {
         if (index >= 1) {
@@ -119,17 +68,9 @@ export default function ComF() {
                 "Content-type": "application/json"
             }
         }
-<<<<<<< HEAD
-=======
-        if (!algoName || !uD.institute || !uD.department || !uD.designation || !Quest1 || !Quest2 || !Quest3 || !Quest4 || !Quest5 || !Quest6 || !Quest7 || !date) {
-            console.log("Fill all details!");
-            notifyE("Please fill all fields!");
-            return;
-        }
->>>>>>> frontend
         const dataF = {
             algoName,
-            institute: uD.institute,
+            institute: uD.institution,
             department: uD.department,
             designation: uD.designation,
             q1: Quest1,
@@ -142,26 +83,15 @@ export default function ComF() {
             dateP: date
         }
         try {
-<<<<<<< HEAD
             await axios.post("http://localhost:5013/y/user/post/feedback", dataF, {
-=======
-            await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/post/feedback`, dataF, {
->>>>>>> frontend
                 withCredentials: true
             }, config)
                 .then((data) => {
-                    console.clear();
-<<<<<<< HEAD
                     window.alert(data.data);
-=======
-                    // window.alert(data.data);
-                    notifyS();
->>>>>>> frontend
+
                     reloadStates();
                 })
                 .catch((err) => {
-                    console.clear();
-<<<<<<< HEAD
                     const errs = err.response.data.error;
                     for (var i = 0; i < errs.length; i++) {
                         window.alert(errs[i]);
@@ -169,20 +99,11 @@ export default function ComF() {
                 })
         } catch (error) {
             window.alert(error);
-=======
-                    notifyE(err.response.data.error[0]);
-                })
-        } catch (error) {
-            console.clear();
-            notifyE("Some error Occurred!");
->>>>>>> frontend
         }
     }
-
     function naviTo(locName) {
         navigate("/" + locName);
     }
-
     function formm(step) {
 
 
@@ -450,11 +371,7 @@ export default function ComF() {
                         {(Quest1 && Quest2 && Quest3 && Quest4 && Quest5) ?
                             <div className="formfooter">
                                 <button className="spec prev" disabled={index === 1} onClick={prevbtn} >Previous</button>
-<<<<<<< HEAD
                                 <button className="spec next" type='submit' onClick={submitFeed}>Submit</button>
-=======
-                                <button className="spec next" onClick={submitFeed}>Submit</button>
->>>>>>> frontend
                             </div>
                             :
                             <>
@@ -477,42 +394,29 @@ export default function ComF() {
     }
     return (
         <>
-            {
-                algoName ?
+            <Navbar />
+            <FNavbar />
+            {uD ?
+                <div className="fullbg">
+                    <div
+                        className="feedDiv"
+                    >
+                        <Multiprogressbar steps={index} />
+                        <b style={{ fontSize: "2rem", marginBottom: "1.5rem", marginTop: "2rem", justifySelf: "center", alignSelf: "center" }} className="hightText">
+                            {algoName} Feedback
+                        </b>
+                        {formm(index)}
 
 
-                    <>
-                        < Navbar />
-                        <FNavbar />
-                        {
-                            uD ?
-                                <div className="fullbg">
-<<<<<<< HEAD
-=======
-                                    <ToastContainer />
->>>>>>> frontend
-                                    <div
-                                        className="feedDiv"
-                                    >
-                                        <Multiprogressbar steps={index} />
-                                        <b style={{ fontSize: "2rem", marginBottom: "1.5rem", marginTop: "2rem", justifySelf: "center", alignSelf: "center" }} className="hightText">
-                                            {algoName} Feedback
-                                        </b>
-                                        {formm(index)}
+                    </div>
 
-
-                                    </div>
-
-                                </div>
-                                :
-                                <div className="fullbg">
-                                    <h1>Please Login to Fill the feedback!</h1>
-                                </div>
-                        }
-                        <Footer />
-                    </>
-                    : <PageNotFound />
+                </div>
+                :
+                <div className="fullbg">
+                    <h1>Please Login to Fill the feedback!</h1>
+                </div>
             }
+            <Footer />
         </>
     )
 }

@@ -28,7 +28,11 @@
     display: flex;
     position: relative;
     overflow: auto;
+<<<<<<< HEAD
+    justify-content: baseline;
+=======
     justify-content: center;
+>>>>>>> frontend
     align-items: baseline;
     height: 100%;
     width: 100%;
@@ -39,12 +43,16 @@
     max-height: calc(100vh - (5.5rem));
 }
 
+<<<<<<< HEAD
+.feedT {
+=======
 .jusLeft {
     justify-content: left !important;
 }
 
 .feedT,
 .adTable {
+>>>>>>> frontend
     background: rgb(255, 255, 255);
     margin: 1rem 0;
     font-size: 1.2rem;
@@ -52,23 +60,35 @@
     text-align: center;
 }
 
+<<<<<<< HEAD
+.feedT th {
+=======
 .feedT th,
 .adTable th {
+>>>>>>> frontend
     position: sticky;
     top: 0;
     z-index: 10;
     font-weight: 550;
 }
 
+<<<<<<< HEAD
+.feedT td {
+=======
 .feedT td,
 .adTable td {
+>>>>>>> frontend
     font-weight: 600;
 }
 
 .feedT th,
+<<<<<<< HEAD
+.feedT td {
+=======
 .feedT td,
 .adTableth th,
 .adTable td {
+>>>>>>> frontend
     padding: 0.4rem;
     max-width: 10rem;
 }
@@ -145,11 +165,14 @@
     }
 }
 
+<<<<<<< HEAD
+=======
 @media (max-width: 2000px) {
     #feedbackT{
         justify-content: left !important;
     }
 }
+>>>>>>> frontend
 
 @media (max-width: 600px) {
     .AuserD {

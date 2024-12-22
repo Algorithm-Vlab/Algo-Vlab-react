@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> frontend
 import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
@@ -28,14 +31,23 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             var uDD;
+<<<<<<< HEAD
+            await axios.get("http://localhost:5013/y/user/g", {
+=======
+            // console.log(process.env.REACT_APP_BACKEND_DOMAIN);
             await axios.get(process.env.REACT_APP_BACKEND_DOMAIN + "/y/user/g", {
+>>>>>>> frontend
                 withCredentials: true
             })
                 .then((data) => {
                     console.clear();
                     setUData(data.data);
                     uDD = data.data;
+<<<<<<< HEAD
+                    console.log(uDD.isAdmin ? "Hello Admin": "Hello User");
+=======
                     console.log(uDD.isAdmin ? "Hello Admin" : "Hello User");
+>>>>>>> frontend
                 })
                 .catch((err) => {
                     setUData(false);

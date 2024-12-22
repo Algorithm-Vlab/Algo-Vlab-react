@@ -21,7 +21,11 @@ export default function AFeedbacks() {
     useEffect(() => {
         const fetchFeeds = async () => {
             await timer(200);
+<<<<<<< HEAD
+            await axios.get("http://localhost:5013/y/admin/dash", {
+=======
             await axios.get(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/admin/dash`, {
+>>>>>>> frontend
                 withCredentials: true
             })
                 .then((data) => {
@@ -43,10 +47,17 @@ export default function AFeedbacks() {
 
     const downEx = async () => {
         try {
+<<<<<<< HEAD
+            const authA = await axios.get("http://localhost:5013/y/admin/auth", { withCredentials: true })
+                .then(async (data) => {
+                    console.clear();
+                    const res = await fetch("http://localhost:5013/y/admin/exportE")
+=======
             const authA = await axios.get(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/admin/auth`, { withCredentials: true })
                 .then(async (data) => {
                     console.clear();
                     const res = await fetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/admin/exportE`)
+>>>>>>> frontend
                     const blob = await res.blob();
                     download(blob, 'exportd.xlsx');
                 })
@@ -78,7 +89,11 @@ export default function AFeedbacks() {
                             <>
                                 <p className="f1-5 mUpM"><b>Total Feedbacks: {fData.length}</b></p>
                                 <button className="spec floR mUpL" onClick={() => { downEx() }}>Download Excel</button>
+<<<<<<< HEAD
+                                <div className="ftContainer mUpM">
+=======
                                 <div id="feedbackT" className="ftContainer mUpM">
+>>>>>>> frontend
                                     <table className="feedT">
                                         <thead>
                                             <tr>

@@ -8,7 +8,11 @@ import "../../css/dash.css";
 import Footer from "../Footer";
 import download from "downloadjs";
 
+<<<<<<< HEAD
+export default function AdminDash() {
+=======
 export default function DAdmins() {
+>>>>>>> frontend
     const { cuE, algoT, userD } = AppState();
     const [currE, setCE] = cuE;
     const [algoTC, setAlgoT] = algoT;

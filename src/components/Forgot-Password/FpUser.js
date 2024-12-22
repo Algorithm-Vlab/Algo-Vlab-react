@@ -7,8 +7,11 @@ import "../../css/Theory.css";
 import "../../css/login.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+<<<<<<< HEAD
+=======
 import Swal from "sweetalert2";
 import { ErrNoti, SuccNoti } from "../../funcs/swals";
+>>>>>>> frontend
 
 export default function FPUser() {
     const [uemail, setuemail] = useState();
@@ -36,12 +39,32 @@ export default function FPUser() {
             return;
         }
         try {
+<<<<<<< HEAD
+            await axios.post("http://localhost:5013/y/user/auth/account/login/forgot-password/send-mail", uData, {
+=======
             retId("changePL").setAttribute("disabled", "disabled");
             await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/auth/account/login/forgot-password/send-mail`, uData, {
+>>>>>>> frontend
                 withCredentials: true
             }, config)
                 .then((data) => {
                     console.clear();
+<<<<<<< HEAD
+                    window.alert("Link has been sent to your email!");
+                    navigate("/login");
+                })
+                .catch((err) => {
+                    console.clear();
+                    const errs = err.response.data.error;
+                    for (var i = 0; i < errs.length; i++) {
+                        window.alert(errs[i]);
+                    }
+                })
+        }
+        catch (err) {
+            console.clear();
+            window.alert(err);
+=======
                     const doN = async () => {
                         const resultS = await SuccNoti({ title: "Link has been sent to your email!", message: "Please check your inbox!" })
                         if (resultS.isConfirmed) {
@@ -68,6 +91,7 @@ export default function FPUser() {
             retId("changePL").removeAttribute("disabled");
             console.clear();
             ErrNoti({ errMessage: "Some error occurred, Please try again!" })
+>>>>>>> frontend
         }
     }
 
@@ -121,14 +145,21 @@ export default function FPUser() {
                     </div>
                     <div id="userForm">
                         <form className="divf logC" id="uForm">
+<<<<<<< HEAD
+                            <p className="f1-5 wLogin"><b>Forgot Password? Enter email id, and change the password from the link you receive in your mailbox!</b></p>
+=======
                             <p className="f1-5 wLogin"><b>Forgot Password? Enter email id</b></p>
+>>>>>>> frontend
                             <div className="takeInD" id="userI1">
                                 <input required pattern="[^ @]*@[^ @]*" value={uemail} placeholder="email" type="email" id="iduemail" className="lIns" onChange={(e) => { setuemail(e.target.value); }} ></input>
                                 <b className="hideL">email</b>
                             </div>
+<<<<<<< HEAD
+=======
                             <div>
                                 <p className="wLogin"><b>You will receive a link in your mailbox for changing your password</b></p>
                             </div>
+>>>>>>> frontend
                             <button type="submit" id="changePL" className="goLogB fpBut" onClick={(e) => { subForm(e, e.target.id) }}>Send me a Mail</button>
                         </form>
                     </div>

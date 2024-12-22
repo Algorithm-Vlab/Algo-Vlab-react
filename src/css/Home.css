@@ -28,7 +28,6 @@
     user-select: none;
     /* Standard */
     overflow-wrap: break-word;
-    scroll-behavior: smooth;
 
 }
 
@@ -45,6 +44,8 @@ body {
 
 }
 
+<<<<<<< HEAD
+=======
 img {
     user-drag: none;
     user-select: none;
@@ -54,6 +55,7 @@ img {
     -ms-user-select: none;
 }
 
+>>>>>>> frontend
 ::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
@@ -916,6 +918,19 @@ input:focus {
 
 
 @media (max-width: 700px) {
+<<<<<<< HEAD
+    /* .title {
+        font-size: 2rem !important;
+    } */
+
+    .fnav * {
+        /* display: flex; */
+        /* flex-direction: column; */
+        font-size: 1.2rem !important;
+        /* gap: 0.3rem; */
+    }
+=======
+>>>>>>> frontend
 
     .stepCard {
         font-size: 1rem !important;
@@ -947,6 +962,15 @@ input:focus {
 }
 
 @media (max-width: 400px) {
+<<<<<<< HEAD
+    .title {
+        font-size: 1.5rem !important;
+    }
+
+    .fnav * {
+        font-size: 1rem !important;
+    }
+=======
     /* .title {
         font-size: 1.5rem !important;
     } */
@@ -954,6 +978,7 @@ input:focus {
     /* .fnav * {
         font-size: 1rem !important;
     } */
+>>>>>>> frontend
 
     .stepCard {
         font-size: 0.8rem !important;
