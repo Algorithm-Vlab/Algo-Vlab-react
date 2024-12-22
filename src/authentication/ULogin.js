@@ -79,17 +79,17 @@ export default function ULogin() {
             em = aEmail;
             pa = aPassword;
         }
-        if (f.reportValidity()) {
-            e.preventDefault();
-            doLogin({
-                email: em,
-                password: pa,
-            }, uType);
-        }
-        else {
-            e.preventDefault();
-            return;
-        }
+        // if (f.reportValidity()) {
+        e.preventDefault();
+        doLogin({
+            email: em,
+            password: pa,
+        }, uType);
+        // }
+        // else {
+        //     e.preventDefault();
+        //     return;
+        // }
     }
 
     useEffect(() => {

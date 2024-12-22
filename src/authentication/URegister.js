@@ -228,7 +228,7 @@ export default function URegister(props) {
                                 <input
                                     id="uName"
                                     required
-                                    pattern="^[a-zA-Z]+( [a-zA-Z]+)*$"
+                                    pattern="[a-zA-Z]+"
                                     onChange={(e) => {
                                         setUName(e.target.value);
                                         handleCh(e, "registerB");
@@ -272,7 +272,7 @@ export default function URegister(props) {
                             <div className="takeInD">
                                 <input
                                     id="uInstit"
-                                    pattern="^[a-zA-Z]+( [a-zA-Z]+)*$"
+                                    pattern="[a-zA-Z]+"
                                     required
                                     onChange={(e) => {
                                         setUInst(e.target.value);
@@ -288,7 +288,7 @@ export default function URegister(props) {
                             <div className="takeInD">
                                 <input
                                     id="uDepartment"
-                                    pattern="^[a-zA-Z]+( [a-zA-Z]+)*$"
+                                    pattern="[a-zA-Z]+"
                                     required
                                     onChange={(e) => {
                                         setUDept(e.target.value);
