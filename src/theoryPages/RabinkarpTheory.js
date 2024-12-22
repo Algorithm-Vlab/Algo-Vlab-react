@@ -4,22 +4,20 @@ import Navbar from "../components/Navbar";
 import "../css/Theory.css";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer.js";
-import rkp1 from "../img/rabinkarp/rkp1.jpeg"
-import rkp2 from "../img/rabinkarp/rkp2.jpeg"
-import rkp3 from "../img/rabinkarp/rkp3.jpeg"
+import rkp1 from "../img/rabinkarp/rkp1.png";
+import rkp2 from "../img/rabinkarp/rkp2.png";
+import rkp3 from "../img/rabinkarp/rkp3.png";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
 export default function RabinkarpTheory() {
-
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
-    }
+    };
 
     const { cuE, algoT } = AppState();
-
     const [currE, setCE] = cuE;
 
     return (
@@ -35,100 +33,100 @@ export default function RabinkarpTheory() {
                         transition={{ duration: 0.3 }}
                     >
                         <p className="f1-5 mUpL">
-                            <b className="hightText1">String Maching Algorithms</b>have greatly influenced computer science and play an essential role in various real-world problems. It helps in performing time-efficient tasks in multiple domains. These algorithms are useful in the case of searching a string within another string.
+                            <b className="hightText1">String Matching Algorithms</b> have greatly influenced computer science and play an essential role in various real-world problems. These algorithms help perform time-efficient tasks in multiple domains, especially for searching a string within another string.
                         </p>
                         <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
-                        <p className="mUpM f1-5 hightText"><b>Algorithm for Rabinkarp</b></p>
+                        <p className="mUpM f1-5 hightText"><b>Algorithm for Rabin-Karp</b></p>
                         <div className="algorithm mUpM">
                             <p>
-                                Step 1. n ← length [T] <br></br>
-                                Step 2. m ← length [P] <br></br>
-                                Step 3. h ← d m-1 mod q <br></br>
-                                Step 4. p ← 0 <br></br>
-                                Step 5. t 0 ← 0 <br></br>
-                                Step 6. for i ← 1 to m <br></br>
-                                Step 7. do p ← (dp + P[i]) mod q <br></br>
-                                Step 8. t 0 ← (dt 0 +T [i]) mod q <br></br>
-                                Step 9. for s ← 0 to n-m <br></br>
-                                Step 10. do if p = t s <br></br>
-                                Step 11. then if P [1.....m] = T [s+1.....s + m] <br></br>
-                                Step 12. then &quot;Pattern occurs with shift&quot; s <br />
-                                Step 13. If s &lt; n-m<br />
-                                Step 14. then t s+1 ← (d (t s -T [s+1]h)+T [s+m+1])mod q <br />
-
+                                Step 1: n ← length [T] <br />
+                                Step 2: m ← length [P] <br />
+                                Step 3: h ← d^(m-1) mod q <br />
+                                Step 4: p ← 0 <br />
+                                Step 5: t₀ ← 0 <br />
+                                Step 6: for i ← 1 to m <br />
+                                Step 7: do p ← (dp + P[i]) mod q <br />
+                                Step 8: t₀ ← (dt₀ + T[i]) mod q <br />
+                                Step 9: for s ← 0 to n-m <br />
+                                Step 10: do if p = tₛ <br />
+                                Step 11: then if P[1.....m] = T[s+1.....s + m] <br />
+                                Step 12: then "Pattern occurs with shift" s <br />
+                                Step 13: If s &lt; n-m <br />
+                                Step 14: then tₛ₊₁ ← (d(tₛ - T[s+1]h) + T[s+m+1]) mod q <br />
                             </p>
                         </div>
+
                         <p className="f1-5 mUpL">
                             <b className="hightText">Theory</b>
                             <ol className="ols mUpS f1-3">
                                 <li>
                                     <div className="mUpL"></div>
+                                    
+                                    <p className="mUpM">Comparing numbers is both faster and more efficient than comparing strings. The Rabin-Karp algorithm simplifies the process by converting strings into numerical representations through hashing.</p>
+                                <p className="mUpM">
+                                    The algorithm computes a hash value for the pattern and for each M-length substring of the text. If the hash values don't match, it quickly moves to the next substring. However, if the hash values are the same, the algorithm performs a detailed comparison between the pattern and the current substring.
+                                </p>
 
-                                    <p className="mUpM">Comparing numbers is easier and cheaper than comparing strings. Rabin Karp
-                                        algorithm represents strings in numbers.</p>
+                                <div className="f1">
                                     <p className="mUpM">
-                                        This algorithm calculates a hash value
-                                        for the pattern, as well as for each M-character sub-sequences of text to be
-                                        compared. If the hash values are unequal, the algorithm will determine the hash
-                                        value for next M-character sequence. If the hash values are equal, the algorithm
-                                        will analyze the pattern and the M-character sequence. </p>
-
-                                    <div className="f1">
-                                        <p className="mUpM">
-                                            In this way, there is only
-                                            one comparison per text subsequence, and character matching is only required
-                                            when the hash values match. </p>
+                                        This approach ensures that only one comparison is made per text substring, and character-by-character matching is done only when the hash values match. This saves computational time and resources.
+                                    </p>
                                         {/* <img className="navImg" src={Fst2}></img> */}
                                         <p className="mUpM">rabinkarp/
                                             Means if the hash values match then only it starts
                                             matching individual characters.</p>
-
-                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }} >
-
-                                            <img className="navImg" style={{ width: "55vw" }} src={rkp1}></img>
-                                        </div>
-                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }} >
-
-                                            <img className="navImg" style={{ width: "55vw" }} src={rkp2}></img>
-                                        </div>
-                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }} >
-
-                                            <img className="navImg" style={{ width: "55vw" }} src={rkp3}></img>
-                                        </div>
-
+                                            </div>
+                                            <b className="hightText">Example</b>
+                                    <div className="mUpL">
+                                        <b className="f1-3">
+                                            Let's say we have this Example of "HELLO" and "ELL":
+                                        </b>
                                     </div>
-
-
-
+                                    <p className="mUpM">
+                                        <b>Step 1: Choose Two Strings</b> <br />
+                                        Begin by choosing the two strings, the pattern `P` and the text `T`. These are the two inputs to the algorithm, and the goal is to find the pattern `P` in the text `T`. In this step, the algorithm computes the hash values of the pattern and the first `m`-length substring of the text.
+                                    </p>
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
+                                        <img className="im1 kim1" src={rkp1} alt="Step 1: Choosing Strings" />
+                                    </div>
                                 </li>
 
                                 <li>
                                     <div className="mUpL"></div>
+                                    <p className="mUpM">
+                                        <b>Parse the Text</b> <br />
+                                        The algorithm slides the pattern over the text, comparing the hash values. If the hash values match, it performs a character-by-character comparison to check for an exact match of the pattern. If not, it moves to the next substring by updating the hash value.
+                                    </p>
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
+                                        <img className="im1 kim1" src={rkp2} alt="Step 2: Parsing Text" />
+                                    </div>
+                                </li>
+
+                                <li>
                                     <div className="mUpL"></div>
-                                    <b>Time Complexity</b>
-                                    <p className="mUpM">The average and best-case running time of the Rabin-Karp algorithm is O(n+m),
-                                        but its worst-case time is O(nm). The worst case of the Rabin-Karp algorithm
-                                        occurs when all characters of pattern and text are the same as the hash values of
-                                        all the substrings of txt match with the hash value of pattern. Also worst case can
-                                        happen when prime number used for hashing is very small.</p>
-
-
-
+                                    <p className="mUpM">
+                                        <b>If Match Found, Return the Index</b> <br />
+                                        If a match is found (i.e., the hash values and character comparisons are equal), the algorithm returns the index where the pattern starts in the text (here, we return index 1). If no match is found, the algorithm continues sliding through the text until all substrings are checked.
+                                    </p>
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
+                                        <img className="im1 kim1" src={rkp3} alt="Step 3: Match Found" />
+                                    </div>
                                 </li>
                             </ol>
-
                         </p>
+
                         <p className="f1-5 mUpL">
-                            <b className="hightText">Applications of Rabinkarp Algorithm</b>
+                            <b className="hightText">Time Complexity</b>
+                            <p className="ols mUpS f1-3">
+                                The average and best-case running time of the Rabin-Karp algorithm is O(n+m), but its worst-case time is O(nm). The worst case occurs when the hash values for all substrings match but the strings themselves are not the same, causing the algorithm to perform character-by-character comparison every time.
+                            </p>
+                        </p>
+
+                        <p className="f1-5 mUpL">
+                            <b className="hightText">Applications of Rabin-Karp Algorithm</b>
                             <ul className="ols mUpS f1-3">
-                                <li>
-                                    For pattern matching
-                                </li>
-                                <li>
-                                    For searching string in a bigger text
-
-                                </li>
-
+                                <li>Pattern matching in strings</li>
+                                <li>Searching for a string in a larger text</li>
                             </ul>
                         </p>
                     </motion.div>
@@ -136,5 +134,5 @@ export default function RabinkarpTheory() {
             </div>
             <Footer />
         </>
-    )
+    );
 }
