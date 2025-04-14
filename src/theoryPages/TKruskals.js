@@ -1,6 +1,9 @@
+
+// import necessary components
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
+// import styles
 import "../css/Theory.css";
 import { animate, delay, motion } from "framer-motion";
 import Footer from "../components/Footer";
@@ -14,6 +17,9 @@ import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
 export default function TKruskals() {
+
+    // Page navigations
+
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
@@ -29,6 +35,9 @@ export default function TKruskals() {
             <Navbar />
             <FNavbar />
             <div className="fullbg fullbgHOME dcontainer ">
+
+                {/* Kruskal's algorithm with steps */}
+
                 <section className="sectionsT mUpL">
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
@@ -133,6 +142,9 @@ export default function TKruskals() {
                                 </ul>
                             </div>
                         </div>
+
+                        {/* Advantages and Disadvantages for Kruskal's Algorithm */}
+
                         <div className="f1-5 mUpL">
                             <b className="hightText f1-5">Advantages of Kruskal's Algorithm</b>
                             <ol className="mUpM f1-3 ols">

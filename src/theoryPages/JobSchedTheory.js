@@ -1,9 +1,12 @@
-import { useNavigate } from "react-router-dom";
-import FNavbar from "../components/FNavbar";
-import Navbar from "../components/Navbar";
-import "../css/Theory.css";
-import { motion } from "framer-motion";
-import Footer from "../components/Footer.js";
+// Importing required modules and components
+import { useNavigate } from "react-router-dom"; // For programmatic navigation
+import FNavbar from "../components/FNavbar"; // Custom floating/sticky navbar component
+import Navbar from "../components/Navbar"; // Main navbar component
+import "../css/Theory.css"; // CSS specific to theory pages
+import { motion } from "framer-motion"; // Library for animations
+import Footer from "../components/Footer.js"; // Footer component
+
+// Importing job scheduling images
 import jss1 from "../img/Jobschedimg/jss1.png";
 import jss2 from "../img/Jobschedimg/jss2.png";
 import jss3 from "../img/Jobschedimg/jss3.png";
@@ -12,36 +15,55 @@ import jss5 from "../img/Jobschedimg/jss5.png";
 import jss6 from "../img/Jobschedimg/jss6.png";
 import jss7 from "../img/Jobschedimg/jss7.png";
 import jss8 from "../img/Jobschedimg/jss8.png";
+
+// Context for accessing app state
 import { AppState } from "../context/appContext";
+
+// Importing route data for experiment simulations
 import { expR } from "../data/expRoutes";
 
+// Component: JobSchedTheory
 export default function JobSchedTheory() {
 
+    // Hook for navigation
     const navigate = useNavigate();
 
+    // Function to navigate to a simulation route
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     }
 
+    // Destructuring current experiment state from context
     const { cuE } = AppState();
     const [currE] = cuE;
 
+    // Component return JSX
     return (
         <>
+            {/* Navigation bars */}
             <Navbar />
             <FNavbar />
+
+            {/* Main content container */}
             <div className="fullbg fullbgHOME dcontainer">
                 <section className="sectionsT mUpL">
+                    {/* Animated container using Framer Motion */}
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
+                        initial={{ opacity: 0, y: 40 }} // Animation starts from slightly below and transparent
+                        animate={{ opacity: 1, y: 0 }} // Ends fully visible and in place
+                        transition={{ duration: 0.3 }} // Transition time
                     >
+                        {/* Introduction to Job Scheduling */}
                         <p className="f1-5 mUpL">
                             <b className="hightText1">Job Scheduling</b> is a technique to schedule jobs from a set of N jobs onto a single processor to maximize the profit.
                         </p>
-                        <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>Go to Simulator</button>
-                        
+
+                        {/* Button to navigate to simulator */}
+                        <button className="goToSim mUpL" onClick={() => { naviTo(expR[currE[0]][currE[1]][1]) }}>
+                            Go to Simulator
+                        </button>
+
+                        {/* Algorithm description section */}
                         <div className="f1-5 mUpL">
                             <b className="hightText">Algorithm for Job Scheduling</b>
                             <ul className="algorithm intro f1-3 mUpM">
@@ -54,16 +76,19 @@ export default function JobSchedTheory() {
                             </ul>
                         </div>
 
+                        {/* Theory explanation section */}
                         <p className="f1-5 mUpL">
                             <b className="hightText">Theory</b>
                             <ol className="ols mUpS f1-3">
                                 <li>
+                                    {/* Textual explanation */}
                                     <div className="mUpL"></div>
                                     <p className="mUpM">
                                         In job scheduling, the objective is to schedule jobs to maximize the total profit while adhering to deadlines. The greedy strategy selects jobs with the highest profit, ensuring that no job's deadline is violated.
                                     </p>
                                     <p className="mUpM">This method outputs the subset of jobs that yield the highest possible profit within the constraints.</p>
 
+                                    {/* Summary of steps */}
                                     <div className="f1">
                                         <p className="mUpM" style={{ marginLeft: "2rem" }}>
                                             <ul>
@@ -73,13 +98,14 @@ export default function JobSchedTheory() {
                                             </ul>
                                         </p>
 
+                                        {/* Step-by-step visual example */}
                                         <p className="mUpM"><b>Example</b></p>
                                         <p className="mUpM">Given the following jobs, deadlines, and profits:</p>
-
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1em" }}>
                                             <img className="im1 kim1" src={jss1} alt="Job Scheduling Example"></img>
                                         </div>
 
+                                        {/* Images with each scheduling step */}
                                         <p className="mUpM"><b>Step 1:</b> Sort jobs by profit.</p>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "1.5em" }}>
                                             <img className="im1 kim1" src={jss2} alt="Sorted Jobs by Profit"></img>
@@ -115,10 +141,12 @@ export default function JobSchedTheory() {
                                             <img className="im1 kim1" src={jss8} alt="Job J2 Scheduled"></img>
                                         </div>
 
+                                        {/* Final result */}
                                         <p className="mUpM"><b>Maximum Earned Profit = 990 units.</b></p>
                                     </div>
                                 </li>
 
+                                {/* Time complexity explanation */}
                                 <li>
                                     <div className="mUpL"></div>
                                     <b>Time Complexity</b>
@@ -129,6 +157,8 @@ export default function JobSchedTheory() {
                     </motion.div>
                 </section>
             </div>
+
+            {/* Footer component */}
             <Footer />
         </>
     );

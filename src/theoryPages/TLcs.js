@@ -1,6 +1,9 @@
+
+// import necessary components
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
+// import styles
 import "../css/Theory.css";
 import { animate, delay, motion } from "framer-motion";
 import Footer from "../components/Footer";
@@ -14,6 +17,8 @@ import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
 export default function TLcs() {
+
+    // Page navigations
 
     const navigate = useNavigate();
 
@@ -31,6 +36,9 @@ export default function TLcs() {
             <FNavbar />
             <div className="fullbg fullbgHOME dcontainer">
                 <section className="sectionsT mUpL">
+
+                    {/* LCS Theory with algorithm steps */}
+
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -146,6 +154,8 @@ export default function TLcs() {
                                 </ul>
                             </div>
 
+                            {/* Applications of Dynamic Programming and LCS */}
+
                         </div>
                         <p className="f1-5 mUpL">
                             <b className="hightText">Applications of Dynamic Programming</b>
@@ -170,6 +180,9 @@ export default function TLcs() {
                     </motion.div>
                 </section>
             </div>
+
+            {/* Page Footer */}
+
             <Footer />
         </>
     )

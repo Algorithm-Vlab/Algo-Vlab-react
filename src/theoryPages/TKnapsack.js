@@ -1,6 +1,9 @@
+
+// import necessary components
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
+// import styles
 import "../css/Theory.css";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer.js";
@@ -11,6 +14,8 @@ import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
 export default function TKnapsack() {
+
+    // Page navigations
 
     const navigate = useNavigate();
 
@@ -26,6 +31,9 @@ export default function TKnapsack() {
             <Navbar />
             <FNavbar />
             <div className="fullbg fullbgHOME dcontainer">
+
+                {/* Knapsack Algorithm Theory with algorithm steps */}
+
                 <section className="sectionsT mUpL">
 
                     <motion.div
@@ -106,6 +114,8 @@ export default function TKnapsack() {
                                         </div>
                                     </div>
                                 </li>
+
+                                {/* Time Complexity and Applications */}
 
                                 <li>
                                     <div className="mUpL"></div>

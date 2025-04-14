@@ -1,3 +1,5 @@
+// Import necessary components
+
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -14,6 +16,7 @@ import { expR } from "../data/expRoutes";
 
 export default function NqueensTheory() {
 
+    // Navigation handle
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
@@ -39,6 +42,8 @@ export default function NqueensTheory() {
                         <p className="f1-5 mUpL">
                 <b className="hightText1">Backtracking</b> is a recursive algorithmic technique used to solve problems by trying to construct a solution incrementally, step by step, and removing solutions that fail to meet the problem’s constraints at any given point.
             </p>
+
+            {/* Theory part */}
 
             <p className="f1-5 mUpL">
                 <b className="hightText">N-Queens Problem</b>
@@ -80,6 +85,8 @@ export default function NqueensTheory() {
                     solveNQueens(board, 0, N)
                 </p>
             </div>
+
+            {/* explanation and examples for N Queens */}
 
             <p className="f1-5 mUpL">
                 <b className="hightText">Explanation of the N-Queens Problem with 4x4 and 8x8 Chessboards</b>
