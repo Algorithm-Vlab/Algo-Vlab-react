@@ -1,6 +1,5 @@
-// This file contains the theory content for the Dijkstra's Algorithm page.
 
-// Required Imports
+// import necessary components
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -18,6 +17,9 @@ import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
 export default function TDijkstra() {
+
+    // Page Navigations
+
     const navigate = useNavigate();
     // Function to navigate to the simulator page
     const naviTo = (toLink) => {
@@ -39,6 +41,9 @@ export default function TDijkstra() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3 }}
                     >
+
+                        {/* Algorithm Steps for Dijkstra */}
+
                         <p className="f1-5 mUpL">
                             <b className="hightText1">Dijkstra's Algorithm</b> is the Algorithm which uses the <b>Greedy Approach</b> to find the <b>shortest path</b> from <b>source</b> to every <b>vertice in graph</b>.
                         </p>
@@ -146,6 +151,9 @@ export default function TDijkstra() {
                                 </ul>
                             </div>
                         </div>
+
+                        {/* Applications and Time Complexity */}
+
                         <div className="f1-5 mUpL">
                             <b className="hightText f1-5">Application of Dijkstra's Algorithm</b>
                             <ol className="mUpM f1-3 ols">

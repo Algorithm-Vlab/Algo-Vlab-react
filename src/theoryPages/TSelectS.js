@@ -1,8 +1,9 @@
-// File contains the theory of Selection Sort Algorithm.
-// Importing required files and libraries
+
+// import necessary components
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
+// import styles
 import "../css/Theory.css";
 import { animate, delay, motion } from "framer-motion";
 import Footer from "../components/Footer";
@@ -11,6 +12,9 @@ import { expR } from "../data/expRoutes";
 
 // Main function which contains the theory of the Selection Sort Algorithm
 export default function TSelectS() {
+
+    // Page Navigations
+
     const navigate = useNavigate();
     // AppState to get the current edge
     const { cuE, algoT } = AppState();
@@ -26,6 +30,9 @@ export default function TSelectS() {
             <Navbar />
             <FNavbar />
             <div className="fullbg fullbgHOME dcontainer ">
+
+                {/* Selection Sort Theory with algorithm steps */}
+
                 <section className="sectionsT mUpL">
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
@@ -173,6 +180,7 @@ export default function TSelectS() {
                                 </ul>
                             </div>
 
+                        {/* Advantages and Disadvantages of Selection Sort Algorithm */}
 
                         </div>
                         <div className="f1-5 mUpL">
@@ -206,6 +214,9 @@ export default function TSelectS() {
                     </motion.div>
                 </section>
             </div>
+
+            {/* Footer for the Selection Sort Page */}
+
             <Footer />
         </>
     );

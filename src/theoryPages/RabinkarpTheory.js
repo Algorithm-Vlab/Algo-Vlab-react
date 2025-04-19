@@ -1,5 +1,6 @@
-// Desc: Rabin-Karp Algorithm Theory Page
-// Importing necessary modules
+
+// import necessary components
+
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -14,6 +15,9 @@ import { expR } from "../data/expRoutes";
 
 //  Main function which contains the theory of the Rabin-Karp Algorithm
 export default function RabinkarpTheory() {
+
+    // Page navigations
+
     const navigate = useNavigate();
     // Function to navigate to the simulator page
     const naviTo = (toLink) => {
@@ -29,6 +33,9 @@ export default function RabinkarpTheory() {
             <Navbar />
             <FNavbar />
             <div className="fullbg fullbgHOME dcontainer">
+
+                {/* Theory for Rabin Karp Algorithm */}
+
                 <section className="sectionsT mUpL">
 
                     <motion.div
@@ -118,6 +125,8 @@ export default function RabinkarpTheory() {
                                 </li>
                             </ol>
                         </p>
+
+                        {/* Time complexity and Applications */}
 
                         <p className="f1-5 mUpL">
                             <b className="hightText">Time Complexity</b>

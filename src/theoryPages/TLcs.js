@@ -1,9 +1,9 @@
-// This file contains the theory content for the Longest Common Subsequence (LCS) page.
 
-// Required Imports
+// import necessary components
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
+// import styles
 import "../css/Theory.css";
 import { animate, delay, motion } from "framer-motion";
 import Footer from "../components/Footer";
@@ -18,7 +18,9 @@ import { expR } from "../data/expRoutes";
 
 //  Main function which contains the theory of the Longest Common Subsequence (LCS)
 export default function TLcs() {
-    // useNavigate hook to navigate to the simulator page
+
+    // Page navigations
+
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
@@ -35,6 +37,9 @@ export default function TLcs() {
             <FNavbar />
             <div className="fullbg fullbgHOME dcontainer">
                 <section className="sectionsT mUpL">
+
+                    {/* LCS Theory with algorithm steps */}
+
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -150,6 +155,8 @@ export default function TLcs() {
                                 </ul>
                             </div>
 
+                            {/* Applications of Dynamic Programming and LCS */}
+
                         </div>
                         <p className="f1-5 mUpL">
                             <b className="hightText">Applications of Dynamic Programming</b>
@@ -174,6 +181,9 @@ export default function TLcs() {
                     </motion.div>
                 </section>
             </div>
+
+            {/* Page Footer */}
+
             <Footer />
         </>
     )

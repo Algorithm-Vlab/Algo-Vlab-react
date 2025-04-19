@@ -1,9 +1,9 @@
-// This file contains the theory content for the Knapsack Problem page.
 
-// Required Imports
+// import necessary components
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
+// import styles
 import "../css/Theory.css";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer.js";
@@ -14,7 +14,9 @@ import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 // Main function which contains the theory of the Knapsack Problem
 export default function TKnapsack() {
-    // useNavigate hook to navigate to the simulator page
+
+    // Page navigations
+
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
@@ -29,6 +31,9 @@ export default function TKnapsack() {
             <Navbar />
             <FNavbar />
             <div className="fullbg fullbgHOME dcontainer">
+
+                {/* Knapsack Algorithm Theory with algorithm steps */}
+
                 <section className="sectionsT mUpL">
 
                     <motion.div
@@ -109,6 +114,8 @@ export default function TKnapsack() {
                                         </div>
                                     </div>
                                 </li>
+
+                                {/* Time Complexity and Applications */}
 
                                 <li>
                                     <div className="mUpL"></div>

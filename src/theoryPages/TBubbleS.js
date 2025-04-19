@@ -1,6 +1,5 @@
-// This file contains the the theory of the Bubble Sort Algorithm.
 
-// Required Imports
+// import necessary components
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -12,6 +11,9 @@ import { expR } from "../data/expRoutes";
 
 // Main function which contains the theory of the Bubble Sort Algorithm
 export default function TBubbleS() {
+
+    // Page Navigations
+
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
@@ -27,6 +29,9 @@ export default function TBubbleS() {
             <Navbar />
             <FNavbar />
             <div className="fullbg fullbgHOME dcontainer ">
+
+                {/* Bubble Sort Theory */}
+
                 <section className="sectionsT mUpL">
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
@@ -61,6 +66,9 @@ export default function TBubbleS() {
                                     Let's illustrate the bubble sort algorithm step-by-step using
                                     an example array [10 , 7, 11, 5, 4, 6]:
                                 </p>
+
+                                {/* Steps for solving Bubble sort */}
+
                                 <ul className="mUpM f1-2">
                                     <li className="mUpM dflex egCol">
                                         <div>
@@ -167,6 +175,7 @@ export default function TBubbleS() {
                                 </ul>
                             </div>
 
+                        {/* Advantages and Disadvantages of Bubble Sort */}
 
                         </div>
                         <div className="f1-5 mUpL">
