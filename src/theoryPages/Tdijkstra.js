@@ -21,7 +21,7 @@ export default function TDijkstra() {
     // Page Navigations
 
     const navigate = useNavigate();
-
+    // Function to navigate to the simulator page
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
@@ -29,7 +29,7 @@ export default function TDijkstra() {
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;
-
+    // Return statement to return the JSX of the Dijkstra's Algorithm Theory page
     return (
         <>
             <Navbar />

@@ -13,19 +13,21 @@ import rkp3 from "../img/rabinkarp/rkp3.png";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
+//  Main function which contains the theory of the Rabin-Karp Algorithm
 export default function RabinkarpTheory() {
 
     // Page navigations
 
     const navigate = useNavigate();
-
+    // Function to navigate to the simulator page
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
-
+    // AppState hook to access the current experiment
     const { cuE, algoT } = AppState();
     const [currE, setCE] = cuE;
 
+    // Return statement to return the JSX of the Rabin-Karp Algorithm Theory page
     return (
         <>
             <Navbar />

@@ -18,11 +18,12 @@ export default function TInsertionSort() {
   const { cuE, algoT } = AppState();
 
   const [currE, setCE] = cuE;
-
+  // Function to navigate to the simulator page
   const naviTo = (toLink) => {
     navigate("/" + toLink + "/simulator");
   };
 
+  // Return statement to return the JSX of the Insertion Sort Theory page
   return (
     <>
       <Navbar />

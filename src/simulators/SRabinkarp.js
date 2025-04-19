@@ -1,12 +1,10 @@
-
+// this file is the implementation of the Rabin-Karp algorithm
+// IMPORT MAIN PACKAGES
 import React, { useEffect, useState } from "react";
-
 import { motion } from "framer-motion";
-
 import Navbar from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-
 import "../css/Home.css";
 import "../css/Lcs.css";
 import "../css/Rabinkarp.css";
@@ -15,6 +13,7 @@ import { AppState } from "../context/appContext";
 import { AlgoPer } from "../funcs/AlgoP";
 import { expR } from "../data/expRoutes";
 
+// FUNCTION IMPLEMENTATION
 function SRabinkarp() {
     const [text, settext] = useState("");
     const [found, setFound] = useState(0);
@@ -52,11 +51,12 @@ function SRabinkarp() {
     }, [stepC]);
 
 
-
+    // function to return the element by id
     function retElId(idname) {
         return document.getElementById(idname);
     }
 
+    // function to save the instructions
     function saveIns() {
         // setDoneIns(false);
         setStepC(1);
@@ -70,7 +70,7 @@ function SRabinkarp() {
 
     let d = 256;
 
-
+    // function to implement the Rabin-Karp algorithm
     async function rabin(pat, txt, q) {
         let M = pat.length;
         let N = txt.length;
@@ -139,7 +139,7 @@ function SRabinkarp() {
     }
 
 
-
+    // function to highlight the rows
     async function hightRow(i, k) {
         if (k === 1) {
             for (let j = i + 1; j <= pattern.length + i; j++) {
@@ -194,7 +194,7 @@ function SRabinkarp() {
         }
     }
 
-
+    // function to check the input strings
     function subLcsStrings(val) {
         const regex = /[^A-Za-z ]/;
         if (val.search(regex) === -1) {
@@ -225,6 +225,7 @@ function SRabinkarp() {
         }
     }
 
+    // function to restart the simulation
     async function restart() {
         settext("");
         setpattern("");
@@ -239,7 +240,7 @@ function SRabinkarp() {
         retElId("wordIn2").removeAttribute("readonly", "readonly");
     }
 
-
+    // function to disable the button
     function disBut(e) {
         document.getElementById(e.target.id).setAttribute("disabled", true);
     }
@@ -278,7 +279,7 @@ function SRabinkarp() {
 
 
                                 </div>
-
+                                // row
                                 <div id="Row0" className="row">
 
                                     <div style={{ padding: '3px', background: 'none', border: "none" }} id={`ASC1`} className="lcsBox th2"><p>ASCII</p></div>
@@ -383,7 +384,6 @@ function SRabinkarp() {
                                         <p>RabinKarp Algorithm traverses array wise and finds the pattern using hash function</p>
                                         {found === 1 ?
                                             <>
-
                                                 <motion.div
                                                     initial={{ scale: 0.6 }}
                                                     animate={{ scale: 1 }}
@@ -394,33 +394,23 @@ function SRabinkarp() {
                                                 </motion.div>
                                                 <motion.button className="cbutton" onClick={restart}>Restart</motion.button>
                                             </>
-
                                             : <>
                                                 <motion.button
                                                     className={"spec"}
                                                     id="CheckFirstIndex"
                                                     onClick={(e) => { disBut(e); rabin(pattern, text, 101); }}
                                                 >Check for Pattern</motion.button>
-
                                             </>}
-
                                     </motion.div>
-
                                 </div>
                                 <FontAwesomeIcon id="1STDN" className="stepDoneIcon" icon={faCircleCheck} />
                             </motion.div> : <></>
                         }
-
-
-
-
-
                     </motion.div>
                 </motion.div>
-
             </motion.div>
         </>
     );
 }
-
+// EXPORTING SRabinkarp
 export default SRabinkarp;

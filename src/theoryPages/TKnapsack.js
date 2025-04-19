@@ -12,7 +12,7 @@ import kss2 from "../img/knapsack/kss2.png";
 import kss3 from "../img/knapsack/kss3.png";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
-
+// Main function which contains the theory of the Knapsack Problem
 export default function TKnapsack() {
 
     // Page navigations

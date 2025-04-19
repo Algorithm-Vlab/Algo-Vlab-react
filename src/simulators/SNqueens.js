@@ -1,12 +1,12 @@
+// this file is the implementation of Queens problem using backtracking algorithm
+// Importing necessary files
 import React, { useEffect, useState } from "react";
-
 import "../css/Nqueens.css";
 import { delay, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-
 import "../css/Home.css";
 import "../css/Lcs.css";
 import FNavbar from "../components/FNavbar.js"
@@ -14,8 +14,9 @@ import { AppState } from "../context/appContext";
 import { AlgoPer } from "../funcs/AlgoP";
 import { expR } from "../data/expRoutes";
 
-
+// Function to implement N-Queens problem
 function SNQueens() {
+    // Defining states
     const [sel, setSel] = useState("");
     const [stepC, setStepC] = useState(0);
     const [o, seto] = useState(0);
@@ -57,7 +58,7 @@ function SNQueens() {
 
     }, [algoDone]);
 
-
+    //  checking the current step and updating the UI
     useEffect(() => {
         for (var i = 1; i < stepC; i++) {
             if (retElId(`${i}STDN`) != null) {
@@ -82,7 +83,7 @@ function SNQueens() {
         return document.getElementById(idname);
     }
 
-
+    // Function to restart the simulation
     async function restart() {
         seto(0);
         setSel("");
@@ -97,11 +98,11 @@ function SNQueens() {
         retElId("btn8Q").removeAttribute("disabled", "disabled");
     }
 
-
+    // Function to disable the button
     function disBut(e) {
         retElId(e.target.id).setAttribute("disabled", true);
     }
-
+    // Function to set the speed of simulation
     async function remBgs(tarrs, selB, t) {
         if (!selB) {
             for (var i = 0; i < tarrs.length; i++) {
@@ -115,7 +116,8 @@ function SNQueens() {
             retElId(`Ci${tarrs[i][0]}j${tarrs[i][1]}`).classList.remove("bgGreen", "bgRed");
         }
     }
-
+    
+    // Function to check the position of queens
     async function checkQueensPositions(option, row, col, n, t) {
         retElId(`i${row}j${col}`).innerHTML = "♛";
         for (let i = 0; i < col; i++) {
@@ -168,6 +170,7 @@ function SNQueens() {
         return true
     }
 
+    //  Function to show the current status of the simulation
     function showCurrStat(col, n) {
         for (var i = 0; i < n; i++) {
             if (i <= col) {
@@ -184,6 +187,7 @@ function SNQueens() {
         }
     }
 
+    // Function to solve the N-Queens
     async function nQueenssolve(option, col, n, t) {
 
 
@@ -235,7 +239,9 @@ function SNQueens() {
         retElId("sol2").innerHTML = `Backtracking happens`;
         return false
     }
+    
 
+    // Function to solve the N-Queens
     async function checknqueens(n, option) {
         // console.log(simSp);
         if (await nQueenssolve(option, 0, n, simSp) === false) {
@@ -256,7 +262,7 @@ function SNQueens() {
         }
     }
 
-
+    // Function to show the number of queens
     function showQ(n) {
         retElId("btn4Q").setAttribute("disabled", "disabled");
         retElId("btn8Q").setAttribute("disabled", "disabled");
@@ -403,5 +409,5 @@ function SNQueens() {
 
     );
 }
-
+//  Exporting the function
 export default SNQueens;

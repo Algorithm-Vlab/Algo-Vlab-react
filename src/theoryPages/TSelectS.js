@@ -10,12 +10,13 @@ import Footer from "../components/Footer";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
+// Main function which contains the theory of the Selection Sort Algorithm
 export default function TSelectS() {
 
     // Page Navigations
 
     const navigate = useNavigate();
-
+    // AppState to get the current edge
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;
@@ -23,7 +24,7 @@ export default function TSelectS() {
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
-
+    // Return statement to return the JSX of the Selection Sort Theory page
     return (
         <>
             <Navbar />

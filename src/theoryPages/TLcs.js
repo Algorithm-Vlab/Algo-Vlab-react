@@ -16,6 +16,7 @@ import iLcsMatch from "../img/lcs/match.png";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
+//  Main function which contains the theory of the Longest Common Subsequence (LCS)
 export default function TLcs() {
 
     // Page navigations
@@ -29,7 +30,7 @@ export default function TLcs() {
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;
-
+    // Return statement to return the JSX of the Longest Common Subsequence (LCS) Theory page
     return (
         <>
             <Navbar />

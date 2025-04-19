@@ -21,11 +21,10 @@ export default function TKruskals() {
     // Page navigations
 
     const navigate = useNavigate();
-
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
-
+    //  AppState to get the current edge
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;

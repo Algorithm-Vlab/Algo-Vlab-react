@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
+// Main function which contains the theory of the Bubble Sort Algorithm
 export default function TBubbleS() {
 
     // Page Navigations
@@ -18,7 +19,7 @@ export default function TBubbleS() {
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
-
+    //  AppState hook to access the current experiment
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;

@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import { animate, delay, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-
 import Navbar from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faCheck, faCircleCheck, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
-
 import "../css/Lcs.css";
 import "../css/JobSched.css";
 import "../css/Knapsack.css";
@@ -17,7 +14,7 @@ import { expR } from "../data/expRoutes";
 
 
 function SKnapsack() {
-
+    // State variables for tracking input, solution, and simulation steps
     const [stepC, setStepC] = useState(0);
     const [inProfit, setInProfit] = useState("");
     const [inWeight, setInWeight] = useState("");
@@ -36,10 +33,11 @@ function SKnapsack() {
     const { cuE, algoT, userD } = AppState();
     const [currE, setCE] = cuE;
 
+    // Helper function to get element by ID
     function retElId(idname) {
         return document.getElementById(idname);
     }
-
+    // Timer function to introduce delay in animations
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
 
@@ -63,7 +61,7 @@ function SKnapsack() {
         retElId("solveknap2").removeAttribute("disabled", "disabled");
         retElId("solveknap").removeAttribute("disabled", "disabled");
     }
-
+    // Automatically proceed with simulation if enabled
     useEffect(() => {
         for (var i = 1; i < stepC; i++) {
             if (retElId(`${i}STDN`) != null) {
@@ -105,6 +103,7 @@ function SKnapsack() {
         }
     }
 
+    // Add profit and weight inputs to array
     function addPWs() {
         let refArrs = pwArrs;
         let solA = [];
@@ -138,12 +137,14 @@ function SKnapsack() {
         setSolArr(solA);
     }
 
+    // Save total weight input
     function saveTotalWeight() {
         retElId("totweightIn").readOnly = true;
         setAddPW(true);
         retElId("idAddTotWeight").style.display = "none";
     }
 
+    // Execute knapsack simulation step
     async function doKnap(eTId) {
         var profits = [];
         var weights = [];
@@ -166,7 +167,7 @@ function SKnapsack() {
         var totL = TotalW + 1;
         retElId(eTId).setAttribute("disabled", "disabled");
         retElId("solveknap2").setAttribute("disabled", "disabled");
-        // --------------
+        // // Transition logic for simulation
         if ((i % n === 0 || j % totL === 0) && i < n) {
             i++;
             j = 1;
