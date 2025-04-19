@@ -1,3 +1,7 @@
+// This file is the main file that contains the routing for all the pages in the application.
+
+
+// Required Imports and necessary components
 import { HashRouter, Route, Link, Routes, BrowserRouter } from "react-router-dom";
 import Home from './pages/Home';
 import AppProvider from "./context/appContext";
@@ -39,9 +43,10 @@ import FPUser from "./components/Forgot-Password/FpUser";
 import ChangePassUser from "./components/Forgot-Password/changePUser";
 import DAdmins from "./components/Admin/Dadmins";
 
+// Main function that contains the routing for all the pages in the application
 function App() {
   return (
-
+    // BrowserRouter to wrap the entire application
     <BrowserRouter>
       <AppProvider>
         <Routes>
@@ -135,5 +140,5 @@ function App() {
     </BrowserRouter >
   );
 }
-
+// Exporting the App function
 export default App;

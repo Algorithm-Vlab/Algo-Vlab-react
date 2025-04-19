@@ -1,3 +1,6 @@
+// This file contains the theory content for the Dijkstra's Algorithm page.
+
+// Required Imports
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -16,7 +19,7 @@ import { expR } from "../data/expRoutes";
 
 export default function TDijkstra() {
     const navigate = useNavigate();
-
+    // Function to navigate to the simulator page
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
@@ -24,7 +27,7 @@ export default function TDijkstra() {
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;
-
+    // Return statement to return the JSX of the Dijkstra's Algorithm Theory page
     return (
         <>
             <Navbar />

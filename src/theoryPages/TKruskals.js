@@ -1,3 +1,6 @@
+// File : This file contains the theory of Kruskal's Algorithm.
+
+// Required Imports
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -14,12 +17,12 @@ import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
 export default function TKruskals() {
+    //  useNavigate hook to navigate to the simulator page
     const navigate = useNavigate();
-
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
-
+    //  AppState to get the current edge
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;

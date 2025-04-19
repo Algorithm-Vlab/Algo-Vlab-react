@@ -1,3 +1,5 @@
+// Desc: Rabin-Karp Algorithm Theory Page
+// Importing necessary modules
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -10,16 +12,18 @@ import rkp3 from "../img/rabinkarp/rkp3.png";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
+//  Main function which contains the theory of the Rabin-Karp Algorithm
 export default function RabinkarpTheory() {
     const navigate = useNavigate();
-
+    // Function to navigate to the simulator page
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
-
+    // AppState hook to access the current experiment
     const { cuE, algoT } = AppState();
     const [currE, setCE] = cuE;
 
+    // Return statement to return the JSX of the Rabin-Karp Algorithm Theory page
     return (
         <>
             <Navbar />

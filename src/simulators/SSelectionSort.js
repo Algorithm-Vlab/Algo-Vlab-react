@@ -1,3 +1,5 @@
+// implements the Selection Sort Algorithm
+// importing required libraries and hooks
 import React, { useState } from "react";
 import "../css/insertionSort.css";
 import "../css/Home.css";
@@ -12,13 +14,13 @@ import { AppState } from "../context/appContext";
 import { AlgoPer } from "../funcs/AlgoP";
 import { expR } from "../data/expRoutes";
 
+// Main function to implement the Selection Sort Algorithm
 export default function SInsertionSort() {
+  // useState hooks for the state variables
   const [stepC, setStepC] = useState(0);
   const [array1, setArray1] = useState([]);
-
   const { cuE, algoT, userD } = AppState();
   const [currE, setCE] = cuE;
-
   useEffect(() => {
     for (var i = 1; i < stepC; i++) {
       if (retElId(`${i}STDN`) != null) {
@@ -43,7 +45,7 @@ export default function SInsertionSort() {
   function retElId(idname) {
     return document.getElementById(idname);
   }
-
+  // Function to create a delay
   const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const update = () => {
@@ -55,6 +57,7 @@ export default function SInsertionSort() {
     setStepC(1);
   };
 
+  // createBox function to create the input boxes
   const createBox = async (element) => {
     await timer(10);
     const second = document.getElementById("idTakeEl");
@@ -89,6 +92,7 @@ export default function SInsertionSort() {
     });
   };
 
+  // Selection Sort Algorithm
   async function selectionSort(inputArr) {
     retElId("2sStartSort").setAttribute("disabled", "disabled");
     let n = inputArr.length;
@@ -144,6 +148,7 @@ export default function SInsertionSort() {
     AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
   }
 
+  // Function to display the array
   function displayArray(array) {
     const arrayContainer = document.getElementById("sim");
     arrayContainer.innerHTML = "";

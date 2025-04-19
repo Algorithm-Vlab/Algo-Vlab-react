@@ -1,3 +1,6 @@
+// This file contains the theory content for the Longest Common Subsequence (LCS) page.
+
+// Required Imports
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -13,8 +16,9 @@ import iLcsMatch from "../img/lcs/match.png";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
+//  Main function which contains the theory of the Longest Common Subsequence (LCS)
 export default function TLcs() {
-
+    // useNavigate hook to navigate to the simulator page
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
@@ -24,7 +28,7 @@ export default function TLcs() {
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;
-
+    // Return statement to return the JSX of the Longest Common Subsequence (LCS) Theory page
     return (
         <>
             <Navbar />

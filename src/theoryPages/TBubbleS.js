@@ -1,3 +1,6 @@
+// This file contains the the theory of the Bubble Sort Algorithm.
+
+// Required Imports
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -7,13 +10,14 @@ import Footer from "../components/Footer";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
+// Main function which contains the theory of the Bubble Sort Algorithm
 export default function TBubbleS() {
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     };
-
+    //  AppState hook to access the current experiment
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;

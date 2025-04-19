@@ -1,3 +1,5 @@
+// tHIS PAGE CONTAINS THE THEORY OF JOB SCHEDULING ALGORITHM
+// Importing necessary files and packages here
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -15,17 +17,18 @@ import jss8 from "../img/Jobschedimg/jss8.png";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
+// Main function which contains the theory of the Job Scheduling Algorithm
 export default function JobSchedTheory() {
-
+    // useNavigate hook to navigate to the simulator page
     const navigate = useNavigate();
-
+    // Function to navigate to the simulator page
     const naviTo = (toLink) => {
         navigate("/" + toLink + "/simulator");
     }
-
+    // AppState hook to access the current experiment
     const { cuE } = AppState();
     const [currE] = cuE;
-
+    // Return statement to return the JSX of the Job Scheduling Algorithm Theory page
     return (
         <>
             <Navbar />

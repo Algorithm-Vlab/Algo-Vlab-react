@@ -1,3 +1,6 @@
+// This file is the Theory page for the N-Queens Problem. It contains the theory content for the N-Queens Problem page.
+
+// Required Imports
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -12,8 +15,9 @@ import queen8 from "../img/nqueens/8queen.png"
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
+// Main function which contains the theory of the N-Queens Problem
 export default function NqueensTheory() {
-
+    //  useNavigate hook to navigate to the simulator page
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {
@@ -21,9 +25,9 @@ export default function NqueensTheory() {
     }
 
     const { cuE, algoT } = AppState();
-
+    //  useState hooks for the state variables
     const [currE, setCE] = cuE;
-
+    // Return statement to return the JSX of the N-Queens Problem Theory page
     return (
         <>
             <Navbar />

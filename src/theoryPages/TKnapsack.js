@@ -1,3 +1,6 @@
+// This file contains the theory content for the Knapsack Problem page.
+
+// Required Imports
 import { useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -9,9 +12,9 @@ import kss2 from "../img/knapsack/kss2.png";
 import kss3 from "../img/knapsack/kss3.png";
 import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
-
+// Main function which contains the theory of the Knapsack Problem
 export default function TKnapsack() {
-
+    // useNavigate hook to navigate to the simulator page
     const navigate = useNavigate();
 
     const naviTo = (toLink) => {

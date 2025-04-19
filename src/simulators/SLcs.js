@@ -1,11 +1,10 @@
+// Imports
 import React, { useEffect, useState } from "react";
-
 import { animate, delay, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faCheck, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-
 import "../css/Home.css";
 import "../css/Lcs.css";
 import FNavbar from "../components/FNavbar";
@@ -13,7 +12,9 @@ import { AppState } from "../context/appContext";
 import { AlgoPer } from "../funcs/AlgoP";
 import { expR } from "../data/expRoutes";
 
+// Longest Common Subsequence
 function SLcs() {
+    // Variables and set states
     const navigate = useNavigate();
     const [str1, setStr1] = useState();
     const [str2, setStr2] = useState();
@@ -25,12 +26,11 @@ function SLcs() {
     const [algoPart, setAlgoPart] = useState(0);
     const [finalSeq, setFinalSeq] = useState("");
     const [anDuration, setAnDuration] = useState(800);
-
     const { cuE, algoT, userD } = AppState();
     const [currE, setCE] = cuE;
 
     const timer = ms => new Promise(res => setTimeout(res, ms));
-
+    // UseEffect
     useEffect(() => {
         if (inStr1 && inStr2 && subLcsStrings(inStr1) && subLcsStrings(inStr2)) {
             if (stepC === 0) {
@@ -74,6 +74,7 @@ function SLcs() {
         return document.getElementById(idname);
     }
 
+    // save instructions
     function saveIns() {
         setDoneIns(false);
         setStepC(1);
@@ -85,6 +86,7 @@ function SLcs() {
         retElId("wordIn2").setAttribute("readonly", "readonly");
     }
 
+    // Check if string contains only alphabets
     function subLcsStrings(val) {
         const regex = /[^A-Za-z ]/;
         if (val.search(regex) === -1) {
@@ -94,7 +96,7 @@ function SLcs() {
             return false;
         }
     }
-
+    // Highlighting functions
     async function hightRow(rowNo) {
         for (var j = 1; j <= str1.length; j++) {
             if (retElId(`M${rowNo}${j}`)) {
@@ -108,7 +110,7 @@ function SLcs() {
             }
         }
     }
-
+    // Highlighting functions
     async function hightCol(colNo) {
         for (var i = 1; i <= str2.length; i++) {
             if (retElId(`M${i}${colNo}`)) {
@@ -122,7 +124,7 @@ function SLcs() {
             }
         }
     }
-
+    // Highlighting functions
     async function hightBox(i, j) {
         if (retElId(`M${i}${j}`)) {
             retElId(`M${i}${j}`).classList.add("hight");
@@ -147,6 +149,7 @@ function SLcs() {
         }
     }
 
+    // Staring the algorithm
     async function startAlgo(opt) {
         var li = str2.length + 1;
         var lj = str1.length + 1;
@@ -175,7 +178,7 @@ function SLcs() {
 
                 const st2 = retElId(`S2M${x - 1}`).childNodes[0].innerText;
                 const st1 = retElId(`S1M${y - 1}`).childNodes[0].innerText;
-
+                // check if characters are same
                 if (st1 === st2) {
                     hightStr(x - 1, y - 1, 1);
                     await timer(anDuration);
@@ -215,6 +218,7 @@ function SLcs() {
         }
     }
 
+    // restart the simulation
     async function restart() {
         setStr1("");
         setStr2("");
@@ -228,6 +232,7 @@ function SLcs() {
         retElId("wordIn2").removeAttribute("readonly", "readonly");
     }
 
+    // After algorithm is done
     async function afterAlgo() {
         var go = 1;
         var gx = str2.length;
@@ -275,12 +280,13 @@ function SLcs() {
         AlgoPer({ algoName: expR[currE[0]][currE[1]][0] });
     }
 
+    // Disable button
     function disBut(e) {
         document.getElementById(e.target.id).setAttribute("disabled", true);
     }
 
 
-
+    // Check if input is valid
     function netCheck(val, eT) {
         if (subLcsStrings(val)) {
             retElId(eT.id).classList.remove("inValidIn");
@@ -491,4 +497,5 @@ function SLcs() {
     );
 }
 
+// Exporting the component
 export default SLcs;

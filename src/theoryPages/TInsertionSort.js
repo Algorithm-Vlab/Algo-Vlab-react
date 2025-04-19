@@ -1,3 +1,6 @@
+// This file contains the theory content for the Insertion Sort page.
+
+// Required Imports
 import { Link, useNavigate } from "react-router-dom";
 import FNavbar from "../components/FNavbar";
 import Navbar from "../components/Navbar";
@@ -8,16 +11,18 @@ import { AppState } from "../context/appContext";
 import { expR } from "../data/expRoutes";
 
 export default function TInsertionSort() {
+  // useNavigate hook to navigate to the simulator page
   const navigate = useNavigate();
 
   const { cuE, algoT } = AppState();
 
   const [currE, setCE] = cuE;
-
+  // Function to navigate to the simulator page
   const naviTo = (toLink) => {
     navigate("/" + toLink + "/simulator");
   };
 
+  // Return statement to return the JSX of the Insertion Sort Theory page
   return (
     <>
       <Navbar />

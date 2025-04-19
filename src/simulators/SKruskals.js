@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import { animate, delay, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-
 import Navbar from "../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faCircleCheck, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
-
 import { DataSet } from "vis-data";
 import { Network } from "vis-network";
 import "vis-network/styles/vis-network.css";
@@ -19,10 +16,10 @@ import { AppState } from "../context/appContext";
 import { AlgoPer } from "../funcs/AlgoP";
 import { expR } from "../data/expRoutes";
 
+// Kruskal's Algorithm
 function SKruskals() {
-
+    // State variables for tracking input, solution, and simulation steps
     const [stepC, setStepC] = useState(0);
-
     const [noNodes, setNoNodes] = useState();
     const [showNE, setShowNE] = useState(false);
     const [node1, setNode1] = useState();
@@ -68,6 +65,7 @@ function SKruskals() {
         // window.scrollTo(0, 0);
     }, [stepC]);
 
+    // Creates a graph visualization using vis.js library.
     function createGraph(idname, edgeM) {
         if (edgeM[0].length >= 1) {
             var nEdges = edgeM.length;
@@ -102,6 +100,7 @@ function SKruskals() {
 
     }
 
+    // Displays the graph visualization
     function showGraph(eT) {
         document.getElementById(eT.id).setAttribute("disabled", "disable");
         // setNOpt(gnodeOptions);
@@ -133,13 +132,14 @@ function SKruskals() {
         setRankA(rank);
     }
 
+    // Retrieves the graph data and initializes the graph matrix.
     function findParent(parent, component) {
         if (parent[component] == component)
             return component;
 
         return parent[component] = findParent(parent, parent[component]);
     }
-
+    // union of two sets
     function unionSet(u, v, parent, rank, n) {
         //this function unions two set on the basis of rank
         //as shown below
@@ -159,7 +159,7 @@ function SKruskals() {
         setRankA(rank);
         setPA(parent);
     }
-
+    // next edge in the Kruskal's algorithm
     async function nextEdge(i, eT) {
         retElId(eT.id).setAttribute("disabled", "disable");
         var edge = edgeMatrix;
@@ -280,7 +280,7 @@ function SKruskals() {
         setMinCost(mCost);
         retElId(eT.id).disabled = false;
     }
-
+    // Kruskal's algorithm
     function kruskalAlgo(n, edge) {
 
         edge.sort((a, b) => {
@@ -321,7 +321,7 @@ function SKruskals() {
         retElId(eT.id).setAttribute("disabled", "disable");
         kruskalAlgo(edgeMatrix.length, edgeMatrix);
     }
-
+    // Processes the next edge in the Kruskal's algorithm.
     function goNextEdge(eT) {
         var cI = currI + 1;
         var mCost = minCost;
@@ -350,7 +350,7 @@ function SKruskals() {
     }
 
     // Validations
-
+    // check if the input is an integer
     function checkIfInt(valNum) {
         if (!valNum) {
             return false;
@@ -379,7 +379,7 @@ function SKruskals() {
             return false;
         }
     }
-
+    // return the index of the character
     function retIndexChar(valC) {
         var ascNum = Number(valC.charCodeAt(0));
         if (ascNum >= 97) {
@@ -407,7 +407,7 @@ function SKruskals() {
             retElId(eT.id).classList.add("inValidIn");
         }
     }
-
+    // add new edge to the edge matrix
     function addNEM() {
         var edgeM = edgeMatrix;
         var n1 = retIndexChar(String(node1));
@@ -543,5 +543,5 @@ function SKruskals() {
         </>
     )
 }
-
+// Exporting the component
 export default SKruskals;

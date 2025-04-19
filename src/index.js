@@ -1,9 +1,13 @@
+// index.js is the entry point of the react application. It is the first file that gets executed when the application starts.
+
+//Importing necessary modules
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Rendering the App component in the root element
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
