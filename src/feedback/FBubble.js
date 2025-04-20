@@ -1,3 +1,5 @@
+
+// import components
 import React, { useEffect, useState } from "react";
 import Multiprogressbar from "../components/progressbar";
 import { AppState } from "../context/appContext";
@@ -12,6 +14,8 @@ import Footer from "../components/Footer";
 export default function FBubble() {
 
     const cd = new Date();
+
+    // State declarations
     const [date, setDate] = useState(
         `${cd.getDate()}/${cd.getMonth() + 1}/${cd.getFullYear()}`
     );
@@ -62,6 +66,7 @@ export default function FBubble() {
         setQuest7("");
     }
 
+    // Handle Submit Function
     async function submitFeed() {
         const config = {
             headers: {
@@ -104,6 +109,8 @@ export default function FBubble() {
     function naviTo(locName) {
         navigate("/" + locName);
     }
+
+    // Feedback Form
     function formm(step) {
 
 
@@ -396,6 +403,9 @@ export default function FBubble() {
         <>
             <Navbar />
             <FNavbar />
+
+            {/* Feedback Form */}
+
             {uD ?
                 <div className="fullbg">
                     <div
@@ -412,6 +422,7 @@ export default function FBubble() {
 
                 </div>
                 :
+                // If not login then
                 <div className="fullbg">
                     <h1>Please Login to Fill the feedback!</h1>
                 </div>

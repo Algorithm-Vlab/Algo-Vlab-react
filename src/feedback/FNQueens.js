@@ -1,3 +1,5 @@
+
+// import components
 import React, { useEffect, useState } from "react";
 import Multiprogressbar from "../components/progressbar";
 import { AppState } from "../context/appContext";
@@ -12,6 +14,8 @@ import Footer from "../components/Footer";
 export default function FNQueens() {
 
     const cd = new Date();
+
+    // State Declarations
     const [date, setDate] = useState(
         `${cd.getDate()}/${cd.getMonth() + 1}/${cd.getFullYear()}`
     );
@@ -104,6 +108,8 @@ export default function FNQueens() {
     function naviTo(locName) {
         navigate("/" + locName);
     }
+
+    // Feedback Form component
     function formm(step) {
 
 
@@ -397,6 +403,8 @@ export default function FNQueens() {
             <Navbar />
             <FNavbar />
             {uD ?
+
+                // N-Queens Feedback Form
                 <div className="fullbg">
                     <div
                         className="feedDiv"
@@ -412,6 +420,8 @@ export default function FNQueens() {
 
                 </div>
                 :
+
+                // If not login then
                 <div className="fullbg">
                     <h1>Please Login to Fill the feedback!</h1>
                 </div>

@@ -1,3 +1,5 @@
+
+// components import
 import React, { useEffect, useState } from "react";
 import Multiprogressbar from "../components/progressbar";
 import { AppState } from "../context/appContext";
@@ -15,6 +17,8 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function ComF() {
 
     const cd = new Date();
+
+    // state declarations
     const [date, setDate] = useState(
         `${cd.getDate()}/${cd.getMonth() + 1}/${cd.getFullYear()}`
     );
@@ -35,6 +39,7 @@ export default function ComF() {
     const [index, setIndex] = useState(1);
     const navigate = useNavigate();
 
+    // feedback notify
     const notifyS = () => toast.success('Feedback Posted Successfully!', {
         position: "top-right",
         autoClose: 5000,
@@ -155,6 +160,9 @@ export default function ComF() {
     function naviTo(locName) {
         navigate("/" + locName);
     }
+
+
+    // Feedback Form
 
     function formm(step) {
 
@@ -453,6 +461,9 @@ export default function ComF() {
                     <>
                         < Navbar />
                         <FNavbar />
+
+                        {/* Feedback Page */}
+
                         {
                             uD ?
                                 <div className="fullbg">
@@ -477,6 +488,8 @@ export default function ComF() {
                         }
                         <Footer />
                     </>
+
+                    // If Page not found then
                     : <PageNotFound />
             }
         </>
