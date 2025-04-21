@@ -1,8 +1,13 @@
+// Logic for Login to Website
+
+// importing components
 import axios from "axios";
 import { useState } from "react"
 import { Form, useNavigate } from "react-router-dom";
 import { AppState } from "../context/appContext";
 import { useEffect } from "react";
+
+// import styles and UI components
 import "../css/Theory.css";
 import "../css/login.css";
 import Navbar from "../components/Navbar";
@@ -11,17 +16,21 @@ import Swal from "sweetalert2";
 import { ErrNoti, SuccNoti } from "../funcs/swals";
 
 export default function ULogin() {
+
+    // State declarations
     const [uemail, setuemail] = useState();
     const [password, setPassword] = useState();
     const [aEmail, setAEmail] = useState();
     const [aPassword, setAPassword] = useState();
     const navigate = useNavigate();
 
+    // get app state
     const { userD } = AppState();
 
     const [uD, setUD] = userD;
     const [currLS, setCurrLS] = useState(false);
 
+    // async login function
     async function doLogin(uData, uType) {
         const config = {
             headers: {
@@ -69,6 +78,8 @@ export default function ULogin() {
         }
     }
 
+
+    // sub form declaration
     function subForm(e, tId) {
         var f = document.getElementsByTagName('form')[0];
         var uType = "user";
@@ -151,7 +162,7 @@ export default function ULogin() {
 
     }, [currLS])
 
-
+    // JSX Component for Login
     return (
         <>
             <Navbar />
@@ -219,6 +230,9 @@ export default function ULogin() {
                     }
                 </div>
             </div>
+
+            {/* Footer Component */}
+
             <Footer />
         </>
     )

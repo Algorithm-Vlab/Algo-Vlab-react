@@ -1,3 +1,6 @@
+// This is logic for progress bar
+
+// import components and styles
 import React from 'react'
 import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";

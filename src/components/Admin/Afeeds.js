@@ -1,14 +1,21 @@
+// Contains all the feedbacks filled
+
+// importing components
 import { useNavigate } from "react-router-dom";
 import { AppState } from "../../context/appContext";
 import { useEffect } from "react";
 import Navbar from "../Navbar";
 import axios from "axios";
 import { useState } from "react";
+
+// importing styles and UI Components
 import "../../css/dash.css";
 import Footer from "../Footer";
 import download from "downloadjs";
 
 export default function AFeedbacks() {
+
+    // State Declarations
     const { cuE, algoT, userD } = AppState();
     const [currE, setCE] = cuE;
     const [algoTC, setAlgoT] = algoT;
@@ -18,6 +25,7 @@ export default function AFeedbacks() {
     const timer = ms => new Promise(res => setTimeout(res, ms));
     const navigate = useNavigate();
 
+    // get request on page load for feedback
     useEffect(() => {
         const fetchFeeds = async () => {
             await timer(200);
@@ -40,7 +48,7 @@ export default function AFeedbacks() {
         fetchFeeds();
     }, []);
 
-
+    // download as excel
     const downEx = async () => {
         try {
             const authA = await axios.get(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/admin/auth`, { withCredentials: true })
@@ -59,6 +67,7 @@ export default function AFeedbacks() {
 
     }
 
+    // JSX Component logic
     return (
         <>
             <Navbar />
@@ -73,6 +82,8 @@ export default function AFeedbacks() {
                         </div>
                         <div className="divider"></div>
                         <p className="f3 mUpL"><b>Feedbacks</b></p>
+
+                        {/* display data as table */}
 
                         {fData ?
                             <>
@@ -137,6 +148,8 @@ export default function AFeedbacks() {
                     <></>
                 }
             </div>
+
+            {/* Footer Component */}
             <Footer />
         </>
 

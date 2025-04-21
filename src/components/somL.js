@@ -1,6 +1,11 @@
+// This is page for Somaiya Logo
+
+// import styles and assets
 import "../css/Navbar.css";
 import somLogo from "../img/somaiyaLogo.png";
 
+
+// Export JSX component
 export default function SomL(){
     return (<div className="dkjLogo">
         <img className="somLogo" src={somLogo}></img>

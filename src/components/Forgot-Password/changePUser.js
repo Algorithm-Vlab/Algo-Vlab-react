@@ -1,8 +1,13 @@
+// This page consists logic for change password
+
+// import components
 import axios from "axios";
 import { useState } from "react"
 import { Form, useNavigate, useParams } from "react-router-dom";
 import { AppState } from "../../context/appContext";
 import { useEffect } from "react";
+
+// importing styles and UI Components
 import "../../css/Theory.css";
 import "../../css/login.css";
 import Navbar from "../../components/Navbar";
@@ -12,6 +17,8 @@ import { faSadTear } from "@fortawesome/free-solid-svg-icons";
 import { ErrNoti, SuccNoti } from "../../funcs/swals";
 
 export default function ChangePassUser() {
+
+    // state declarations
     const [uemail, setuemail] = useState();
     const [password, setPassword] = useState();
     const [cpassword, setCPassword] = useState();
@@ -19,6 +26,7 @@ export default function ChangePassUser() {
     const [pChanged, setPChanged] = useState();
     const navigate = useNavigate();
 
+    // get app state
     const { userD } = AppState();
 
     const [uD, setUD] = userD;
@@ -26,6 +34,7 @@ export default function ChangePassUser() {
 
     const passToken = useParams();
 
+    // verify the password token logic
     useEffect(() => {
         async function verifyPassToken() {
             const cpToken = passToken.pT;
@@ -55,6 +64,7 @@ export default function ChangePassUser() {
         verifyPassToken();
     }, [])
 
+    // change status
     useEffect(() => {
         if ((!uemail || !password || !cpassword) && retId("changePLl")) {
             retId("changePLl").setAttribute("disabled", "disabled");
@@ -65,6 +75,7 @@ export default function ChangePassUser() {
     }, [uemail, password, cpassword]);
 
 
+    // change user password logic
     async function changePassUser(uData) {
         if (!uemail || !password || !cpassword) {
             window.alert("Please fill the entries");
@@ -108,6 +119,7 @@ export default function ChangePassUser() {
         }
     }
 
+    // sub form declarations
     function subForm(e, tId) {
         var f = document.getElementsByTagName('form')[0];
         if (f.reportValidity()) {
@@ -129,10 +141,12 @@ export default function ChangePassUser() {
         }
     }, [uD]);
 
+    // get id name
     function retId(idName) {
         return document.getElementById(idName);
     }
 
+    // change the css on password change
     const handleCh = (e, lId) => {
         var idn = e.target.id;
         var vv = e.target.value;
@@ -148,6 +162,8 @@ export default function ChangePassUser() {
             retId(lId).removeAttribute("disabled");
         }
     }
+
+    // JSX Component Logic
 
     return (
         <>
@@ -193,7 +209,7 @@ export default function ChangePassUser() {
                             </div>
                         }
                     </>
-
+                    // If not Verified then
                     :
                     <>
                         <FontAwesomeIcon className="f4" icon={faSadTear} />
@@ -202,6 +218,8 @@ export default function ChangePassUser() {
                     </>
                 }
             </div>
+
+            {/* Footer Component */}
             <Footer />
         </>
     )

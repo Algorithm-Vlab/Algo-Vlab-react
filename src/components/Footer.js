@@ -1,7 +1,12 @@
+// This is footer for AOA Vlab website
+
+// import components
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+// importing styles, icons and assets
 import "../css/Footer.css";
 import kjsitLogo from "../img/kjsit.png";
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import githubL from "../img/github.svg";
 import linkedinL from "../img/linkedin.svg";
@@ -10,11 +15,14 @@ import somaiyaTrust from "../img/somaiyaTrust.png";
 
 function Footer() {
 
+    // state declarations
     const [showL, setShowL] = useState(0);
 
     const showLinks = () => {
         console.log("hello");
     }
+
+    // JSX Components logic
 
     return (
         <div className="footer"
@@ -70,4 +78,5 @@ function Footer() {
     )
 }
 
+// export as React Component
 export default Footer;

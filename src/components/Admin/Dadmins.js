@@ -1,16 +1,22 @@
+// This page contains details for admins
 
+// importing components
 import { useNavigate } from "react-router-dom";
 import { AppState } from "../../context/appContext";
 import { useEffect } from "react";
 import Navbar from "../Navbar";
 import axios from "axios";
 import { useState } from "react";
+
+// import styles and UI components
 import "../../css/dash.css";
 import Footer from "../Footer";
 import download from "downloadjs";
 import PageNotFound from "../NotFound";
 
 export default function DAdmins() {
+
+    // state declarations
     const { cuE, algoT, userD } = AppState();
     const [currE, setCE] = cuE;
     const [algoTC, setAlgoT] = algoT;
@@ -19,6 +25,7 @@ export default function DAdmins() {
     const timer = ms => new Promise(res => setTimeout(res, ms));
     const navigate = useNavigate();
 
+    // fetch all admin details on page load
     useEffect(() => {
         const fetchFeeds = async () => {
             await timer(200);
@@ -41,6 +48,7 @@ export default function DAdmins() {
         fetchFeeds();
     }, []);
 
+    // JSX Component Logic
     return (
         <>
 
@@ -77,9 +85,13 @@ export default function DAdmins() {
                             </div>
                         </section>
                     </div>
+
+                    {/* Footer Component */}
                     <Footer />
                 </>
                 :
+
+                // If not admin then redirect
                 <PageNotFound />
             }
 

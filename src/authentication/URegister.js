@@ -1,13 +1,20 @@
+// This page contains the logic for register page
+
+// importing components
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppState } from "../context/appContext";
 import { useEffect } from "react";
+
+// importing UI components
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Swal from "sweetalert2";
 
 export default function URegister(props) {
+
+    // state declarations
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [cpassword, setCPassword] = useState();
@@ -19,11 +26,13 @@ export default function URegister(props) {
     const [uDesig, setUDesig] = useState("Student");
     const navigate = useNavigate();
 
+    // get app state
     const { userD } = AppState();
 
     const [uD, setUD] = userD;
     const [currLS, setCurrLS] = useState(false);
 
+    // create a register of user
     async function doRegister(uData, uType) {
         const config = {
             headers: {
@@ -106,6 +115,8 @@ export default function URegister(props) {
                     }
                 });
         } catch (err) {
+
+            // handle any error
             retId("registerB").removeAttribute("disabled");
             console.clear();
             // window.alert(err);
@@ -120,6 +131,7 @@ export default function URegister(props) {
         }
     }
 
+    // sub form declarations
     function subForm(e, tId) {
         var f = document.getElementsByTagName("form")[0];
         if (f.reportValidity()) {
@@ -177,6 +189,8 @@ export default function URegister(props) {
         }
     };
 
+
+    // User navigations on success
     useEffect(() => {
         if (uD) {
             navigate("/");
@@ -187,6 +201,7 @@ export default function URegister(props) {
         return document.getElementById(idName);
     }
 
+    // JSX Component for register
     return (
         <>
             <Navbar />
@@ -198,6 +213,9 @@ export default function URegister(props) {
                         </button>
                     </div>
                     {/* <div id="adminForm"> */}
+
+                    {/* register form */}
+                    
                     <form className="divf logC " id="aForm">
                         <p className="f2">
                             <b>Registration Form</b>
@@ -369,6 +387,8 @@ export default function URegister(props) {
                     </form>
                 </div>
             </div>
+
+            {/* Footer Component */}
             <Footer />
         </>
     );

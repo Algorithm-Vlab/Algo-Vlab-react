@@ -1,3 +1,7 @@
+// Functional Logic for App Context
+
+
+// importing components
 import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
@@ -8,6 +12,8 @@ import axios from "axios";
 
 const AppContext = createContext();
 
+
+// creating app provider
 const AppProvider = ({ children }) => {
     const [uData, setUData] = useState(false);
     const [cE, setCE] = useState([3, 0]);
@@ -106,10 +112,13 @@ const AppProvider = ({ children }) => {
 
 };
 
+
+// creating app state
 export const AppState = () => {
     return useContext(AppContext);
 }
 
+// exporting as JSX Component
 export default AppProvider;
 
 

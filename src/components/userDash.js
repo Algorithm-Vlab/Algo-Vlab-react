@@ -1,25 +1,35 @@
+// This is User Dashboard Page
+
+// importing components
 import { useNavigate } from "react-router-dom";
 import { AppState } from "../context/appContext";
 import { useEffect } from "react";
 import Navbar from "./Navbar";
 import { useState } from "react";
 import axios from "axios";
-import Footer from "./Footer";
 import { animate, color, delay, motion } from "framer-motion";
+
+// import UI Components and icons
+import Footer from "./Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faCross, faX, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { AlgoPer } from "../funcs/AlgoP";
 import { algosData } from "../data/algos";
 
 export default function UserDash() {
+
+    // get app state
     const { cuE, algoT, userD } = AppState();
     const [currE, setCE] = cuE;
     const [algoTC, setAlgoT] = algoT;
+
+    // state declarations
     const [uDY, setuDY] = useState();
     const [feedD, setFeedD] = useState();
     const navigate = useNavigate();
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
+    // Update user on page load
     useEffect(() => {
         const updateUser = async () => {
             await timer(300);
@@ -43,6 +53,8 @@ export default function UserDash() {
         updateUser();
     }, []);
 
+
+    // JSX Component logic
     return (
         <>
             <Navbar />
@@ -121,6 +133,8 @@ export default function UserDash() {
                 </section>
 
             </div >
+
+            {/* Footer Component */}
             <Footer />
         </>
 

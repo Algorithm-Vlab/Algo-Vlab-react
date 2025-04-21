@@ -1,4 +1,9 @@
+// This page contains the logic for verifying account
+
+// importing components
 import { useNavigate, useParams } from "react-router-dom";
+
+// import UI Components and icons
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useEffect, useState } from "react";
@@ -9,13 +14,15 @@ import axios from "axios";
 import { ErrNoti, SuccNoti } from "../../funcs/swals";
 
 export default function VAccount() {
-
+    // state declarations
     const pToken = useParams();
     const [texist, setTExist] = useState(0);
     const [aVerified, setAVerified] = useState(0);
 
+    // handle navigations
     const navigate = useNavigate();
 
+    // verify token
     useEffect(() => {
         const fetchTT = async () => {
             const config = {
@@ -36,6 +43,7 @@ export default function VAccount() {
         fetchTT();
     }, []);
 
+    // verify account logic
     const doVerifyAcc = async () => {
         await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/auth/account/verify/g/do`, { token: pToken.tt })
             .then((data) => {
@@ -53,6 +61,8 @@ export default function VAccount() {
                 setAVerified(1);
             })
             .catch((err) => {
+
+                // handle errors
                 console.clear();
                 if (!err.response) {
                     ErrNoti({ errMessage: "Some error occurred, Please try again!" })
@@ -63,6 +73,8 @@ export default function VAccount() {
             })
     }
 
+    // JSX Components declarations
+
     return (
         <>
             <Navbar />
@@ -70,6 +82,7 @@ export default function VAccount() {
                 {texist ?
                     <>
                         {aVerified ?
+                            // if account verified then show this
                             <>
                                 <p className="f2 tCenter"><b>Your Account has been successfully verified, you can proceed to Login</b></p>
                                 <button className="spec" onClick={() => { navigate("/login") }}>Login</button>
@@ -85,6 +98,7 @@ export default function VAccount() {
 
                     </>
                     :
+                    // if account not verified then show this
                     <>
                         <FontAwesomeIcon className="f4" icon={faSadTear} />
                         <p className="f2 mUpL"><b>Either Verification link doesn't exist, or is expired!</b></p>
@@ -92,6 +106,8 @@ export default function VAccount() {
                     </>
                 }
             </div >
+
+            {/* Footer Component */}
             <Footer />
         </>
     )

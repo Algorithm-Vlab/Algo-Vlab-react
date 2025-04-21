@@ -1,14 +1,21 @@
+// This is page for user details
+
+// importing components
 import { useNavigate } from "react-router-dom";
 import { AppState } from "../../context/appContext";
 import { useEffect } from "react";
 import Navbar from "../Navbar";
 import axios from "axios";
 import { useState } from "react";
+
+// importing styles and UI components
 import "../../css/dash.css";
 import Footer from "../Footer";
 import download from "downloadjs";
 
 export default function AUserDet() {
+
+    // state declarations
     const { cuE, algoT, userD } = AppState();
     const [currE, setCE] = cuE;
     const [algoTC, setAlgoT] = algoT;
@@ -18,6 +25,7 @@ export default function AUserDet() {
     const timer = ms => new Promise(res => setTimeout(res, ms));
     const navigate = useNavigate();
 
+    // fetch user id on page load
     useEffect(() => {
         const fetchUserD = async () => {
             await timer(200);
@@ -41,7 +49,7 @@ export default function AUserDet() {
         fetchUserD();
     }, []);
 
-
+    // JSX Component logic
     return (
         <>
             <Navbar />
@@ -61,6 +69,9 @@ export default function AUserDet() {
                             <>
                                 <p className="f1-5 mUpM"><b>Total Registered Users: {uData.length}</b></p>
                                 <div className="ftContainer divf AuserD mUpM">
+
+                                    {/* On data load show as table */}
+
                                     <table className="feedT">
                                         <thead className="bgHead">
                                             <tr>
@@ -129,6 +140,8 @@ export default function AUserDet() {
                     <></>
                 }
             </div>
+
+            {/* Footer Component */}
             <Footer />
         </>
 

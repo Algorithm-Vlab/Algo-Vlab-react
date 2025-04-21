@@ -1,8 +1,13 @@
+// this page contains logic for forgot password for user
+
+// importing components
 import axios from "axios";
 import { useState } from "react"
 import { Form, useNavigate } from "react-router-dom";
 import { AppState } from "../../context/appContext";
 import { useEffect } from "react";
+
+// importing styles and UI components
 import "../../css/Theory.css";
 import "../../css/login.css";
 import Navbar from "../../components/Navbar";
@@ -11,10 +16,13 @@ import Swal from "sweetalert2";
 import { ErrNoti, SuccNoti } from "../../funcs/swals";
 
 export default function FPUser() {
+
+    // state declarations
     const [uemail, setuemail] = useState();
     const [password, setPassword] = useState();
     const navigate = useNavigate();
 
+    // get app state
     const { userD } = AppState();
 
     const [uD, setUD] = userD;
@@ -25,6 +33,7 @@ export default function FPUser() {
         }
     }, [])
 
+    // create ticket for password change
     async function reqPassChange(uData) {
         const config = {
             headers: {
@@ -36,6 +45,8 @@ export default function FPUser() {
             return;
         }
         try {
+
+            // send an email to user
             retId("changePL").setAttribute("disabled", "disabled");
             await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/auth/account/login/forgot-password/send-mail`, uData, {
                 withCredentials: true
@@ -65,12 +76,15 @@ export default function FPUser() {
                 })
         }
         catch (err) {
+
+            // handle errors
             retId("changePL").removeAttribute("disabled");
             console.clear();
             ErrNoti({ errMessage: "Some error occurred, Please try again!" })
         }
     }
 
+    // sub form declarations
     function subForm(e, tId) {
         var f = document.getElementsByTagName('form')[0];
         var em = uemail;
@@ -92,10 +106,12 @@ export default function FPUser() {
         }
     }, [uD]);
 
+    // get id name
     function retId(idName) {
         return document.getElementById(idName);
     }
 
+    // change css on success
     useEffect(() => {
         if (!uemail) {
             retId("iduemail").classList.remove("valid");
@@ -109,6 +125,7 @@ export default function FPUser() {
         }
     }, [uemail]);
 
+    // JSX Components logic
     return (
         <>
             <Navbar />
@@ -134,6 +151,8 @@ export default function FPUser() {
                     </div>
                 </div>
             </div>
+
+            {/* Footer Component */}
             <Footer />
         </>
     )

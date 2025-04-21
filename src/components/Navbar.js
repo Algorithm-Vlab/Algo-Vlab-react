@@ -1,21 +1,29 @@
+
+// importing components
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { ErrNoti } from "../funcs/swals";
+import { animate, delay, motion, spring } from "framer-motion";
+import { AppState } from "../context/appContext";
+import { expR } from "../data/expRoutes";
+
+// importing styles, assets and icons
 import "../css/Navbar.css";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import somLogo from "../img/somaiyaLogo.png";
 import kjsitLogo from "../img/kjsit.png";
 import algo1 from "../img/acLogo3.png";
-import { animate, delay, motion, spring } from "framer-motion";
 import { faBars, faCancel, faEnvelope, faUser, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { expR } from "../data/expRoutes";
-import { AppState } from "../context/appContext";
 import SomTrust from "../img/somaiyaTrust.png";
 import SomL from "./somL";
-import axios from "axios";
-import { ErrNoti } from "../funcs/swals";
 
 function Navbar() {
+
+    // handle navigation
     const navigate = useNavigate();
+
+    // state declarations
     const [hovNl, setHovNl] = useState(false);
     const [hovNG, setHovNG] = useState(false);
     const [hovNS, setHovNS] = useState(false);
@@ -32,6 +40,8 @@ function Navbar() {
     const [scrollTop, setScrollTop] = useState(0);
     const [prevST, setPrevST] = useState(0);
     const [showUD, setShowUD] = useState(false);
+
+    // Logout user logic
 
     const logoutUser = async () => {
         await axios.post(`${process.env.REACT_APP_BACKEND_DOMAIN}/y/user/logout`, {}, { withCredentials: true })
@@ -106,11 +116,16 @@ function Navbar() {
     //     updateUser();
     // }, [])
 
+    // return id name
     function retElId(idname) {
         return document.getElementById(idname);
     }
 
+    // JSX Component logic
+
     return (
+
+        // Navbar Start
         <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -670,10 +685,11 @@ function Navbar() {
             {/* <button id="idcontact" className="contactus"><FontAwesomeIcon icon={faEnvelope} /></button> */}
 
 
-
+            {/* Navbar End */}
 
         </motion.div >
     )
 }
 
+// export as React Component
 export default Navbar;

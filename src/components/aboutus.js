@@ -1,3 +1,6 @@
+// This is about us page
+
+// import styles, assets and icons
 import "../css/Theory.css";
 import "../css/aboutUs.css";
 import githubL from "../img/github.svg";
@@ -8,7 +11,11 @@ import yashImg from "../img/yash2.jpeg";
 import kushalImg from "../img/kushal.jpg";
 import dubeyImg from "../img/yashkumar.jpg";
 import profMD from "../img/profMD.jpg";
+
+// import components
 import { animate, delay, motion } from "framer-motion";
+
+// JSX Components logic
 
 export default function AboutUs() {
 
@@ -17,6 +24,9 @@ export default function AboutUs() {
 
             <b className="f2 mUpL">Developed by:</b>
             <div className="all_cards divf mUpS">
+
+                {/* Motion div for about us */}
+                
                 <motion.div id="iddev_card" class="dev_card divf"
                     initial={{ scale: 0.8, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -39,6 +49,9 @@ export default function AboutUs() {
                         <Link to="https://www.instagram.com/yashck.iso/" target="_blank"><img src={instagramL} className="socIcon"></img></Link>
                     </div>
                 </motion.div>
+
+                {/* Motion div for about us */}
+
                 <motion.div id="iddev_card" class="dev_card divf"
                     initial={{ scale: 0.8, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -60,6 +73,9 @@ export default function AboutUs() {
                         <Link to="https://www.instagram.com/dubeyyash758/" target="_blank"><img src={instagramL} className="socIcon"></img></Link>
                     </div>
                 </motion.div>
+
+                {/* Motion div for about us */}
+
                 <motion.div id="iddev_card" class="dev_card divf"
                     initial={{ scale: 0.8, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -77,6 +93,9 @@ export default function AboutUs() {
                     </div>
                 </motion.div>
             </div>
+
+            {/* Professor Details */}
+            
             <b className="f2">Guided by:</b>
             <div className="divf mUpS">
                 <motion.div className="guide_card divf"

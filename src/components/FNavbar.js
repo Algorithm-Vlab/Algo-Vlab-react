@@ -1,4 +1,9 @@
+// This is Feedback Navbar for site
+
+// importing components
 import React from "react";
+
+// importing styles, UI Components and icons
 import "../css/Home.css";
 import "../css/FNavbar.css";
 import { useNavigate } from "react-router-dom";
@@ -11,9 +16,13 @@ import { expR } from "../data/expRoutes";
 import { useEffect } from "react";
 
 function FNavbar() {
+
+    // state declarations
     const [scrollTop, setScrollTop] = useState(0);
     const [prevST, setPrevST] = useState(0);
     const [hoverF, setHoverF] = useState(false);
+
+    // get app state
     const { cuE, algoT } = AppState();
 
     const [currE, setCE] = cuE;
@@ -30,9 +39,11 @@ function FNavbar() {
         algoOpt = "Feedback";
     }
 
+    // navigations for user
     const navigate = useNavigate();
     const algoName = expR[currE[0]][currE[1]][1];
 
+    // get id name
     function retElId(idname) {
         return document.getElementById(idname);
     }
@@ -59,6 +70,8 @@ function FNavbar() {
     }
     window.addEventListener("scroll", updateY);
     // });
+
+    // JSX Component logic for Navbar
 
     return (
         <motion.div
@@ -105,4 +118,5 @@ function FNavbar() {
     )
 }
 
+// export as React Component
 export default FNavbar;
