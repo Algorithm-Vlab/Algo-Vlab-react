@@ -65,7 +65,7 @@ function Footer() {
                             <div className="links">
                                 <Link className="linkL" to="https://github.com/kushalharsora" target="_blank" onClick={(e) => { e.stopPropagation(); }}><img src={githubL} /></Link>
                                 <Link className="linkL" to="https://www.linkedin.com/in/kushal-harsora" target="_blank" onClick={(e) => { e.stopPropagation(); }}><img src={linkedinL} /></Link>
-                                <Link className="linkL" to="https://www.instagram.com/kushal_harsora/" target="_blank" onClick={(e) => { e.stopPropagation(); }}><img src={instagramL} /></Link>
+                                <Link className="linkL" to="https://www.instagram.com/kushalharsora/" target="_blank" onClick={(e) => { e.stopPropagation(); }}><img src={instagramL} /></Link>
                             </div>
                             : <></>
                         }Kushal C Harsora</button>

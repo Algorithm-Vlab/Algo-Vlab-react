@@ -1,41 +1,52 @@
-import FNavbar from "../components/FNavbar";
-import Navbar from "../components/Navbar";
-import "../css/Theory.css";
-import { animate, delay, motion } from "framer-motion";
-import DynamicSVG from "../img/dp.svg";
-import { Link, useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
+// Importing necessary components and dependencies
+import FNavbar from "../components/FNavbar"; // Optional navbar, not used here
+import Navbar from "../components/Navbar"; // Top navigation bar
+import "../css/Theory.css"; // CSS styles specific to theory pages
+import { animate, delay, motion } from "framer-motion"; // For adding animations to elements
+import DynamicSVG from "../img/dp.svg"; // SVG image related to dynamic programming
+import { Link, useNavigate } from "react-router-dom"; // For navigation and routing
+import Footer from "../components/Footer"; // Footer section
 
+// Defining the main functional component for the Dynamic Programming page
 export default function Dynamic() {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Hook to programmatically navigate to another route
 
+    // Function to navigate to a different route dynamically
     const naviTo = (toLink) => {
-        navigate("/" + toLink);
+        navigate("/" + toLink); // Concatenates the route and navigates
     }
 
     return (
         <>
-            <Navbar />
-            <div className="fullbg fullbgHOME dcontainer">
-                <section className="sectionsT">
+            <Navbar /> {/* Render the Navbar at the top of the page */}
+            <div className="fullbg fullbgHOME dcontainer"> {/* Container with background styling */}
+                <section className="sectionsT"> {/* Section wrapper for the content */}
+                    {/* Title with animation */}
                     <motion.p
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3 }}
                         id="title" className="title1">Dynamic Programming</motion.p>
+
+                    {/* Content section with animation */}
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3 }}
                     >
+                        {/* Introduction to Dynamic Programming */}
                         <p className="f1-5 mUpL">
                             <b className="hightText1">Dynamic Programming</b> is defined as a computer programming technique where an algorithmic problem is first broken down into sub-problems, the results are saved, and then the sub-problems are <b>optimized to find the overall solution</b>.
                         </p>
+
+                        {/* Navigation buttons to examples like LCS and Knapsack */}
                         <p className="f1-3 mUpL">
                             <b>Links to:</b>
                             <button name="lcs" className="sButton " onClick={() => { naviTo("lcs") }}>LCS<span></span></button>
                             <button name="knapsack" className="sButton " onClick={() => { naviTo("knapsack") }}>Knapsack<span></span></button>
                         </p>
+
+                        {/* Explanation on where dynamic programming is applicable */}
                         <p className="f1-5 mUpL">
                             <b className="hightText">Where should dynamic programming be used?</b>
                             <ol className="ols mUpS f1-3">
@@ -44,9 +55,13 @@ export default function Dynamic() {
                                 </li>
                             </ol>
                         </p>
+
+                        {/* Visual illustration of DP using an SVG image */}
                         <div className="divf mUpM">
                             <img src={DynamicSVG} className="im2" />
                         </div>
+
+                        {/* Description of top-down and bottom-up approaches in DP */}
                         <p className="f1-5 mUpL">
                             <b className="hightText">Dynamic programming can be achieved using two approaches:</b>
                             <ol className="ols mUpS f1-3">
@@ -98,8 +113,9 @@ export default function Dynamic() {
                                     </div>
                                 </li>
                             </ol>
-
                         </p>
+
+                        {/* Applications of DP in various domains */}
                         <p className="f1-5 mUpL">
                             <b className="hightText">Applications of Dynamic Programming</b>
                             <ul className="ols mUpS f1-3">
@@ -123,7 +139,7 @@ export default function Dynamic() {
                     </motion.div>
                 </section>
             </div>
-            <Footer />
+            <Footer /> {/* Render the Footer at the bottom of the page */}
         </>
     )
 }

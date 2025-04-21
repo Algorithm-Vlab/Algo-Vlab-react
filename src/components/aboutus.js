@@ -89,7 +89,7 @@ export default function AboutUs() {
                     <div class="divf dev_card_social mUpS">
                         <Link to="https://github.com/kushalharsora" target="_blank"><img src={githubL} className="socIcon"></img></Link>
                         <Link to="https://www.linkedin.com/in/kushal-harsora" target="_blank"><img src={linkedinL} className="socIcon"></img></Link>
-                        <Link to="https://www.instagram.com/kushal_harsora/" target="_blank"><img src={instagramL} className="socIcon"></img></Link>
+                        <Link to="https://www.instagram.com/kushalharsora/" target="_blank"><img src={instagramL} className="socIcon"></img></Link>
                     </div>
                 </motion.div>
             </div>
