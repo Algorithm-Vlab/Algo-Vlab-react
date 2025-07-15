@@ -112,13 +112,16 @@ export default function StrMatch() {
                             <b className="hightText">Applications of String Matching</b>
                             <ul className="ols mUpS f1-3">
                                 <li>
-                                    <b>Plagiarism Detection:</b> Used to compare documents based on string patterns.
+                                    <b>Plagiarism Detection:</b> 
+                                    The documents to be compared are decomposed into string tokens and compared using string matching algorithms. Thus, these algorithms are used to detect similarities between them and declare if the work is plagiarized or original.
                                 </li>
                                 <li>
-                                    <b>Bioinformatics and DNA Sequencing:</b> Matches patterns in genetic sequences.
+                                    <b>Bioinformatics and DNA Sequencing:</b> 
+                                    Bioinformatics involves applying information technology and computer science to problems involving genetic sequences to find DNA patterns. String matching algorithms and DNA analysis are both collectively used for finding the occurrence of the pattern set.
                                 </li>
                                 <li>
-                                    <b>Digital Forensics:</b> Helps locate important keyword strings in large forensic text dumps.
+                                    <b>Digital Forensics:</b> 
+                                    String matching algorithms are used to locate specific text strings of interest in the digital forensic text, which are useful for the investigation.
                                 </li>
                             </ul>
                         </p>
